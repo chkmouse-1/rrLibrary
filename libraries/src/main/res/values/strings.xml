@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Libraries</string>
+
+    <!-- 通用提示 -->
+    <string name="info_json_error">解析数据失败，请检查网络是否正常</string>
+    <string name="info_nomore_string">没有更多了！</string>
+    <string name="news_exit_twice_string">再按一次退出</string>
+    <string name="info_loaddata_error">加载数据失败！</string>
+    <string name="info_savedata_error">保存数据失败！</string>
+    <string name="info_sendMessageCode_error">发送验证码失败！</string>
+    <string name="info_upload_success">上传成功!</string>
+    <string name="info_upload_error">上传失败!</string>
+    <string name="info_upload_category_max">最多可以选择5个意向职位！</string>
+    <string name="info_json_opration_succ">处理成功！</string>
+    <string name="info_json_opration_faild">处理失败！</string>
+    <string name="info_feedback_search">面试查结果</string>
+    <string name="info_uplpad_error">正在上传图片，请稍等！</string>
+    <string name="info_error_network">网络不给力！</string>
+    <string name="info_error_cancelRequest">您已取消！</string>
+
+    <string name="info_exit_unSave">内容还没保存，确定要放弃编辑吗？</string>
+    <string name="info_exit_cancel">放弃</string>
+    <string name="info_exit_ok">继续编辑</string>
+
+</resources>

@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+dependencies
+{
+//    implementation 'com.android.support:design:26.0.0-alpha1'
+    implementation 'com.android.support:design:27.0.2'
+
+    // 网络请求
+    implementation 'cz.msebera.android:httpclient:4.4.1.2'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+
+    // gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // 加密
+    implementation files('libs/utils-1.0.jar')
+}
+
+/**
+ * 获取配置文件信息
+ */
+def String getProp(String keyName) {
+    def props = new Properties()
+    file("../local.properties").withInputStream { stream ->
+        props.load(stream)
+    }
+    props.get(keyName)
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        minSdkVersion 17
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable false
+            jniDebuggable false
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            debuggable false
+            jniDebuggable false
+        }
+
+        release {
+            zipAlignEnabled true
+        }
+    }
+}
+
+apply plugin: 'maven'
+uploadArchives{
+    repositories.mavenDeployer{
+//        repository(url:"file://C://Users/renrui/.m2/repository")
+        repository(url:getProp("repositoryPath"))
+        pom.groupId = "com.renrui"
+        pom.artifactId = "libraries"
+        pom.version = "1.0.6"
+    }
+}
