@@ -67,6 +67,6 @@ uploadArchives{
         repository(url:getProp("repositoryPath"))
         pom.groupId = "com.renrui"
         pom.artifactId = "libraries"
-        pom.version = "1.0.7"
+        pom.version = "1.0.8"
     }
 }
