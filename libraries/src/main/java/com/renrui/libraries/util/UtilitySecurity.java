@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
@@ -516,6 +517,35 @@ public class UtilitySecurity {
 
         try {
             tv.setTextColor(LibrariesCons.getContext().getResources().getColor(colorSourceId));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置edittext 密码格式
+     */
+    public static void setEditTextTypePassword(EditText et) {
+
+        if (et == null)
+            return;
+
+        try {
+            et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置edittext 普通格式
+     */
+    public static void setEditTextTypeNormal(EditText et) {
+        if (et == null)
+            return;
+
+        try {
+            et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
