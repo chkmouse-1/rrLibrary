@@ -31,6 +31,14 @@ public class UtilityData {
 
     /**
      * 检查返回json字符串是否合法
+     * 默认检查resultCode，不等于0视为非法，且非法结构，默认弹错误提示框
+     */
+    public static boolean tfytCheckResponseString(String content) {
+        return CheckResponseString(content, true, true);
+    }
+
+    /**
+     * 检查返回json字符串是否合法
      *
      * @param content            content
      * @param isShowErrorMessage 是否提示错误信息
