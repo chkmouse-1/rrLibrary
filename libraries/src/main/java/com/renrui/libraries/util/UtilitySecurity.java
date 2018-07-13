@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -558,6 +559,19 @@ public class UtilitySecurity {
 
         try {
             et.setSelection(index);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnClickListener(View view, @Nullable View.OnClickListener onClickListener) {
+
+        if (view == null || onClickListener == null) {
+            return;
+        }
+
+        try {
+            view.setOnClickListener(onClickListener);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
