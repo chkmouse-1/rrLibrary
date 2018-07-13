@@ -363,6 +363,18 @@ public class UtilitySecurity {
         }
     }
 
+    public static void requestFocus(EditText et) {
+        if (et == null) {
+            return;
+        }
+
+        try {
+            et.requestFocus();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * 将焦点放在最后
      */
@@ -377,7 +389,6 @@ public class UtilitySecurity {
             ex.printStackTrace();
         }
     }
-
 
     public static void setEnabled(View tv, boolean enable) {
         if (tv == null) {
