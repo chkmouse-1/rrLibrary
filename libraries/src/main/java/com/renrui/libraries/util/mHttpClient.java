@@ -63,10 +63,14 @@ public class mHttpClient {
 
     public static Gson GetGsonInstance() {
         if (gson == null) {
-            gson = new GsonBuilder().create();
+            gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         }
 
         return gson;
+    }
+
+    public static Gson GetGsonWithoutExposeAnnotation() {
+        return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     }
 
     private static AsyncHttpClient mAsyncHttpClient = null;

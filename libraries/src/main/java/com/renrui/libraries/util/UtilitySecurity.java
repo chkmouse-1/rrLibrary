@@ -13,12 +13,15 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.renrui.libraries.R;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,6 +29,14 @@ import java.util.TimerTask;
  * 安全方法
  */
 public class UtilitySecurity {
+
+    public static boolean isEmpty(String str) {
+        return TextUtils.isEmpty(str) || TextUtils.isEmpty(str.trim());
+    }
+
+    public static boolean isEmpty(List<?> list) {
+        return list == null || list.isEmpty();
+    }
 
     public static String getExtrasString(Bundle bd, String keyName, String defaultValue) {
         String value = "";
@@ -588,6 +599,18 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setSelection(ListView lv, int position) {
+        if (lv == null || position < 0) {
+            return;
+        }
+
+        try {
+            lv.setSelection(position);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void dialogDismiss(Dialog dialog) {
         if (dialog == null || !dialog.isShowing()) {
             return;
@@ -667,32 +690,6 @@ public class UtilitySecurity {
         }
     }
 
-//    /**
-//     * @param tv
-//     * @param text            Text
-//     * @param hotWords        关键词
-//     * @param colorResourceID 关键词颜色
-//     */
-//    public void setHotWordsText(TextView tv, CharSequence text, String hotWords, int colorResourceID) {
-//        if (tv == null) {
-//            return;
-//        }
-//
-//        try {
-//            SpannableStringBuilder textBuilder = new SpannableStringBuilder(text);
-//            ForegroundColorSpan hotWordsSpanColor;
-//
-//            List<Integer> lis = UtilityData.getStrIndex(text + "", hotWords);
-//            for (int i = 0; i < lis.size(); i++) {
-//                hotWordsSpanColor = new ForegroundColorSpan(ContextCompat.getColor(LibrariesCons.getContext(), colorResourceID));
-//                textBuilder.setSpan(hotWordsSpanColor, lis.get(i), lis.get(i) + hotWords.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            }
-//
-//            setText(tv, textBuilder);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
 
     /**
      * 安全销毁webview
@@ -722,39 +719,23 @@ public class UtilitySecurity {
             ex.printStackTrace();
         }
     }
-//
-//    /**
-//     * 50毫秒以后结束下拉状态
-//     */
-//    public void setListViewOnRefreshComplete(final PullToRefreshListView lvList) {
-//        try {
-//            new Handler().postDelayed(new Runnable() {
-//                public void run() {
-//                    try {
-//                        lvList.onRefreshComplete();
-//                    } catch (Exception ex) {
-//                        ex.printStackTrace();
-//                    }
-//                }
-//            }, 50);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
-//
-//    /**
-//     * 延时100毫秒置顶
-//     */
-//    public void setListViewScrollTop(final PullToRefreshListView lvList) {
-//        try {
-//            new Handler().postDelayed(new Runnable() {
-//                public void run() {
-//                    if (lvList.getRefreshableView().getChildCount() > 0)
-//                        lvList.getRefreshableView().setSelection(0);
-//                }
-//            }, 100);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
+
+    /**
+     * 是否最底部
+     */
+    public static boolean isBottom(BaseAdapter adapter, ListView listView) {
+
+        boolean value;
+
+        try {
+            final int itemCount = adapter.getCount();
+            final int lastVisibleItemPosition = listView.getLastVisiblePosition();
+            value = itemCount < (lastVisibleItemPosition + 3);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            value = false;
+        }
+
+        return value;
+    }
 }
