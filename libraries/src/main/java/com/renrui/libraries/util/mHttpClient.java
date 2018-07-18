@@ -63,7 +63,7 @@ public class mHttpClient {
 
     public static Gson GetGsonInstance() {
         if (gson == null) {
-            gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            gson = new GsonBuilder().create();
         }
 
         return gson;
