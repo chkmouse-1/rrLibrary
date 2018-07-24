@@ -558,6 +558,19 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setAlpha(View view, float alpha) {
+        if (view == null) {
+            return;
+        }
+
+        try {
+            view.setAlpha(alpha);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
     /**
      * 设置edittext 密码格式
      */
