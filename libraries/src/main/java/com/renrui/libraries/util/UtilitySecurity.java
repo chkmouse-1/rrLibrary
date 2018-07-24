@@ -16,6 +16,7 @@ import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -449,6 +450,18 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setImageResource(ImageView iv, int resoueceID) {
+        if (iv == null) {
+            return;
+        }
+
+        try {
+            iv.setImageResource(resoueceID);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setTextByStringSource(TextView tv, int resourceID) {
         if (tv == null) {
             return;
@@ -581,19 +594,6 @@ public class UtilitySecurity {
 
         try {
             et.setSelection(index);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static void setOnClickListener(View view, @Nullable View.OnClickListener onClickListener) {
-
-        if (view == null || onClickListener == null) {
-            return;
-        }
-
-        try {
-            view.setOnClickListener(onClickListener);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
