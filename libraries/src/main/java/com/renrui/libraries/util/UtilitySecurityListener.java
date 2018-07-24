@@ -65,6 +65,19 @@ public class UtilitySecurityListener {
         }
     }
 
+    public static void setOnItemClickListener(ListView lv, @Nullable AbsListView.OnItemClickListener listener) {
+
+        if (lv == null || listener == null) {
+            return;
+        }
+
+        try {
+            lv.setOnItemClickListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void addTextChangedListener(EditText et, @Nullable TextWatcher listener) {
 
         if (et == null || listener == null) {
