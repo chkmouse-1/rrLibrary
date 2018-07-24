@@ -11,7 +11,7 @@ import android.widget.ListView;
 /**
  * 安全方法
  */
-public class UtilityListenerSecurity {
+public class UtilitySecurityListener {
 
     public static void setOnClickListener(View view, @Nullable View.OnClickListener listener) {
 
