@@ -32,6 +32,20 @@ public class UtilityLogin {
         return encryptionInfoMode;
     }
 
+    public static EncryptionInfoMode getEncryptionInfoMode(String text) {
+
+        EncryptionInfoMode encryptionInfoMode = new EncryptionInfoMode();
+
+        try {
+            // 加密登录信息
+            encryptionInfoMode = UtilityLogin.getEncryptionModel(text);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return encryptionInfoMode;
+    }
+
     public static RequestParams getEncryRequestParams(EncryptionInfoMode model) {
         RequestParams para = null;
 
