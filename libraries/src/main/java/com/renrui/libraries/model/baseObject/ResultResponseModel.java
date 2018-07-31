@@ -8,7 +8,7 @@ public class ResultResponseModel extends BaseDataProvider {
      * 14    账号被封
      * 其他  为错误
      */
-    public String code = "";
+    public int code = 0;
 
     /**
      * 错误信息描述
@@ -18,5 +18,5 @@ public class ResultResponseModel extends BaseDataProvider {
     /**
      * 增加的积分
      */
-    public String score = "0";
+    public int score = 0;
 }

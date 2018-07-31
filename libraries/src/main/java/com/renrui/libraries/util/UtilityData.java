@@ -99,7 +99,7 @@ public class UtilityData {
                 return false;
             }
 
-            if (isCheckResultCode && !baseResponseModel.result.code.equals("0")) {
+            if (isCheckResultCode && baseResponseModel.result.code != 0) {
                 if (isShowErrorMessage) {
                     if (TextUtils.isEmpty(baseResponseModel.result.msg)) {
                         CustomToast.makeTextError(R.string.info_json_error);

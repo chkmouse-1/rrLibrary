@@ -13,12 +13,12 @@ public class UtilityTime {
     /**
      * yyyy-MM-dd HH:mm
      */
-    public final static SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public final static SimpleDateFormat sdf_1 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf1));
 
     /**
      * yyyy-MM-dd
      */
-    public final static SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd");
+    public final static SimpleDateFormat sdf_2 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf2));
 
     /**
      * yyyy-MM-dd
@@ -28,12 +28,12 @@ public class UtilityTime {
     /**
      * HH:mm
      */
-    public final static SimpleDateFormat sdf_4 = new SimpleDateFormat("HH:mm");
+    public final static SimpleDateFormat sdf_4 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf4));
 
     /**
      * MM-dd HH:mm
      */
-    public final static SimpleDateFormat sdf_5 = new SimpleDateFormat("MM-dd HH:mm");
+    public final static SimpleDateFormat sdf_5 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf5));
 
     /**
      * MM月dd日
@@ -53,27 +53,27 @@ public class UtilityTime {
     /**
      * yyyy.MM
      */
-    public final static SimpleDateFormat sdf_9 = new SimpleDateFormat("yyyy.MM");
+    public final static SimpleDateFormat sdf_9 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf9));
 
     /**
      * yyyy
      */
-    public final static SimpleDateFormat sdf_10 = new SimpleDateFormat("yyyy");
+    public final static SimpleDateFormat sdf_10 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf10));
 
     /**
      * MM
      */
-    public final static SimpleDateFormat sdf_11 = new SimpleDateFormat("MM");
+    public final static SimpleDateFormat sdf_11 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf11));
 
     /**
      * MM/dd
      */
-    public final static SimpleDateFormat sdf_12 = new SimpleDateFormat("yyyyMMdd");
+    public final static SimpleDateFormat sdf_12 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf12));
 
     /**
      * yyyy/MM/dd
      */
-    public final static SimpleDateFormat sdf_13 = new SimpleDateFormat("yyyy/MM/dd");
+    public final static SimpleDateFormat sdf_13 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf13));
 
     /**
      * yyyy年MM月dd日 HH:mm
@@ -83,7 +83,8 @@ public class UtilityTime {
     /**
      * yyyy.MM.dd
      */
-    public final static SimpleDateFormat sdf_15 = new SimpleDateFormat("yyyy.MM.dd");
+    public final static SimpleDateFormat sdf_15 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf15));
+
     /**
      * MM月dd日 HH:mm
      */
@@ -92,7 +93,7 @@ public class UtilityTime {
     /**
      * M.dd HH:mm
      */
-    public final static SimpleDateFormat sdf_17 = new SimpleDateFormat("M.dd HH:mm");
+    public final static SimpleDateFormat sdf_17 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf17));
 
     /**
      * M.dd HH:mm
@@ -102,17 +103,17 @@ public class UtilityTime {
     /**
      * yyyy-MM-dd HH:mm:ss
      */
-    public final static SimpleDateFormat sdf_19 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public final static SimpleDateFormat sdf_19 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf19));
 
     /**
      * yyyy-MM
      */
-    public final static SimpleDateFormat sdf_20 = new SimpleDateFormat("yyyy-MM");
+    public final static SimpleDateFormat sdf_20 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf20));
 
     /**
      * MM-dd
      */
-    public final static SimpleDateFormat sdf_21 = new SimpleDateFormat("MM-dd");
+    public final static SimpleDateFormat sdf_21 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf21));
 
     /**
      * MM-dd
@@ -122,68 +123,74 @@ public class UtilityTime {
     private final static String Yesterday = LibrariesCons.getContext().getString(R.string.UtilityTime_Yesterday);
     private final static String Today = LibrariesCons.getContext().getString(R.string.UtilityTime_Today);
     private final static String Tomorrow = LibrariesCons.getContext().getString(R.string.UtilityTime_Tomorrow);
+    private final static String DayAfterTomorrow = LibrariesCons.getContext().getString(R.string.UtilityTime_Day_After_Tomorrow);
 
     /**
      * 1分钟毫秒数
      */
-    private final static long lMinuteTimes = 1000 * 60;
+    public final static long lMinuteTimes = 1000 * 60;
 
     /**
      * 1小时毫秒数
      */
-    private final static long lSecondTimes = lMinuteTimes * 60;
+    public final static long lHourTimes = lMinuteTimes * 60;
 
     /**
      * 1天毫秒数
      */
-    private final static long lDayTimes = lSecondTimes * 24;
+    public final static long lDayTimes = lHourTimes * 24;
 
     private static Date tempDate;
     private static Date tempThisDate = new Date();
     private static Calendar tempCal = Calendar.getInstance();
 
     public static String getWeek(int day) {
-        String week;
+
+        int stringID;
+
         if (day == Calendar.MONDAY) {
-            week = "周一";
+            stringID = R.string.UtilityTime_Week_Simple_Monday;
         } else if (day == Calendar.TUESDAY) {
-            week = "周二";
+            stringID = R.string.UtilityTime_Week_Simple_Tuesday;
         } else if (day == Calendar.WEDNESDAY) {
-            week = "周三";
+            stringID = R.string.UtilityTime_Week_Simple_Wednesday;
         } else if (day == Calendar.THURSDAY) {
-            week = "周四";
+            stringID = R.string.UtilityTime_Week_Simple_Thursday;
         } else if (day == Calendar.FRIDAY) {
-            week = "周五";
+            stringID = R.string.UtilityTime_Week_Simple_Friday;
         } else if (day == Calendar.SATURDAY) {
-            week = "周六";
+            stringID = R.string.UtilityTime_Week_Simple_Saturday;
         } else if (day == Calendar.SUNDAY) {
-            week = "周日";
+            stringID = R.string.UtilityTime_Week_Simple_Sunday;
         } else {
-            week = "未知数据";
+            stringID = R.string.Utility_unknown;
         }
-        return week;
+
+        return LibrariesCons.getContext().getString(stringID);
     }
 
     public static String getWeekAllText(int day) {
-        String week;
+        int stringID;
+
         if (day == Calendar.MONDAY) {
-            week = "星期一";
+            stringID = R.string.UtilityTime_Week_Monday;
         } else if (day == Calendar.TUESDAY) {
-            week = "星期二";
+            stringID = R.string.UtilityTime_Week_Tuesday;
         } else if (day == Calendar.WEDNESDAY) {
-            week = "星期三";
+            stringID = R.string.UtilityTime_Week_Wednesday;
         } else if (day == Calendar.THURSDAY) {
-            week = "星期四";
+            stringID = R.string.UtilityTime_Week_Thursday;
         } else if (day == Calendar.FRIDAY) {
-            week = "星期五";
+            stringID = R.string.UtilityTime_Week_Friday;
         } else if (day == Calendar.SATURDAY) {
-            week = "星期六";
+            stringID = R.string.UtilityTime_Week_Saturday;
         } else if (day == Calendar.SUNDAY) {
-            week = "星期日";
+            stringID = R.string.UtilityTime_Week_Sunday;
         } else {
-            week = "未知数据";
+            stringID = R.string.Utility_unknown;
         }
-        return week;
+
+        return LibrariesCons.getContext().getString(stringID);
     }
 
     public static String getSdfStringByProgrcess(String lTime) {
@@ -202,14 +209,14 @@ public class UtilityTime {
 
                 // 今天：今天 HH:mm
                 if (UtilityTime.tempDate.getYear() == UtilityTime.tempThisDate.getYear() && UtilityTime.tempDate.getMonth() == UtilityTime.tempThisDate.getMonth() && UtilityTime.tempDate.getDate() == UtilityTime.tempThisDate.getDate()) {
-                    return "今天 " + UtilityTime.sdf_4.format(Long.parseLong(lTime));
+                    return Today + UtilityTime.sdf_4.format(Long.parseLong(lTime));
                 }
 
                 // 昨天：昨天 HH:mm
                 UtilityTime.tempCal.setTime(UtilityTime.tempDate);
                 UtilityTime.tempCal.add(Calendar.DAY_OF_YEAR, 1);
                 if (UtilityTime.tempThisDate.getYear() == UtilityTime.tempCal.getTime().getYear() && UtilityTime.tempThisDate.getMonth() == UtilityTime.tempCal.getTime().getMonth() && UtilityTime.tempThisDate.getDate() == UtilityTime.tempCal.getTime().getDate()) {
-                    return "昨天 " + UtilityTime.sdf_4.format(Long.parseLong(lTime));
+                    return Yesterday + UtilityTime.sdf_4.format(Long.parseLong(lTime));
                 }
 
                 // 当前年，且非今天和昨天， MM-dd HH:mm
@@ -231,14 +238,14 @@ public class UtilityTime {
 
             // 今天：今天 HH:mm
             if (UtilityTime.tempDate.getYear() == UtilityTime.tempThisDate.getYear() && UtilityTime.tempDate.getMonth() == UtilityTime.tempThisDate.getMonth() && UtilityTime.tempDate.getDate() == UtilityTime.tempThisDate.getDate()) {
-                return "今天 " + UtilityTime.sdf_4.format(lTime);
+                return Today + UtilityTime.sdf_4.format(lTime);
             }
 
             // 昨天：昨天 HH:mm
             UtilityTime.tempCal.setTime(UtilityTime.tempDate);
             UtilityTime.tempCal.add(Calendar.DAY_OF_YEAR, 1);
             if (UtilityTime.tempThisDate.getYear() == UtilityTime.tempCal.getTime().getYear() && UtilityTime.tempThisDate.getMonth() == UtilityTime.tempCal.getTime().getMonth() && UtilityTime.tempThisDate.getDate() == UtilityTime.tempCal.getTime().getDate()) {
-                return "昨天 " + UtilityTime.sdf_4.format(lTime);
+                return Yesterday + UtilityTime.sdf_4.format(lTime);
             }
 
             // 当前年，且非今天和昨天， MM-dd HH:mm
@@ -421,19 +428,19 @@ public class UtilityTime {
 
             // 当天
             if (UtilityTime.tempCal.getTime().getYear() == calThis.getTime().getYear() && UtilityTime.tempCal.getTime().getMonth() == calThis.getTime().getMonth() && UtilityTime.tempCal.getTime().getDate() == calThis.getTime().getDate()) {
-                return "今天";
+                return Today;
             }
 
             // 明天
             calThis.roll(Calendar.DAY_OF_YEAR, 1);
             if (UtilityTime.tempCal.getTime().getYear() == calThis.getTime().getYear() && UtilityTime.tempCal.getTime().getMonth() == calThis.getTime().getMonth() && UtilityTime.tempCal.getTime().getDate() == calThis.getTime().getDate()) {
-                return "明天";
+                return Tomorrow;
             }
 
             // 后天
             calThis.roll(Calendar.DAY_OF_YEAR, 1);
             if (UtilityTime.tempCal.getTime().getYear() == calThis.getTime().getYear() && UtilityTime.tempCal.getTime().getMonth() == calThis.getTime().getMonth() && UtilityTime.tempCal.getTime().getDate() == calThis.getTime().getDate()) {
-                return "后天";
+                return DayAfterTomorrow;
             }
 
             return UtilityTime.getWeek(UtilityTime.tempCal.get(Calendar.DAY_OF_WEEK));
@@ -453,19 +460,19 @@ public class UtilityTime {
 
             // 当天
             if (UtilityTime.tempCal.getTime().getYear() == calThis.getTime().getYear() && UtilityTime.tempCal.getTime().getMonth() == calThis.getTime().getMonth() && UtilityTime.tempCal.getTime().getDate() == calThis.getTime().getDate()) {
-                return "今天";
+                return Today;
             }
 
             // 昨天
             calThis.roll(Calendar.DAY_OF_YEAR, -1);
             if (UtilityTime.tempCal.getTime().getYear() == calThis.getTime().getYear() && UtilityTime.tempCal.getTime().getMonth() == calThis.getTime().getMonth() && UtilityTime.tempCal.getTime().getDate() == calThis.getTime().getDate()) {
-                return "昨天";
+                return Yesterday;
             }
 
             // 明天
             calThis.roll(Calendar.DAY_OF_YEAR, 2);
             if (UtilityTime.tempCal.getTime().getYear() == calThis.getTime().getYear() && UtilityTime.tempCal.getTime().getMonth() == calThis.getTime().getMonth() && UtilityTime.tempCal.getTime().getDate() == calThis.getTime().getDate()) {
-                return "明天";
+                return Tomorrow;
             }
 
             return UtilityTime.getWeek(UtilityTime.tempCal.get(Calendar.DAY_OF_WEEK));
@@ -511,7 +518,7 @@ public class UtilityTime {
 
             // 当天： 今天 MM-dd
             if (UtilityTime.tempDate.getYear() == thisDate.getYear() && UtilityTime.tempDate.getMonth() == thisDate.getMonth() && UtilityTime.tempDate.getDate() == thisDate.getDate()) {
-                return "今天 " + UtilityTime.sdf_4.format(UtilityTime.tempDate);
+                return Today + UtilityTime.sdf_4.format(UtilityTime.tempDate);
             }
 
             Calendar calendar = java.util.Calendar.getInstance();
@@ -519,7 +526,7 @@ public class UtilityTime {
             calendar.roll(Calendar.DAY_OF_YEAR, 1);
             // 当天： 昨天 MM-dd
             if (calendar.getTime().getYear() == thisDate.getYear() && calendar.getTime().getMonth() == thisDate.getMonth() && calendar.getTime().getDate() == thisDate.getDate()) {
-                return "昨天 " + UtilityTime.sdf_4.format(UtilityTime.tempDate);
+                return Yesterday + UtilityTime.sdf_4.format(UtilityTime.tempDate);
             }
 
             return UtilityTime.sdf_5.format(UtilityTime.tempDate);
@@ -537,22 +544,22 @@ public class UtilityTime {
         try {
             long intervalTime = System.currentTimeMillis() - value;
 
-            if (intervalTime <= (lSecondTimes * 12)) {
-                text = "刚刚";
+            if (intervalTime <= (lHourTimes * 12)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_just);
             } else if (intervalTime <= lDayTimes) {
-                text = "一天内";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_one_day);
             } else if (intervalTime <= (lDayTimes * 2)) {
-                text = "两天内";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_two_day);
             } else if (intervalTime <= (lDayTimes * 3)) {
-                text = "三天内";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_three_day);
             } else if (intervalTime <= (lDayTimes * 7)) {
-                text = "一周内";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_one_week);
             } else if (intervalTime <= (lDayTimes * 14)) {
-                text = "两周内";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_two_week);
             } else if (intervalTime <= (lDayTimes * 30)) {
-                text = "一个月内";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_one_month);
             } else {
-                text = "一个月+";
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_one_month_more);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -613,15 +620,16 @@ public class UtilityTime {
         Date thisDate = new Date();
 
         if (thisDate.getHours() <= 11) {
-            return "早上好";
+            return LibrariesCons.getContext().getString(R.string.UtilityTime_good_morning);
+
         } else if (thisDate.getHours() <= 13) {
-            return "中午好";
+            return LibrariesCons.getContext().getString(R.string.UtilityTime_good_noon);
 
         } else if (thisDate.getHours() <= 18) {
-            return "下午好";
+            return LibrariesCons.getContext().getString(R.string.UtilityTime_good_afternoon);
 
         } else {
-            return "晚上好";
+            return LibrariesCons.getContext().getString(R.string.UtilityTime_good_evening);
         }
     }
 }

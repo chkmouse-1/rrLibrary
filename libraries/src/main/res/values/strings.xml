@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Libraries</string>
 
+    <string name="Utility_unknown">未知数据</string>
+
     <!-- 通用提示 -->
     <string name="info_json_error">解析数据失败，请检查网络是否正常</string>
     <string name="info_nomore_string">没有更多了！</string>
@@ -22,17 +24,66 @@
     <string name="info_exit_cancel">放弃</string>
     <string name="info_exit_ok">继续编辑</string>
 
+    <string name="Utility_china_mobile">中国移动</string>
+    <string name="Utility_china_unicom">中国联通</string>
+    <string name="Utility_china_telecom">中国电信</string>
+
+    <string name="UtilityTime_sdf1">yyyy-MM-dd HH:mm</string>
+    <string name="UtilityTime_sdf2">yyyy-MM-dd</string>
     <string name="UtilityTime_sdf3">MM月dd日截止</string>
+    <string name="UtilityTime_sdf4">HH:mm</string>
+    <string name="UtilityTime_sdf5">MM-dd HH:mm</string>
     <string name="UtilityTime_sdf6">MM月dd日</string>
     <string name="UtilityTime_sdf7">yyyy年MM月dd日</string>
     <string name="UtilityTime_sdf8">MM月dd日 HH:mm</string>
+    <string name="UtilityTime_sdf9">yyyy.MM</string>
+    <string name="UtilityTime_sdf10">yyyy</string>
+    <string name="UtilityTime_sdf11">MM</string>
+    <string name="UtilityTime_sdf12">yyyyMMdd</string>
+    <string name="UtilityTime_sdf13">yyyy/MM/dd</string>
     <string name="UtilityTime_sdf14">yyyy年MM月dd日 HH:mm</string>
+    <string name="UtilityTime_sdf15">yyyy.MM.dd</string>
     <string name="UtilityTime_sdf16">MM月dd日 HH:mm</string>
+    <string name="UtilityTime_sdf17">M.dd HH:mm</string>
     <string name="UtilityTime_sdf18">HH小时mm分</string>
+    <string name="UtilityTime_sdf19">yyyy-MM-dd HH:mm:ss</string>
+    <string name="UtilityTime_sdf20">yyyy-MM</string>
+    <string name="UtilityTime_sdf21">MM-dd</string>
     <string name="UtilityTime_sdf22">yyyy年MM月</string>
 
     <string name="UtilityTime_Yesterday">昨天</string>
     <string name="UtilityTime_Today">今天</string>
     <string name="UtilityTime_Tomorrow">明天</string>
+    <string name="UtilityTime_Day_After_Tomorrow">后天</string>
+
+    <string name="UtilityTime_Week_Monday">星期一</string>
+    <string name="UtilityTime_Week_Tuesday">星期二</string>
+    <string name="UtilityTime_Week_Wednesday">星期三</string>
+    <string name="UtilityTime_Week_Thursday">星期四</string>
+    <string name="UtilityTime_Week_Friday">星期五</string>
+    <string name="UtilityTime_Week_Saturday">星期六</string>
+    <string name="UtilityTime_Week_Sunday">星期日</string>
+
+    <string name="UtilityTime_Week_Simple_Monday">周一</string>
+    <string name="UtilityTime_Week_Simple_Tuesday">周二</string>
+    <string name="UtilityTime_Week_Simple_Wednesday">周三</string>
+    <string name="UtilityTime_Week_Simple_Thursday">周四</string>
+    <string name="UtilityTime_Week_Simple_Friday">周五</string>
+    <string name="UtilityTime_Week_Simple_Saturday">周六</string>
+    <string name="UtilityTime_Week_Simple_Sunday">周日</string>
+
+    <string name="UtilityTime_just">刚刚</string>
+    <string name="UtilityTime_one_day">一天内</string>
+    <string name="UtilityTime_two_day">两天内</string>
+    <string name="UtilityTime_three_day">三天内</string>
+    <string name="UtilityTime_one_week">一周内</string>
+    <string name="UtilityTime_two_week">两周内</string>
+    <string name="UtilityTime_one_month">一月内</string>
+    <string name="UtilityTime_one_month_more">一个月+</string>
+
+    <string name="UtilityTime_good_morning">早上好</string>
+    <string name="UtilityTime_good_noon">中午好</string>
+    <string name="UtilityTime_good_afternoon">下午好</string>
+    <string name="UtilityTime_good_evening">晚上好</string>
 
 </resources>

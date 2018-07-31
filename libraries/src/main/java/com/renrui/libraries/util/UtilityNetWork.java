@@ -1,5 +1,6 @@
 package com.renrui.libraries.util;
 
+import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -7,6 +8,8 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+
+import com.renrui.libraries.R;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -18,21 +21,6 @@ import java.util.regex.Pattern;
  * 网络类
  */
 public class UtilityNetWork {
-
-//    private static UtilityNetWork instance = null;
-//    private static Context context = null;
-//
-//    public static void setContext(Context context) {
-//        UtilityNetWork.context = context;
-//    }
-//
-//    public static UtilityNetWork getInstance() {
-//        if (instance == null) {
-//            instance = new UtilityNetWork();
-//        }
-//
-//        return instance;
-//    }
 
     /**
      * 判断当前网络是否是wifi网络
@@ -61,7 +49,7 @@ public class UtilityNetWork {
         boolean isAvailable;
 
         try {
-            ConnectivityManager cm = (ConnectivityManager)  LibrariesCons.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cm = (ConnectivityManager) LibrariesCons.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
             if (cm == null) {
                 isAvailable = false;
@@ -101,7 +89,7 @@ public class UtilityNetWork {
                         e.printStackTrace();
                     }
                 } else if (info.getType() == ConnectivityManager.TYPE_WIFI) {//当前使用无线网络
-                    WifiManager wifiManager = (WifiManager)  LibrariesCons.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    WifiManager wifiManager = (WifiManager) LibrariesCons.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                     WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                     ipAddress = intIP2StringIP(wifiInfo.getIpAddress());//得到IPV4地址
                 }
@@ -121,7 +109,7 @@ public class UtilityNetWork {
     public static String GetNetworkType() {
         String strNetworkType = "";
 
-        ConnectivityManager manager = (ConnectivityManager)  LibrariesCons.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) LibrariesCons.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
@@ -177,22 +165,22 @@ public class UtilityNetWork {
         String netOperator = "";
 
         try {
-            TelephonyManager telManager = (TelephonyManager)  LibrariesCons.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telManager = (TelephonyManager) LibrariesCons.getContext().getSystemService(Context.TELEPHONY_SERVICE);
             final String operator = telManager.getSimOperator();
             if (!TextUtils.isEmpty(operator)) {
                 if (operator.equals("46000") || operator.equals("46002")) {
-                    netOperator = "中国移动";
+                    netOperator = LibrariesCons.getContext().getString(R.string.Utility_china_mobile);
                 } else if (operator.equals("46001")) {
-                    netOperator = "中国联通";
+                    netOperator = LibrariesCons.getContext().getString(R.string.Utility_china_unicom);
                 } else if (operator.equals("46003")) {
-                    netOperator = "中国电信";
+                    netOperator = LibrariesCons.getContext().getString(R.string.Utility_china_telecom);
                 } else {
-                    netOperator = "未知";
+                    netOperator = LibrariesCons.getContext().getString(R.string.Utility_unknown);
                 }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            netOperator = "未知";
+            netOperator = LibrariesCons.getContext().getString(R.string.Utility_unknown);
         }
 
         return netOperator;
@@ -201,11 +189,11 @@ public class UtilityNetWork {
     /**
      * 获取当前wifi名称
      */
-    public static String getWifiName() {
+    public static String getWifiName(Application application) {
         String wifiName;
 
         try {
-            WifiManager wifiMgr = (WifiManager)  LibrariesCons.getContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiMgr = (WifiManager) application.getSystemService(Context.WIFI_SERVICE);
             WifiInfo info = wifiMgr.getConnectionInfo();
             wifiName = info != null ? info.getSSID() : "";
             wifiName = wifiName.replace('"', ' ').trim();

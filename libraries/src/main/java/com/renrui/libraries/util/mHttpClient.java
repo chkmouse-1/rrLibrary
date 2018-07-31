@@ -84,10 +84,8 @@ public class mHttpClient {
 
             return GetGsonInstance().fromJson(json, classOfT);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
     public static <T> T fromDataJsonWithoutExposeAnnotation(String s, Class<T> classOfT) {
@@ -98,10 +96,8 @@ public class mHttpClient {
 
             return GetGsonWithoutExposeAnnotation().fromJson(json, classOfT);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
     private static AsyncHttpClient mAsyncHttpClient = null;
