@@ -22,4 +22,17 @@
     <string name="info_exit_cancel">放弃</string>
     <string name="info_exit_ok">继续编辑</string>
 
+    <string name="UtilityTime_sdf3">MM月dd日截止</string>
+    <string name="UtilityTime_sdf6">MM月dd日</string>
+    <string name="UtilityTime_sdf7">yyyy年MM月dd日</string>
+    <string name="UtilityTime_sdf8">MM月dd日 HH:mm</string>
+    <string name="UtilityTime_sdf14">yyyy年MM月dd日 HH:mm</string>
+    <string name="UtilityTime_sdf16">MM月dd日 HH:mm</string>
+    <string name="UtilityTime_sdf18">HH小时mm分</string>
+    <string name="UtilityTime_sdf22">yyyy年MM月</string>
+
+    <string name="UtilityTime_Yesterday">昨天</string>
+    <string name="UtilityTime_Today">今天</string>
+    <string name="UtilityTime_Tomorrow">明天</string>
+
 </resources>

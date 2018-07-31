@@ -9,6 +9,8 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;
@@ -29,6 +31,7 @@ import com.renrui.libraries.model.httpinterface.PayResultResponseModel;
 
 import org.getopt.util.hash.FNV1a32;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -71,6 +74,34 @@ public class mHttpClient {
 
     public static Gson GetGsonWithoutExposeAnnotation() {
         return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+    }
+
+    public static <T> T fromJson(String s, Class<T> classOfT) {
+
+        try {
+            JsonObject jsonObject = new JsonParser().parse(s).getAsJsonObject();
+            String json = jsonObject.getAsJsonObject("data").toString();
+
+            return GetGsonInstance().fromJson(json, classOfT);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static <T> T fromJsonWithoutExposeAnnotation(String s, Class<T> classOfT) {
+
+        try {
+            JsonObject jsonObject = new JsonParser().parse(s).getAsJsonObject();
+            String json = jsonObject.getAsJsonObject("data").toString();
+
+            return GetGsonWithoutExposeAnnotation().fromJson(json, classOfT);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
     private static AsyncHttpClient mAsyncHttpClient = null;

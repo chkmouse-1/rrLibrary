@@ -2,6 +2,8 @@ package com.renrui.libraries.util;
 
 import android.text.TextUtils;
 
+import com.renrui.libraries.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,7 +23,7 @@ public class UtilityTime {
     /**
      * yyyy-MM-dd
      */
-//    public final static SimpleDateFormat sdf_3 = new SimpleDateFormat("MM月dd日截止");
+    public final static SimpleDateFormat sdf_3 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf3));
 
     /**
      * HH:mm
@@ -36,17 +38,17 @@ public class UtilityTime {
     /**
      * MM月dd日
      */
-    public final static SimpleDateFormat sdf_6 = new SimpleDateFormat("MM月dd日");
+    public final static SimpleDateFormat sdf_6 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf6));
 
     /**
      * yyyy年MM月dd日
      */
-    public final static SimpleDateFormat sdf_7 = new SimpleDateFormat("yyyy年MM月dd日");
+    public final static SimpleDateFormat sdf_7 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf7));
 
     /**
      * MM月dd日 HH:mm
      */
-    public final static SimpleDateFormat sdf_8 = new SimpleDateFormat("MM月dd日 HH:mm");
+    public final static SimpleDateFormat sdf_8 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf8));
 
     /**
      * yyyy.MM
@@ -63,39 +65,39 @@ public class UtilityTime {
      */
     public final static SimpleDateFormat sdf_11 = new SimpleDateFormat("MM");
 
-    //    /**
-//     * MM/dd
-//     */
-//    public final static SimpleDateFormat sdf_12 = new SimpleDateFormat("yyyyMMdd");
-    //
-//    /**
-//     * yyyy/MM/dd
-//     */
-//    public final static SimpleDateFormat sdf_13 = new SimpleDateFormat("yyyy/MM/dd");
-//
-//    /**
-//     * yyyy年MM月dd日 HH:mm
-//     */
-    public final static SimpleDateFormat sdf_14 = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+    /**
+     * MM/dd
+     */
+    public final static SimpleDateFormat sdf_12 = new SimpleDateFormat("yyyyMMdd");
 
-//    /**
-//     * yyyy.MM.dd
-//     */
-//    public final static SimpleDateFormat sdf_15 = new SimpleDateFormat("yyyy.MM.dd");
+    /**
+     * yyyy/MM/dd
+     */
+    public final static SimpleDateFormat sdf_13 = new SimpleDateFormat("yyyy/MM/dd");
+
+    /**
+     * yyyy年MM月dd日 HH:mm
+     */
+    public final static SimpleDateFormat sdf_14 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf14));
+
+    /**
+     * yyyy.MM.dd
+     */
+    public final static SimpleDateFormat sdf_15 = new SimpleDateFormat("yyyy.MM.dd");
     /**
      * MM月dd日 HH:mm
      */
-    public final static SimpleDateFormat sdf_16 = new SimpleDateFormat("MM月dd日 HH:mm");
+    public final static SimpleDateFormat sdf_16 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf16));
 
-//    /**
-//     * M.dd HH:mm
-//     */
-//    public final static SimpleDateFormat sdf_17 = new SimpleDateFormat("M.dd HH:mm");
-//
-//    /**
-//     * M.dd HH:mm
-//     */
-//    public final static SimpleDateFormat sdf_18 = new SimpleDateFormat("HH小时mm分");
+    /**
+     * M.dd HH:mm
+     */
+    public final static SimpleDateFormat sdf_17 = new SimpleDateFormat("M.dd HH:mm");
+
+    /**
+     * M.dd HH:mm
+     */
+    public final static SimpleDateFormat sdf_18 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf18));
 
     /**
      * yyyy-MM-dd HH:mm:ss
@@ -113,18 +115,28 @@ public class UtilityTime {
     public final static SimpleDateFormat sdf_21 = new SimpleDateFormat("MM-dd");
 
     /**
-     * 1天的毫秒数
+     * MM-dd
      */
-    public final static long lDayTimes = 1000 * 60 * 60 * 24;
+    public final static SimpleDateFormat sdf_22 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf22));
 
-    private final static String Yesterday = "昨天";
-    private final static String Today = "今天";
-    private final static String Tomorrow = "明天";
+    private final static String Yesterday = LibrariesCons.getContext().getString(R.string.UtilityTime_Yesterday);
+    private final static String Today = LibrariesCons.getContext().getString(R.string.UtilityTime_Today);
+    private final static String Tomorrow = LibrariesCons.getContext().getString(R.string.UtilityTime_Tomorrow);
 
     /**
-     * 小时数
+     * 1分钟毫秒数
      */
-    private final static long lSecondTimes = 1000 * 60 * 60;
+    private final static long lMinuteTimes = 1000 * 60;
+
+    /**
+     * 1小时毫秒数
+     */
+    private final static long lSecondTimes = lMinuteTimes * 60;
+
+    /**
+     * 1天毫秒数
+     */
+    private final static long lDayTimes = lSecondTimes * 24;
 
     private static Date tempDate;
     private static Date tempThisDate = new Date();
