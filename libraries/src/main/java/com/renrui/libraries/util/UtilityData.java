@@ -31,7 +31,7 @@ public class UtilityData {
     /**
      * 获取一级域名
      */
-    private static String getLevelHost(String host) {
+    public static String getLevelHost(String host) {
         String value = "";
 
         try {
@@ -80,7 +80,6 @@ public class UtilityData {
         return strValue;
     }
 
-
     /**
      * 获取关键字在字符串的indexOf集合 (忽略大小写)
      *
@@ -111,7 +110,6 @@ public class UtilityData {
 
         return lis;
     }
-
 
     /**
      * 数字转汉字
