@@ -27,6 +27,7 @@ import com.renrui.libraries.interfaces.IHttpRequestCancelInterFace;
 import com.renrui.libraries.interfaces.IHttpRequestInterFace;
 import com.renrui.libraries.interfaces.IHttpRequestUploadInterFace;
 import com.renrui.libraries.model.baseObject.BaseHttpModel;
+import com.renrui.libraries.model.baseObject.BaseResponseModel;
 import com.renrui.libraries.model.httpinterface.PayResultResponseModel;
 
 import org.getopt.util.hash.FNV1a32;
@@ -507,7 +508,7 @@ public class mHttpClient {
                                 return;
                             }
 
-                            if (UtilityData.CheckResponseString(new String(responseBody), true)) {
+                            if (CheckResponseString(new String(responseBody), true)) {
                                 PayResultResponseModel response = null;
                                 try {
                                     response = mHttpClient.GetGsonInstance().fromJson(new String(responseBody), PayResultResponseModel.class);
@@ -803,5 +804,40 @@ public class mHttpClient {
                 }
             }
         });
+    }
+
+    /**
+     * 检查返回json字符串是否合法
+     *
+     * @param content            content
+     * @param isShowErrorMessage 是否提示错误信息
+     */
+    private static boolean CheckResponseString(String content, boolean isShowErrorMessage) {
+
+        BaseResponseModel baseResponseModel;
+        try {
+            if (TextUtils.isEmpty(content)) {
+                if (isShowErrorMessage) {
+                    CustomToast.makeTextError(com.renrui.libraries.R.string.info_json_error);
+                }
+                return false;
+            }
+
+            baseResponseModel = mHttpClient.GetGsonInstance().fromJson(content, BaseResponseModel.class);
+            if (baseResponseModel == null || baseResponseModel.result == null) {
+                if (isShowErrorMessage) {
+                    CustomToast.makeTextError(com.renrui.libraries.R.string.info_json_error);
+                }
+                return false;
+            }
+
+        } catch (Exception ex) {
+            if (isShowErrorMessage) {
+                CustomToast.makeTextError(com.renrui.libraries.R.string.info_json_error);
+            }
+            return false;
+        }
+
+        return true;
     }
 }
