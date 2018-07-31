@@ -76,7 +76,7 @@ public class mHttpClient {
         return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     }
 
-    public static <T> T fromJson(String s, Class<T> classOfT) {
+    public static <T> T fromDataJson(String s, Class<T> classOfT) {
 
         try {
             JsonObject jsonObject = new JsonParser().parse(s).getAsJsonObject();
@@ -90,7 +90,7 @@ public class mHttpClient {
         return null;
     }
 
-    public static <T> T fromJsonWithoutExposeAnnotation(String s, Class<T> classOfT) {
+    public static <T> T fromDataJsonWithoutExposeAnnotation(String s, Class<T> classOfT) {
 
         try {
             JsonObject jsonObject = new JsonParser().parse(s).getAsJsonObject();
