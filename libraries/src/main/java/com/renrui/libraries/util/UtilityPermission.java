@@ -2,6 +2,7 @@ package com.renrui.libraries.util;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -49,7 +50,16 @@ public class UtilityPermission {
      * @param phone 手机号
      */
     public static void toCall(Activity activity, String phone) {
-        if (activity == null || TextUtils.isEmpty(phone)) {
+        toCall(activity, phone);
+    }
+
+    /**
+     * 拨号 (6.0之前直接拨号，6.0以后去拨号页)
+     *
+     * @param phone 手机号
+     */
+    public static void toCall(Context context, String phone) {
+        if (context == null || TextUtils.isEmpty(phone)) {
             return;
         }
 
@@ -63,7 +73,7 @@ public class UtilityPermission {
                 intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
             }
 
-            activity.startActivity(intent);
+            context.startActivity(intent);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
