@@ -44,14 +44,14 @@ public class UtilityPermission {
         }
     }
 
-    /**
-     * 拨号 (6.0之前直接拨号，6.0以后去拨号页)
-     *
-     * @param phone 手机号
-     */
-    public static void toCall(Activity activity, String phone) {
-        toCall(activity, phone);
-    }
+//    /**
+//     * 拨号 (6.0之前直接拨号，6.0以后去拨号页)
+//     *
+//     * @param phone 手机号
+//     */
+//    public static void toCall(Activity activity, String phone) {
+//        toCall(activity, phone);
+//    }
 
     /**
      * 拨号 (6.0之前直接拨号，6.0以后去拨号页)
