@@ -2,24 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvTest"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:scrollbars="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <GridView
-                android:layout_width="1800dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="#989898" />
-        </LinearLayout>
-    </HorizontalScrollView>
+        android:text="asdfasdf"
+        android:textColor="@color/gray_6666"
+        android:textSize="15sp" />
 
 </LinearLayout>

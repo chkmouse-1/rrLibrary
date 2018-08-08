@@ -34,6 +34,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -717,5 +719,38 @@ public class LibUtility {
         }
 
         return value;
+    }
+
+
+    /**
+     * 获取关键字在字符串的indexOf集合 (忽略大小写)
+     *
+     * @param str     字符串
+     * @param hotword 关键字
+     * @return
+     */
+    public static List<Integer> getStrIndex(String str, String hotword) {
+
+        List<Integer> lis = new ArrayList<>();
+
+        // 忽略大小写
+        final String tempLowerCaseStr = str.toLowerCase();
+        final String tempLowerHotWord = hotword.toLowerCase();
+
+        int indexOf = tempLowerCaseStr.indexOf(tempLowerHotWord);
+        if (indexOf != -1) {
+            lis.add(indexOf);
+        }
+
+        while (indexOf != -1) {
+
+            indexOf = tempLowerCaseStr.indexOf(tempLowerHotWord, indexOf + 1);
+
+            if (indexOf != -1) {
+                lis.add(indexOf);
+            }
+        }
+
+        return lis;
     }
 }
