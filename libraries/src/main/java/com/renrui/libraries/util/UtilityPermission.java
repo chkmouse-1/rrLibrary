@@ -44,31 +44,31 @@ public class UtilityPermission {
         }
     }
 
-    /**
-     * 拨号 (6.0之前直接拨号，6.0以后去拨号页)
-     *
-     * @param phone 手机号
-     */
-    public static void toCall(Activity activity, String phone) {
-        if (activity == null || TextUtils.isEmpty(phone)) {
-            return;
-        }
-
-        try {
-            Intent intent;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                intent = new Intent();
-                intent.setAction(Intent.ACTION_CALL);
-                intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
-            } else {
-                intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
-            }
-
-            activity.startActivity(intent);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+//    /**
+//     * 拨号 (6.0之前直接拨号，6.0以后去拨号页)
+//     *
+//     * @param phone 手机号
+//     */
+//    public static void toCall(Activity activity, String phone) {
+//        if (activity == null || TextUtils.isEmpty(phone)) {
+//            return;
+//        }
+//
+//        try {
+//            Intent intent;
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                intent = new Intent();
+//                intent.setAction(Intent.ACTION_CALL);
+//                intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+//            } else {
+//                intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+//            }
+//
+//            activity.startActivity(intent);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     /**
      * 当前应用都拥有哪些权限
