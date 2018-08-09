@@ -35,9 +35,9 @@ public class UtilityControl {
                 // 点击事件
                 if (listener != null)
                     textBuilder.setSpan(new SpanClickable(listener), lis.get(i), lis.get(i) + hotWords.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                // 关键字颜色
-//                hotWordsSpanColor = new ForegroundColorSpan(ContextCompat.getColor(LibrariesCons.getContext(), colorResourceID));
-//                textBuilder.setSpan(hotWordsSpanColor, lis.get(i), lis.get(i) + hotWords.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                // 关键字颜色
+                hotWordsSpanColor = new ForegroundColorSpan(ContextCompat.getColor(LibrariesCons.getContext(), colorResourceID));
+                textBuilder.setSpan(hotWordsSpanColor, lis.get(i), lis.get(i) + hotWords.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
 
             tv.setMovementMethod(LinkMovementMethod.getInstance());

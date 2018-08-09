@@ -17,8 +17,6 @@ public class SpanClickable extends ClickableSpan implements View.OnClickListener
     public void onClick(View v) {
         if(clickListener != null)
             clickListener.onSpanClick();
-        int sd = 90;
-        sd++;
     }
 
     @Override
