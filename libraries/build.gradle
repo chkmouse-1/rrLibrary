@@ -1,19 +1,19 @@
 apply plugin: 'com.android.library'
 dependencies
-{
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+        {
+            implementation 'com.android.support:design:27.0.2'
+            implementation 'com.android.support:appcompat-v7:27.0.2'
 
-    // 网络请求
-    implementation 'cz.msebera.android:httpclient:4.4.1.2'
-    implementation 'com.loopj.android:android-async-http:1.4.9'
+            // 网络请求
+            implementation 'cz.msebera.android:httpclient:4.4.1.2'
+            implementation 'com.loopj.android:android-async-http:1.4.9'
 
-    // gson
-    implementation 'com.google.code.gson:gson:2.8.5'
+            // gson
+            implementation 'com.google.code.gson:gson:2.8.5'
 
-    // 加密
-    implementation files('libs/utils-1.0.jar')
-}
+            // 加密
+            implementation files('libs/utils-1.0.jar')
+        }
 
 /**
  * 获取配置文件信息
@@ -57,6 +57,10 @@ android {
         release {
             zipAlignEnabled true
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
