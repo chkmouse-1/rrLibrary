@@ -44,18 +44,22 @@ public class UtilitySharedPreferences {
         }
     }
 
-    public static int readInt(String name) {
+    public static int readInt(String name, int defaultValue) {
 
         int value;
         try {
             SharedPreferences sharedPreferences = LibrariesCons.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
-            value = sharedPreferences.getInt(name, 0);
+            value = sharedPreferences.getInt(name, defaultValue);
         } catch (Exception ex) {
             ex.printStackTrace();
             value = -1;
         }
 
         return value;
+    }
+
+    public static int readInt(String name) {
+        return readInt(name, 0);
     }
 
     public static void writeBoolean(String name, boolean value) {
