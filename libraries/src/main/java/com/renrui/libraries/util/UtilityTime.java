@@ -125,6 +125,11 @@ public class UtilityTime {
      */
     public final static SimpleDateFormat sdf_23 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf23));
 
+    /**
+     * HH时mm分ss秒
+     */
+    public final static SimpleDateFormat sdf_24 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf24));
+
     private final static String Yesterday = LibrariesCons.getContext().getString(R.string.UtilityTime_Yesterday);
     private final static String Today = LibrariesCons.getContext().getString(R.string.UtilityTime_Today);
     private final static String Tomorrow = LibrariesCons.getContext().getString(R.string.UtilityTime_Tomorrow);
@@ -149,6 +154,11 @@ public class UtilityTime {
      * 1天毫秒数
      */
     public final static long lDayTimes = lHourTimes * 24;
+
+    /**
+     * 1周毫秒数
+     */
+    public final static long lWeekTimes = lDayTimes * 7;
 
     private static Date tempDate;
     private static Date tempThisDate = new Date();
