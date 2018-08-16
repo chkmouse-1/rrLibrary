@@ -120,15 +120,25 @@ public class UtilityTime {
      */
     public final static SimpleDateFormat sdf_22 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf22));
 
+    /**
+     * HH:mm:ss
+     */
+    public final static SimpleDateFormat sdf_23 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf23));
+
     private final static String Yesterday = LibrariesCons.getContext().getString(R.string.UtilityTime_Yesterday);
     private final static String Today = LibrariesCons.getContext().getString(R.string.UtilityTime_Today);
     private final static String Tomorrow = LibrariesCons.getContext().getString(R.string.UtilityTime_Tomorrow);
     private final static String DayAfterTomorrow = LibrariesCons.getContext().getString(R.string.UtilityTime_Day_After_Tomorrow);
 
     /**
+     * 1秒钟毫秒数
+     */
+    public final static long lSecondTimes = 1000;
+
+    /**
      * 1分钟毫秒数
      */
-    public final static long lMinuteTimes = 1000 * 60;
+    public final static long lMinuteTimes = lSecondTimes * 60;
 
     /**
      * 1小时毫秒数

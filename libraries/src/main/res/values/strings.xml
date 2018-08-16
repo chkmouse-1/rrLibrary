@@ -50,6 +50,7 @@
     <string name="UtilityTime_sdf20">yyyy-MM</string>
     <string name="UtilityTime_sdf21">MM-dd</string>
     <string name="UtilityTime_sdf22">yyyy年MM月</string>
+    <string name="UtilityTime_sdf23">HH:mm:ss</string>
 
     <string name="UtilityTime_Yesterday">昨天</string>
     <string name="UtilityTime_Today">今天</string>
