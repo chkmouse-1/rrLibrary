@@ -24,6 +24,11 @@ public class UtilityData {
             Constellation.tianxie, Constellation.sheshou, Constellation.mojie};
 
     /**
+     * 保留1位小数
+     */
+    public final static DecimalFormat Decimaldf1 = new DecimalFormat("0.0");
+
+    /**
      * 保留2位小数
      */
     public final static DecimalFormat Decimaldf2 = new DecimalFormat("0.00");
@@ -53,6 +58,36 @@ public class UtilityData {
         }
 
         return value;
+    }
+
+    /**
+     * 无论如何都展示一位小数
+     */
+    public static String getDecimaldf1All(double value) {
+        String strValue = "";
+
+        try {
+            strValue = Decimaldf1.format(value);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return strValue;
+    }
+
+    /**
+     * 无论如何都展示两位小数
+     */
+    public static String getDecimaldf2All(double value) {
+        String strValue = "";
+
+        try {
+            strValue = Decimaldf2.format(value);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return strValue;
     }
 
     /**
