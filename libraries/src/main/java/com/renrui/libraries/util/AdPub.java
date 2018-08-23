@@ -259,6 +259,10 @@ public class AdPub {
      */
     private static void show(Context context, boolean cancel, String title, CharSequence content, String leftButtonText, String rightButtonText, int gravity, boolean showClose, final ITwoButtonAddCloseListener listener) {
         try {
+            if (context instanceof Activity && ((Activity) context).isFinishing()) {
+                return;
+            }
+
             final Dialog dialog = new Dialog(context, android.R.style.Theme_Holo_Dialog_NoActionBar);
             dialog.setCanceledOnTouchOutside(cancel);
             if (dialog.getWindow() != null) {
@@ -400,13 +404,17 @@ public class AdPub {
     }
 
     public static void showCheckNetWork(Activity activity, final ICheckNetWorkListener listener) {
+
+        if (activity == null || activity.isFinishing())
+            return;
+
         if (!UtilityNetWork.netWorkIsWifi()) {
             AdPub.showViewTwoButton(activity, "当前使用的是移动网络，播放可能会产生流量费用", "播放", "取消", new ITwoButtonListener() {
                 @Override
                 public void onLeftButtonOnclick() {
                     if (listener != null)
                         listener.onContinue();
-            }
+                }
 
                 @Override
                 public void onRightButtonOnclick() {
