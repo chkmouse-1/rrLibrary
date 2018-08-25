@@ -346,7 +346,7 @@ public class CustomToast {
                     ex.printStackTrace();
                 }
             }
-        }, 0, 3000);
+        }, 0, duration);
 
         new Timer().schedule(new TimerTask() {
             @Override
