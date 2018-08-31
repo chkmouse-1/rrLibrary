@@ -14,7 +14,7 @@ public class ProxyTNHandler extends Handler {
     private Method handleShowMethod;
     private Method handleHideMethod;
 
-    ProxyTNHandler(Object tnObject) {
+    public ProxyTNHandler(Object tnObject) {
         this.tnObject = tnObject;
         try {
             this.handleShowMethod = tnObject.getClass().getDeclaredMethod("handleShow", IBinder.class);

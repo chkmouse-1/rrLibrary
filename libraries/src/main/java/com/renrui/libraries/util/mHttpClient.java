@@ -595,7 +595,7 @@ public class mHttpClient {
 
         if (postArrEntity == null) {
             if (mIHttpRequestInterFace != null) {
-                mIHttpRequestInterFace.onErrorResponse("请求数据格式错误！");
+                mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getString(R.string.info_json_request_error));
                 mIHttpRequestInterFace.onFinish();
             }
             return;
@@ -733,6 +733,10 @@ public class mHttpClient {
         return requestHandle;
     }
 
+    public static void download(Context mContext, String uri, final IHttpDownloadInterFace mHttpRequestInterFace) {
+        downloadImage(mContext, uri, mHttpRequestInterFace);
+    }
+
     /**
      * 下载
      */
@@ -765,14 +769,14 @@ public class mHttpClient {
                         }
                     } else {
                         if (mHttpRequestInterFace != null) {
-                            mHttpRequestInterFace.onErrorResponse("下载失败！");
+                            mHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getString(R.string.info_error_download_failure));
                             mHttpRequestInterFace.onFinish();
                         }
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     if (mHttpRequestInterFace != null) {
-                        mHttpRequestInterFace.onErrorResponse("下载失败！");
+                        mHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getString(R.string.info_error_download_failure));
                         mHttpRequestInterFace.onFinish();
                     }
                 }

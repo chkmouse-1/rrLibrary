@@ -5,6 +5,7 @@
 
     <!-- 通用提示 -->
     <string name="info_json_error">解析数据失败，请检查网络是否正常</string>
+    <string name="info_json_request_error">请求数据格式错误！</string>
     <string name="info_nomore_string">没有更多了！</string>
     <string name="news_exit_twice_string">再按一次退出</string>
     <string name="info_loaddata_error">加载数据失败！</string>
@@ -19,6 +20,7 @@
     <string name="info_uplpad_error">正在上传图片，请稍等！</string>
     <string name="info_error_network">网络不给力！</string>
     <string name="info_error_cancelRequest">您已取消！</string>
+    <string name="info_error_download_failure">下载失败！</string>
 
     <string name="info_exit_unSave">内容还没保存，确定要放弃编辑吗？</string>
     <string name="info_exit_cancel">放弃</string>
