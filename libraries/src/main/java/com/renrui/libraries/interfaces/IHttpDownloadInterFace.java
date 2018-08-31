@@ -6,6 +6,8 @@ public interface IHttpDownloadInterFace {
 
     void onResponse(byte[] fileByte);
 
+    void onProgress(int process);
+
     void onErrorResponse(String content);
 
     void onFinish();

@@ -18,6 +18,7 @@ import com.loopj.android.http.MySSLSocketFactory;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
 import com.renrui.libraries.BuildConfig;
 import com.renrui.libraries.R;
 import com.renrui.libraries.constant.AboutPay;
@@ -52,6 +53,7 @@ public class mHttpClient {
     public static final String User_Agent_Format = "/%1$s (%2$s; %3$s; %4$s; %5$s; cs:%6$s; ch:%7$s)";
 
     private static final String HttpContentType = "application/json;charset=UTF-8";
+    private static final String HttpDownLoadContentType = "application/x-www-form-urlencoded";
 
     public static final String xguid = "xguid";
     public static final String xgtok = "xgtok";
@@ -223,6 +225,17 @@ public class mHttpClient {
             if (!myCookieStore.getCookies().isEmpty()) {
                 getAsyncHttpClient().setCookieStore(myCookieStore);
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setProxy(String hostName, int port) {
+        if (TextUtils.isEmpty(hostName) || port < 1)
+            return;
+
+        try {
+            getAsyncHttpClient().setProxy(hostName, port);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -758,7 +771,7 @@ public class mHttpClient {
             mHttpRequestInterFace.onStart();
         }
 
-        getAsyncHttpClient().get(mContext, uri, new BinaryHttpResponseHandler() {
+        getAsyncHttpClient().get(mContext, uri, null, HttpDownLoadContentType, new BinaryHttpResponseHandler() {
 
             // 上传进度
             int progress = 0;
