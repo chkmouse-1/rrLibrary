@@ -759,6 +759,10 @@ public class mHttpClient {
         }
 
         getAsyncHttpClient().get(mContext, uri, new BinaryHttpResponseHandler() {
+
+            // 上传进度
+            int progress = 0;
+
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] binaryData) {
                 try {
@@ -789,6 +793,20 @@ public class mHttpClient {
                         mHttpRequestInterFace.onErrorResponse(error.getMessage());
                     }
                     mHttpRequestInterFace.onFinish();
+                }
+            }
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+                if (mHttpRequestInterFace != null) {
+                    try {
+                        if (totalSize > 10) {
+                            progress = (int) ((Double.parseDouble(bytesWritten + "") / Double.parseDouble(totalSize + "")) * 100);
+                            mHttpRequestInterFace.onProgress(progress);
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
 
