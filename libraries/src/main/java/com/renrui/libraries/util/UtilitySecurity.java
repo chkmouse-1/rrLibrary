@@ -339,6 +339,20 @@ public class UtilitySecurity {
         }
     }
 
+
+    public static String getText(TextView tv) {
+        if (tv == null) {
+            return "";
+        }
+
+        try {
+            return tv.getText().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+    }
+
     /**
      * @param tv
      * @param resourceID
@@ -382,6 +396,18 @@ public class UtilitySecurity {
 
         try {
             et.requestFocus();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void clearFocus(EditText et) {
+        if (et == null) {
+            return;
+        }
+
+        try {
+            et.clearFocus();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
