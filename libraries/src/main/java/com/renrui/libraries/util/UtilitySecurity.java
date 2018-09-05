@@ -332,13 +332,11 @@ public class UtilitySecurity {
         }
 
         try {
-            if (!tv.getText().toString().equalsIgnoreCase(text.toString()))
-                tv.setText(TextUtils.isEmpty(text) ? "" : text);
+            tv.setText(TextUtils.isEmpty(text) ? "" : text);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
 
     public static String getText(TextView tv) {
         if (tv == null) {
