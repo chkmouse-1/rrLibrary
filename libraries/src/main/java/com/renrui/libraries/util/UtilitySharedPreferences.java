@@ -73,18 +73,22 @@ public class UtilitySharedPreferences {
         }
     }
 
-    public static boolean readBoolean(String name) {
+    public static boolean readBoolean(String name, boolean defaultValue) {
 
         boolean value;
         try {
             SharedPreferences sharedPreferences = LibrariesCons.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
-            value = sharedPreferences.getBoolean(name, false);
+            value = sharedPreferences.getBoolean(name, defaultValue);
         } catch (Exception ex) {
             ex.printStackTrace();
             value = false;
         }
 
         return value;
+    }
+
+    public static boolean readBoolean(String name) {
+        return readBoolean(name, false);
     }
 
     public static Object getObj(String name) {
