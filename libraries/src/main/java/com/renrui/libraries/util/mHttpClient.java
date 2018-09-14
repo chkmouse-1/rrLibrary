@@ -263,8 +263,9 @@ public class mHttpClient {
 
     public static void clearCookie() {
         try {
-            PersistentCookieStore myCookieStore = new PersistentCookieStore(LibrariesCons.getContext());
-            getAsyncHttpClient().setCookieStore(myCookieStore);
+            getAsyncHttpClient().setCookieStore(null);
+//            PersistentCookieStore myCookieStore = new PersistentCookieStore(LibrariesCons.getContext());
+//            getAsyncHttpClient().setCookieStore(myCookieStore);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
