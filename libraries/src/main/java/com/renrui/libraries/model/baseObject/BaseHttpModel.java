@@ -1,6 +1,7 @@
 package com.renrui.libraries.model.baseObject;
 
 import com.renrui.libraries.enumDef.HttpRequestType;
+import com.renrui.libraries.util.LibrariesCons;
 
 import java.io.File;
 
@@ -50,6 +51,19 @@ public abstract class BaseHttpModel {
 
     public String getPostJsonText() {
         return this.postJsonText;
+    }
+
+    /**
+     * 超时时间
+     */
+    private int timeOut = LibrariesCons.httpTimeout;
+
+    public int getTimeOut() {
+        return timeOut;
+    }
+
+    public void setTimeOut(int value) {
+        this.timeOut = value;
     }
 
     /**

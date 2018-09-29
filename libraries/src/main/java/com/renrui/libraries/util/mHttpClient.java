@@ -18,8 +18,6 @@ import com.loopj.android.http.MySSLSocketFactory;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
-import com.renrui.libraries.BuildConfig;
 import com.renrui.libraries.R;
 import com.renrui.libraries.constant.AboutPay;
 import com.renrui.libraries.enumDef.HttpRequestType;
@@ -33,7 +31,6 @@ import com.renrui.libraries.model.httpinterface.PayResultResponseModel;
 
 import org.getopt.util.hash.FNV1a32;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -296,18 +293,18 @@ public class mHttpClient {
             switch (model.getRequestType()) {
                 // get
                 case HttpRequestType.Get:
-                    HttpGet(mContext, model.getUrl(), LibUtility.getUrlParams(model), mIHttpRequestInterFace);
+                    HttpGet(mContext, model.getUrl(), LibUtility.getUrlParams(model), model.getTimeOut(), mIHttpRequestInterFace);
                     break;
 
                 // post
                 case HttpRequestType.Post:
                     // post text
                     if (!model.getIsPostJson()) {
-                        HttpPost(mContext, model.getUrl(), LibUtility.getUrlParams(model), mIHttpRequestInterFace);
+                        HttpPost(mContext, model.getUrl(), LibUtility.getUrlParams(model), model.getTimeOut(), mIHttpRequestInterFace);
                     }
                     // post Text
                     else if (model.getIsPostJson() && !TextUtils.isEmpty(model.getPostJsonText())) {
-                        HttpPost(mContext, model.getUrl(), model.getPostJsonText(), mIHttpRequestInterFace);
+                        HttpPost(mContext, model.getUrl(), model.getPostJsonText(), model.getTimeOut(), mIHttpRequestInterFace);
                     }
                     break;
 
@@ -324,13 +321,24 @@ public class mHttpClient {
      * @param mIHttpRequestInterFace 回调
      */
     public static void HttpGet(final Context mContext, String url, RequestParams para, final IHttpRequestInterFace mIHttpRequestInterFace) {
+        HttpGet(mContext, url, para, LibrariesCons.httpTimeout, mIHttpRequestInterFace);
+    }
+
+    /**
+     * @param mContext
+     * @param url                    接口地址
+     * @param para                   参数
+     * @param timeOut                超时时间
+     * @param mIHttpRequestInterFace 回调
+     */
+    public static void HttpGet(final Context mContext, String url, RequestParams para, int timeOut, final IHttpRequestInterFace mIHttpRequestInterFace) {
         try {
             if (null == mContext || TextUtils.isEmpty(url)) {
                 return;
             }
 
             // 超时时间
-            getAsyncHttpClient().setTimeout(LibrariesCons.httpTimeout);
+            getAsyncHttpClient().setTimeout(timeOut);
 
             if (!UtilityNetWork.isNetworkAvailable()) {
                 if (mIHttpRequestInterFace != null) {
@@ -581,12 +589,16 @@ public class mHttpClient {
     }
 
     public static void HttpPost(Context mContext, String url, String json, final IHttpRequestInterFace mIHttpRequestInterFace) {
+        HttpPost(mContext, url, json, LibrariesCons.httpTimeout, mIHttpRequestInterFace);
+    }
+
+    public static void HttpPost(Context mContext, String url, String json, int timeOut, final IHttpRequestInterFace mIHttpRequestInterFace) {
         if (null == mContext || TextUtils.isEmpty(url)) {
             return;
         }
 
         // 超时时间
-        getAsyncHttpClient().setTimeout(LibrariesCons.httpTimeout);
+        getAsyncHttpClient().setTimeout(timeOut);
 
         if (!UtilityNetWork.isNetworkAvailable()) {
             if (mIHttpRequestInterFace != null) {
