@@ -290,6 +290,7 @@ public class mHttpClient {
      */
     public static void Request(final Context mContext, BaseHttpModel model, final IHttpRequestInterFace mIHttpRequestInterFace) {
         try {
+
             switch (model.getRequestType()) {
                 // get
                 case HttpRequestType.Get:
@@ -339,6 +340,7 @@ public class mHttpClient {
 
             // 超时时间
             getAsyncHttpClient().setTimeout(timeOut);
+
 
             if (!UtilityNetWork.isNetworkAvailable()) {
                 if (mIHttpRequestInterFace != null) {
