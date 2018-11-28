@@ -78,6 +78,21 @@
     <string name="UtilityTime_Week_Simple_Sunday">周日</string>
 
     <string name="UtilityTime_just">刚刚</string>
+    <string name="UtilityTime_10Minute">10分钟内</string>
+    <string name="UtilityTime_20Minute">20分钟内</string>
+    <string name="UtilityTime_30Minute">30分钟内</string>
+    <string name="UtilityTime_1Hour">1小时内</string>
+    <string name="UtilityTime_2Hour">2小时内</string>
+    <string name="UtilityTime_3Hour">3小时内</string>
+    <string name="UtilityTime_4Hour">4小时内</string>
+    <string name="UtilityTime_5Hour">5小时内</string>
+    <string name="UtilityTime_6Hour">6小时内</string>
+    <string name="UtilityTime_7Hour">7小时内</string>
+    <string name="UtilityTime_8Hour">8小时内</string>
+    <string name="UtilityTime_9Hour">9小时内</string>
+    <string name="UtilityTime_10Hour">10小时内</string>
+    <string name="UtilityTime_11Hour">11小时内</string>
+    <string name="UtilityTime_12Hour">12小时内</string>
     <string name="UtilityTime_one_day">一天内</string>
     <string name="UtilityTime_two_day">两天内</string>
     <string name="UtilityTime_three_day">三天内</string>

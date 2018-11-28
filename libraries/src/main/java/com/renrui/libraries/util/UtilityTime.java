@@ -563,15 +563,62 @@ public class UtilityTime {
     /**
      * 获取和当前时间间隔差的展示text
      */
-    public static String getActiveTime(long value) {
+    public static String getActiveTimeText(long value) {
         String text = "";
 
         try {
             long intervalTime = System.currentTimeMillis() - value;
 
-            if (intervalTime <= (lHourTimes * 12)) {
+            if(intervalTime <= lMinuteTimes * 5)
+            {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_just);
-            } else if (intervalTime <= lDayTimes) {
+            }
+            else if (intervalTime <= (lMinuteTimes * 10)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_10Minute);
+            }
+            else if (intervalTime <= (lMinuteTimes * 20)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_20Minute);
+            }
+            else if (intervalTime <= (lMinuteTimes * 30)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_30Minute);
+            }
+            else if (intervalTime <= (lHourTimes * 1)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_1Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 2)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_2Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 3)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_3Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 4)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_4Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 5)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_5Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 6)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_6Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 7)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_7Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 8)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_8Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 9)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_9Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 10)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_10Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 11)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_11Hour);
+            }
+            else if (intervalTime <= (lHourTimes * 12)) {
+                text = LibrariesCons.getContext().getString(R.string.UtilityTime_12Hour);
+            }
+           else if (intervalTime <= lDayTimes) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_one_day);
             } else if (intervalTime <= (lDayTimes * 2)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_two_day);
