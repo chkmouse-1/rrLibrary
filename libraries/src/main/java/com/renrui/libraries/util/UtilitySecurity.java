@@ -132,6 +132,46 @@ public class UtilitySecurity {
         return value;
     }
 
+    public static float getExtrasLong(Bundle bd, String keyName) {
+        return getExtrasLong(bd, keyName, 0);
+    }
+
+    public static float getExtrasLong(Intent intent, String keyName) {
+        return getExtrasLong(intent, keyName, 0);
+    }
+
+    public static float getExtrasLong(Bundle bd, String keyName, long defaultValue) {
+        float value = 0f;
+
+        if (bd == null || bd.size() == 0 || TextUtils.isEmpty(keyName)) {
+            return defaultValue;
+        }
+
+        try {
+            value = bd.getLong(keyName, defaultValue);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return value;
+    }
+
+    public static float getExtrasLong(Intent intent, String keyName, long defaultValue) {
+        float value = 0f;
+
+        if (intent == null || intent.getExtras() == null || TextUtils.isEmpty(keyName)) {
+            return defaultValue;
+        }
+
+        try {
+            value = intent.getLongExtra(keyName, defaultValue);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return value;
+    }
+
     public static int getExtrasInt(Intent intent, String keyName, int defaultValue) {
         int value = 0;
 
