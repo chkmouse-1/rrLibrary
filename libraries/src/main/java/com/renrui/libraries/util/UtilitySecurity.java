@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -22,6 +21,7 @@ import android.widget.TextView;
 
 import com.renrui.libraries.R;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,6 +36,10 @@ public class UtilitySecurity {
     }
 
     public static boolean isEmpty(List<?> list) {
+        return list == null || list.isEmpty();
+    }
+
+    public static boolean isEmpty(HashMap<?, ?> list) {
         return list == null || list.isEmpty();
     }
 
@@ -298,14 +302,12 @@ public class UtilitySecurity {
     }
 
     public static void resetVisibility(View view, int visibility) {
-        if (view == null) {
+        if (view == null)
             return;
-        }
 
         try {
-            if (view.getVisibility() != visibility) {
+            if (view.getVisibility() != visibility)
                 view.setVisibility(visibility);
-            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -315,20 +317,18 @@ public class UtilitySecurity {
      * 空字符串隐藏
      */
     public static void resetVisibility(View view, String text) {
-        if (view == null) {
+        if (view == null)
             return;
-        }
 
-        resetVisibility(view, TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
+        resetVisibility(view, !TextUtils.isEmpty(text));
     }
 
     public static void resetVisibility(View view, boolean isShow) {
-        if (view == null) {
+        if (view == null)
             return;
-        }
 
         try {
-            view.setVisibility(isShow ? View.VISIBLE : View.GONE);
+            resetVisibility(view, isShow);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -347,9 +347,8 @@ public class UtilitySecurity {
     }
 
     public static void setChecked(CheckBox chk, boolean value) {
-        if (chk == null) {
+        if (chk == null)
             return;
-        }
 
         try {
             chk.setChecked(value);
@@ -359,17 +358,15 @@ public class UtilitySecurity {
     }
 
     public static void setText(TextView tv, int text) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         setText(tv, text + "");
     }
 
     public static void setText(TextView tv, CharSequence text) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setText(TextUtils.isEmpty(text) ? "" : text);
@@ -379,12 +376,11 @@ public class UtilitySecurity {
     }
 
     public static String getText(TextView tv) {
-        if (tv == null) {
+        if (tv == null)
             return "";
-        }
 
         try {
-            return tv.getText().toString();
+            return tv.getText().toString().trim();
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
@@ -396,9 +392,8 @@ public class UtilitySecurity {
      * @param resourceID
      */
     public static void setDrawableLeft(TextView tv, int resourceID) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             Drawable rightDrawable = LibrariesCons.getContext().getResources().getDrawable(resourceID);
@@ -414,9 +409,8 @@ public class UtilitySecurity {
      * @param resourceID
      */
     public static void setDrawableRight(TextView tv, int resourceID) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             Drawable rightDrawable = LibrariesCons.getContext().getResources().getDrawable(resourceID);
@@ -428,9 +422,8 @@ public class UtilitySecurity {
     }
 
     public static void requestFocus(EditText et) {
-        if (et == null) {
+        if (et == null)
             return;
-        }
 
         try {
             et.requestFocus();
@@ -440,9 +433,8 @@ public class UtilitySecurity {
     }
 
     public static void clearFocus(EditText et) {
-        if (et == null) {
+        if (et == null)
             return;
-        }
 
         try {
             et.clearFocus();
@@ -455,9 +447,8 @@ public class UtilitySecurity {
      * 将焦点放在最后
      */
     public static void setLastSelection(EditText tv) {
-        if (tv == null || tv.getText().length() == 0) {
+        if (tv == null || tv.getText().length() == 0)
             return;
-        }
 
         try {
             tv.setSelection(tv.length());
@@ -467,9 +458,8 @@ public class UtilitySecurity {
     }
 
     public static void setEnabled(View tv, boolean enable) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setEnabled(enable);
@@ -479,9 +469,8 @@ public class UtilitySecurity {
     }
 
     public static void setClickable(View tv, boolean enable) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setClickable(enable);
@@ -491,9 +480,8 @@ public class UtilitySecurity {
     }
 
     public static void setTextColor(TextView tv, int resourcesID) {
-        if (tv == null || resourcesID == 0) {
+        if (tv == null || resourcesID == 0)
             return;
-        }
 
         try {
             tv.setTextColor(LibrariesCons.getContext().getResources().getColor(resourcesID));
@@ -503,9 +491,8 @@ public class UtilitySecurity {
     }
 
     public static void setBackgroundResource(View tv, int resoueceID) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setBackgroundResource(resoueceID);
@@ -515,9 +502,8 @@ public class UtilitySecurity {
     }
 
     public static void setImageResource(ImageView iv, int resoueceID) {
-        if (iv == null) {
+        if (iv == null)
             return;
-        }
 
         try {
             iv.setImageResource(resoueceID);
@@ -527,9 +513,8 @@ public class UtilitySecurity {
     }
 
     public static void setTextByStringSource(TextView tv, int resourceID) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             setText(tv, LibrariesCons.getContext().getString(resourceID));
@@ -539,9 +524,8 @@ public class UtilitySecurity {
     }
 
     public static void setHtmlText(TextView tv, CharSequence text) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setText(TextUtils.isEmpty(text) ? "" : Html.fromHtml(text.toString()));
@@ -565,9 +549,8 @@ public class UtilitySecurity {
      * @param emptyIsGone 为空时，是否隐藏
      */
     public static void setText(TextView tv, CharSequence text, boolean emptyIsGone) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setText(TextUtils.isEmpty(text) ? "" : text);
@@ -583,13 +566,11 @@ public class UtilitySecurity {
     }
 
     public static void setText(TextView tv, String text, String defaultText) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
-        if (defaultText == null) {
+        if (defaultText == null)
             defaultText = "";
-        }
 
         try {
             tv.setText(TextUtils.isEmpty(text) ? defaultText : text);
@@ -599,9 +580,8 @@ public class UtilitySecurity {
     }
 
     public static void setTextAppearance(TextView tv, int styleResourceID) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setTextAppearance(LibrariesCons.getContext(), styleResourceID);
@@ -611,9 +591,8 @@ public class UtilitySecurity {
     }
 
     public static void setTextSourceColor(TextView tv, int colorSourceId) {
-        if (tv == null) {
+        if (tv == null)
             return;
-        }
 
         try {
             tv.setTextColor(LibrariesCons.getContext().getResources().getColor(colorSourceId));
@@ -623,9 +602,8 @@ public class UtilitySecurity {
     }
 
     public static void setAlpha(View view, float alpha) {
-        if (view == null) {
+        if (view == null)
             return;
-        }
 
         try {
             view.setAlpha(alpha);
@@ -748,25 +726,11 @@ public class UtilitySecurity {
 
     public static View getView(View convertView, Class cls) {
         if (convertView == null) {
-
-//            try {
-//                StatisticsLogException exceptionModel = new StatisticsLogException();
-//                if (cls != null) {
-//                    exceptionModel.className = cls.getName();
-//                }
-//                exceptionModel.content = "getView null";
-//                exceptionModel.lisActivity = ApplicationUtils.getActivitys(UtilityJobSecurity.context);
-//                UtilityHttpLog.sendGetviewException(exceptionModel);
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-
             return View.inflate(LibrariesCons.getContext(), R.layout.view_empty, null);
         } else {
             return convertView;
         }
     }
-
 
     /**
      * 安全销毁webview
