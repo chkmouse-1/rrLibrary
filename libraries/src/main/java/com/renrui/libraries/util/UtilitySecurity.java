@@ -328,7 +328,7 @@ public class UtilitySecurity {
             return;
 
         try {
-            resetVisibility(view, isShow);
+            resetVisibility(view, isShow ? View.VISIBLE : View.GONE);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
