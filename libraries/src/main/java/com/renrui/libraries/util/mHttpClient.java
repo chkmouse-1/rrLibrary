@@ -64,6 +64,11 @@ public class mHttpClient {
 
     private static String channelName = "";
 
+    /**
+     * 支付查询间隔时间
+     */
+    private static int payDelayedTime = 500;
+
     public static Gson GetGsonInstance() {
         if (gson == null) {
             gson = new GsonBuilder().create();
@@ -543,8 +548,14 @@ public class mHttpClient {
                                 if (response != null && response.data != null && !TextUtils.isEmpty(response.data.state)) {
                                     // 还未支付成功
                                     if (!response.data.isPaySucceed() && AboutPay.payRequestCounts < AboutPay.payRequestMaxCounts) {
-                                        AboutPay.payRequestCounts++;
-                                        HttpGetPayRecursion(mContext, url, mIHttpRequestInterFace);
+
+                                        new Handler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                AboutPay.payRequestCounts++;
+                                                HttpGetPayRecursion(mContext, url, mIHttpRequestInterFace);
+                                            }
+                                        }, payDelayedTime);
                                     }
                                     // 成功
                                     else {
