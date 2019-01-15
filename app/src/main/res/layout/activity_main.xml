@@ -6,11 +6,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvTest"
+        android:id="@+id/tvTest1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#989898"
+        android:gravity="center"
+        android:padding="50dp"
         android:text="asdfasdf"
         android:textColor="@color/gray_6666"
         android:textSize="15sp" />
-
 </LinearLayout>
