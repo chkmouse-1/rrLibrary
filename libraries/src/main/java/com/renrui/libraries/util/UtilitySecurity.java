@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.renrui.libraries.R;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
@@ -41,6 +43,68 @@ public class UtilitySecurity {
 
     public static boolean isEmpty(HashMap<?, ?> list) {
         return list == null || list.isEmpty();
+    }
+
+    public static boolean equals(String a, String b) {
+        return TextUtils.equals(a, b);
+    }
+
+    public static boolean equalsIgnoreCase(String a, String b) {
+        if (a == null && b == null)
+            return true;
+
+        if (a == null && b != null)
+            return false;
+
+        if (a != null && b == null)
+            return false;
+
+        try {
+            return TextUtils.equals(a.toLowerCase(), b.toLowerCase());
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public static void putExtras(Intent intent, String keyName, Object keyValue) {
+        if (intent == null || TextUtils.isEmpty(keyName) || keyValue == null)
+            return;
+
+        try {
+            // string
+            if (keyValue instanceof String) {
+                String value = keyValue.toString();
+                if (!TextUtils.isEmpty(value) && !TextUtils.isEmpty(value.trim())) {
+                    intent.putExtra(keyName, keyValue.toString());
+                }
+            }
+            // int
+            else if (keyValue instanceof Integer) {
+                intent.putExtra(keyName, ((Integer) keyValue).intValue());
+            }
+            // float
+            else if (keyValue instanceof Float) {
+                intent.putExtra(keyName, Float.parseFloat(keyValue.toString()));
+            }
+            // double
+            else if (keyValue instanceof Double) {
+                intent.putExtra(keyName, Double.parseDouble(keyValue.toString()));
+            }
+            // serializable
+            else if (keyValue instanceof Serializable) {
+                intent.putExtra(keyName, (Serializable) keyValue);
+            }
+            // arraryList<Integer>
+            else if (UtilityClassInfo.isArraryInteger(keyValue)) {
+                intent.putIntegerArrayListExtra(keyName, (ArrayList<Integer>) keyValue);
+            }
+            // arraryList<string>
+            else if (UtilityClassInfo.isArraryString(keyValue)) {
+                intent.putStringArrayListExtra(keyName, (ArrayList<String>) keyValue);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static String getExtrasString(Bundle bd, String keyName, String defaultValue) {
@@ -247,10 +311,65 @@ public class UtilitySecurity {
     }
 
     /**
-     * @return 默认返回false
+     * 可能返回null
      */
     public static boolean getExtrasBoolean(Intent intent, String keyName) {
         return getExtrasBoolean(intent, keyName, false);
+    }
+
+    public static ArrayList<String> getStringArrayList(Bundle bd, String keyName) {
+        ArrayList<String> arrayList = null;
+
+        if (bd == null || TextUtils.isEmpty(keyName)) {
+            return arrayList;
+        }
+
+        try {
+            arrayList = bd.getStringArrayList(keyName);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return arrayList;
+    }
+
+    /**
+     * 可能返回null
+     */
+    public static ArrayList<?> getStringArrayList(Intent intent, String keyName) {
+        if (intent == null || intent.getExtras() == null || intent.getExtras().size() == 0)
+            return null;
+
+        return getStringArrayList(intent.getExtras(), keyName);
+    }
+
+    /**
+     * 可能返回null
+     */
+    public static ArrayList<Integer> getIntegerArrayList(Bundle bd, String keyName) {
+        ArrayList<Integer> arrayList = null;
+
+        if (bd == null || TextUtils.isEmpty(keyName)) {
+            return arrayList;
+        }
+
+        try {
+            arrayList = bd.getIntegerArrayList(keyName);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return arrayList;
+    }
+
+    /**
+     * 可能返回null
+     */
+    public static ArrayList<Integer> getIntegerArrayList(Intent intent, String keyName) {
+        if (intent == null || intent.getExtras() == null || intent.getExtras().size() == 0)
+            return null;
+
+        return getIntegerArrayList(intent.getExtras(), keyName);
     }
 
     public static <T> T getExtrasSerializable(Bundle db, String keyName) {

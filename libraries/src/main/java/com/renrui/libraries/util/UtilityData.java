@@ -2,8 +2,10 @@ package com.renrui.libraries.util;
 
 import android.text.TextUtils;
 
+import com.renrui.libraries.enumDef.ClassType;
 import com.renrui.libraries.enumDef.Constellation;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

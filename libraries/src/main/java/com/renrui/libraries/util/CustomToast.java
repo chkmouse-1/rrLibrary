@@ -30,7 +30,7 @@ public class CustomToast {
     /**
      * 默认时长
      */
-    private static final int defaultDuration = 2000;
+    private static final int defaultDuration = 20000;
 
     private static Toast getMyToast(String title, String content) {
         try {
@@ -363,6 +363,18 @@ public class CustomToast {
                 }
             }
         }, duration);
+    }
+
+    public static void hide() {
+        try {
+            if (myToast != null)
+                myToast.cancel();
+
+            if (timer != null)
+                timer.cancel();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private static void reflectTNHandler(final Toast toast) {
