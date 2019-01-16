@@ -708,7 +708,7 @@ public class LibUtility {
         return params;
     }
 
-    public static String getManifestMetaDataValue(String noteName) {
+    public static String getManifestMetaDataStringValue(String noteName) {
         String value = "";
 
         try {
@@ -716,6 +716,20 @@ public class LibUtility {
             value = appInfo.metaData.getString(noteName);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        return value;
+    }
+
+    public static boolean getManifestMetaDataBooleanValue(String noteName) {
+        boolean value;
+
+        try {
+            ApplicationInfo appInfo = LibrariesCons.getContext().getPackageManager().getApplicationInfo(LibrariesCons.getContext().getPackageName(), PackageManager.GET_META_DATA);
+            value = appInfo.metaData.getBoolean(noteName);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            value = false;
         }
 
         return value;
