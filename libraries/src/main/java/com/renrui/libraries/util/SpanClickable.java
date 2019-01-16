@@ -8,15 +8,17 @@ import com.renrui.libraries.interfaces.ITextviewClickable;
 
 public class SpanClickable extends ClickableSpan implements View.OnClickListener {
     private final ITextviewClickable clickListener;
+    private int position;
 
-    public SpanClickable(ITextviewClickable clickListener) {
+    public SpanClickable(ITextviewClickable clickListener, int position) {
         this.clickListener = clickListener;
+        this.position = position;
     }
 
     @Override
     public void onClick(View v) {
-        if(clickListener != null)
-            clickListener.onSpanClick();
+        if (clickListener != null)
+            clickListener.onSpanClick(position);
     }
 
     @Override

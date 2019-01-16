@@ -37,12 +37,20 @@ public class UtilitySecurity {
         return TextUtils.isEmpty(str) || TextUtils.isEmpty(str.trim());
     }
 
+    public static boolean isEmpty(CharSequence str) {
+        return TextUtils.isEmpty(str) || TextUtils.isEmpty(str.toString().trim());
+    }
+
     public static boolean isEmpty(List<?> list) {
         return list == null || list.isEmpty();
     }
 
     public static boolean isEmpty(HashMap<?, ?> list) {
         return list == null || list.isEmpty();
+    }
+
+    public static boolean isEmpty(Object[] obj) {
+        return obj == null || obj.length == 0;
     }
 
     public static boolean equals(String a, String b) {

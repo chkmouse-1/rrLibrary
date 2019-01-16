@@ -16,28 +16,30 @@ public class UtilityControl {
 
     /**
      * @param tv
-     * @param text                       Text
-     * @param hotWords              关键词
-     * @param colorResourceID   关键词颜色
-     * @param listener                  关键字点击回调
+     * @param text                          Text
+     * @param arrHotWords           关键词
+     * @param colorResourceID     关键词颜色
+     * @param listener                    关键字点击回调
      */
-    public static void setHotWordsText(TextView tv, CharSequence text, String hotWords, int colorResourceID, ITextviewClickable listener) {
-        if (tv == null) {
+    public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID, ITextviewClickable listener) {
+        if (tv == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(arrHotWords))
             return;
-        }
 
         try {
             SpannableStringBuilder textBuilder = new SpannableStringBuilder(text);
             ForegroundColorSpan hotWordsSpanColor;
 
-            List<Integer> lis = LibUtility.getStrIndex(text + "", hotWords);
-            for (int i = 0; i < lis.size(); i++) {
-                // 点击事件
-                if (listener != null)
-                    textBuilder.setSpan(new SpanClickable(listener), lis.get(i), lis.get(i) + hotWords.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                // 关键字颜色
-                hotWordsSpanColor = new ForegroundColorSpan(ContextCompat.getColor(LibrariesCons.getContext(), colorResourceID));
-                textBuilder.setSpan(hotWordsSpanColor, lis.get(i), lis.get(i) + hotWords.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            List<Integer> lis;
+            for (int i = 0; i < arrHotWords.length; i++) {
+                lis = LibUtility.getStrIndex(text + "", arrHotWords[i]);
+                for (int j = 0; j < lis.size(); j++) {
+                    // 点击事件
+                    if (listener != null)
+                        textBuilder.setSpan(new SpanClickable(listener, i), lis.get(j), lis.get(j) + arrHotWords[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    // 关键字颜色
+                    hotWordsSpanColor = new ForegroundColorSpan(ContextCompat.getColor(LibrariesCons.getContext(), colorResourceID));
+                    textBuilder.setSpan(hotWordsSpanColor, lis.get(j), lis.get(j) + arrHotWords[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
             }
 
             tv.setMovementMethod(LinkMovementMethod.getInstance());
@@ -50,11 +52,32 @@ public class UtilityControl {
 
     /**
      * @param tv
-     * @param text                        Text
-     * @param hotWords              关键词
-     * @param colorResourceID   关键词颜色
+     * @param text            Text
+     * @param hotWords        关键词
+     * @param colorResourceID 关键词颜色
+     * @param listener        关键字点击回调
+     */
+    public static void setHotWordsText(TextView tv, CharSequence text, String hotWords, int colorResourceID, ITextviewClickable listener) {
+        setHotWordsText(tv, text, new String[]{hotWords}, colorResourceID, listener);
+    }
+
+    /**
+     * @param tv
+     * @param text            Text
+     * @param hotWords        关键词
+     * @param colorResourceID 关键词颜色
      */
     public static void setHotWordsText(TextView tv, CharSequence text, String hotWords, int colorResourceID) {
         setHotWordsText(tv, text, hotWords, colorResourceID, null);
+    }
+
+    /**
+     * @param tv
+     * @param text            Text
+     * @param arrHotWords     关键词
+     * @param colorResourceID 关键词颜色
+     */
+    public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID) {
+        setHotWordsText(tv, text, arrHotWords, colorResourceID, null);
     }
 }

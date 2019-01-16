@@ -1,5 +1,5 @@
 package com.renrui.libraries.interfaces;
 
 public interface ITextviewClickable {
-    void onSpanClick();
+    void onSpanClick(int position);
 }
