@@ -136,9 +136,13 @@ public class UtilityTime {
     public final static SimpleDateFormat sdf_25 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf25));
 
     /**
-     * MM.dd
+     * yyyy-MM-dd HH:mm
      */
-    public final static SimpleDateFormat sdf_26 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf25));
+    public final static SimpleDateFormat sdf_26 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf26));
+    /**
+     * yyyy.MM.dd HH:mm
+     */
+    public final static SimpleDateFormat sdf_27 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf27));
 
 
     private final static String Yesterday = LibrariesCons.getContext().getString(R.string.UtilityTime_Yesterday);
