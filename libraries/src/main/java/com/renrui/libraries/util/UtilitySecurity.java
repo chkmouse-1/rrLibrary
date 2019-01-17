@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
@@ -788,6 +790,28 @@ public class UtilitySecurity {
 
         try {
             lv.setSelection(position);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setRefreshing(SwipeRefreshLayout srl, boolean refreshing) {
+        if (srl == null)
+            return;
+
+        try {
+            srl.setRefreshing(refreshing);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setLayoutParams(View view, ViewGroup.LayoutParams params) {
+        if (view == null || params == null)
+            return;
+
+        try {
+            view.setLayoutParams(params);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

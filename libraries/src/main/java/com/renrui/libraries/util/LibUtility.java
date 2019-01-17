@@ -653,8 +653,12 @@ public class LibUtility {
             java.lang.reflect.Field[] fields = httpModel.getClass().getFields();
             for (int i = 0; i < fields.length; i++) {
 
+                // 跳过serialVersionUID
+                if (fields[i].getName().equalsIgnoreCase("serialVersionUID")) {
+                    break;
+                }
                 // file
-                if (fields[i].getType().getName().equalsIgnoreCase("java.io.File")) {
+                else if (fields[i].getType().getName().equalsIgnoreCase("java.io.File")) {
                     if (fields[i].get(httpModel) != null) {
                         try {
                             File file = (File) fields[i].get(httpModel);
