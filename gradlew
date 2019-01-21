@@ -170,8 +170,3 @@ if [ "$(uname)" = "Darwin" ] && [ "$HOME" = "$PWD" ]; then
 fi
 
 exec "$JAVACMD" "$@"
-
-
-y | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
-
-y | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"
