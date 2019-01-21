@@ -1,8 +1,5 @@
 package com.renrui.libraries.util;
 
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,55 +8,55 @@ import android.widget.Toast;
 
 import com.renrui.libraries.R;
 
-import java.lang.reflect.Field;
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * 公共弹窗消息
  */
 public class CustomToast {
-    private static Toast myToast;
-    private static View viewMyToast;
-    private static ImageView ivStat;
-    private static TextView tvTitle;
-    private static TextView tvContent;
 
-    private static Timer timer = null;
+    private static final int TYPE_SUCCESS = 1;
+    private static final int TYPE_ERROR = 2;
+    private static final int TYPE_WARN = 3;
 
     /**
-     * 默认时长
+     * 显示吐司
+     *
+     * @param type     1：成功 2：失败 3：警告
+     * @param title    标题
+     * @param content  内容
+     * @param duration Toast.LENGTH_SHORT or Toast.LENGTH_LONG
      */
-    private static final int defaultDuration = 20000;
-
-    private static Toast getMyToast(String title, String content) {
-        try {
-            if (myToast == null) {
-                myToast = new Toast(LibrariesCons.getContext());
-                viewMyToast = View.inflate(LibrariesCons.getContext(), R.layout.view_mytoast, null);
-                ivStat = viewMyToast.findViewById(R.id.ivStat);
-                tvTitle = viewMyToast.findViewById(R.id.tvTitle);
-                tvContent = viewMyToast.findViewById(R.id.tvContent);
-            }
-
-            // 标题，不会为空
-            UtilitySecurity.resetVisibility(tvTitle, true);
-            UtilitySecurity.setText(tvTitle, title);
-
-            // 内容有可能为空
-            if (TextUtils.isEmpty(content)) {
-                UtilitySecurity.resetVisibility(tvContent, View.GONE);
-            } else {
-                UtilitySecurity.resetVisibility(tvContent, View.VISIBLE);
-                UtilitySecurity.setText(tvContent, content);
-            }
-            myToast.setView(viewMyToast);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    private static void show(int type, String title, String content, int duration) {
+        View toastView;
+        if (duration == Toast.LENGTH_SHORT) {
+            toastView = ToastUtils.showCustomShort(R.layout.view_mytoast);
+        } else {
+            toastView = ToastUtils.showCustomLong(R.layout.view_mytoast);
         }
 
-        return myToast;
+        ImageView ivStat = toastView.findViewById(R.id.ivStat);
+        TextView tvTitle = toastView.findViewById(R.id.tvTitle);
+        TextView tvContent = toastView.findViewById(R.id.tvContent);
+
+        int drawableId = R.drawable.toast_sucess_icon;
+
+        switch (type) {
+            case TYPE_SUCCESS:
+                drawableId = R.drawable.toast_sucess_icon;
+                break;
+            case TYPE_ERROR:
+                drawableId = R.drawable.toast_error_icon;
+                break;
+            case TYPE_WARN:
+                drawableId = R.drawable.toast_warn_icon;
+                break;
+            default:
+                break;
+        }
+
+        UtilitySecurity.setBackgroundResource(ivStat, drawableId);
+        UtilitySecurity.setText(tvTitle, title);
+        UtilitySecurity.resetVisibility(tvContent, !TextUtils.isEmpty(content));
+        UtilitySecurity.setText(tvContent, content);
     }
 
     /**
@@ -68,12 +65,16 @@ public class CustomToast {
      * @param title 标题，不能为空
      */
     public static void makeTextSucess(String title) {
+        makeTextSucess(title, "");
+    }
 
-        try {
-            makeTextSucess(title, "", Toast.LENGTH_SHORT);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    /**
+     * 提示成功信息
+     *
+     * @param resourceID String资源ID
+     */
+    public static void makeTextSucess(int resourceID) {
+        makeTextSucess(LibrariesCons.getContext().getString(resourceID));
     }
 
     /**
@@ -83,26 +84,7 @@ public class CustomToast {
      * @param content 内容可以为空
      */
     public static void makeTextSucess(String title, String content) {
-
-        try {
-            makeTextSucess(title, content, Toast.LENGTH_SHORT);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
-     * 提示成功信息
-     *
-     * @param resourceID String资源ID
-     */
-    public static void makeTextSucess(int resourceID) {
-
-        try {
-            makeTextSucess(LibrariesCons.getContext().getString(resourceID), "", Toast.LENGTH_SHORT);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextSucess(title, content, Toast.LENGTH_LONG);
     }
 
     /**
@@ -112,44 +94,12 @@ public class CustomToast {
      * @param content    内容可以为空
      */
     public static void makeTextSucess(int resourceID, String content) {
-
-        try {
-            makeTextSucess(LibrariesCons.getContext().getString(resourceID), content, Toast.LENGTH_SHORT);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextSucess(LibrariesCons.getContext().getString(resourceID), content);
     }
 
     public static void makeTextSucess(String title, String content, int duration) {
-        try {
-            myToast = CustomToast.getMyToast(title, content);
-            ivStat.setBackgroundResource(R.drawable.toast_sucess_icon);
-
-//            myToast.setDuration(duration);
-
-            UtilitySecurity.resetVisibility(tvTitle, !TextUtils.isEmpty(title));
-
-            show(duration);
-//            myToast.show();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        show(TYPE_SUCCESS, title, content, duration);
     }
-
-//    /**
-//     * 提示失败信息 （只有调试时弹）
-//     *
-//     * @param title 标题
-//     */
-//    public static void makeDebugTextError(String title) {
-//        try {
-//            if (AppConstant.isDebug) {
-//                makeTextError(title, "", 8000);
-//            }
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
 
     /**
      * 提示失败信息
@@ -157,11 +107,16 @@ public class CustomToast {
      * @param title 标题
      */
     public static void makeTextError(String title) {
-        try {
-            makeTextError(title, "");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextError(title, "");
+    }
+
+    /**
+     * 提示失败信息
+     *
+     * @param resourceID String资源ID
+     */
+    public static void makeTextError(int resourceID) {
+        makeTextError(LibrariesCons.getContext().getString(resourceID));
     }
 
     /**
@@ -171,11 +126,16 @@ public class CustomToast {
      * @param content 内容
      */
     public static void makeTextError(String title, String content) {
-        try {
-            makeTextError(title, content, Toast.LENGTH_LONG);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextError(title, content, Toast.LENGTH_LONG);
+    }
+
+    /**
+     * 提示失败信息
+     *
+     * @param resourceID String资源ID
+     */
+    public static void makeTextError(int resourceID, String content) {
+        makeTextError(LibrariesCons.getContext().getString(resourceID), content, Toast.LENGTH_LONG);
     }
 
     /**
@@ -185,223 +145,48 @@ public class CustomToast {
      * @param content 内容
      */
     public static void makeTextError(String title, String content, int duration) {
-        try {
-            myToast = CustomToast.getMyToast(title, content);
-            ivStat.setBackgroundResource(R.drawable.toast_error_icon);
-
-//            myToast.setDuration(duration);
-
-            UtilitySecurity.resetVisibility(tvTitle, !TextUtils.isEmpty(title));
-
-            show(duration);
-//            myToast.show();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
-     * 提示失败信息
-     *
-     * @param resourceID String资源ID
-     */
-    public static void makeTextError(int resourceID) {
-        try {
-            makeTextError(LibrariesCons.getContext().getString(resourceID), "");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
-     * 提示失败信息
-     *
-     * @param resourceID String资源ID
-     */
-    public static void makeTextError(int resourceID, String content) {
-        try {
-            makeTextError(LibrariesCons.getContext().getString(resourceID), content);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        show(TYPE_ERROR, title, content, duration);
     }
 
     /**
      * 提示警告信息
      */
     public static void makeTextWarn(String title) {
-        try {
-            makeTextWarn(title, "");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextWarn(title, "");
     }
 
     /**
      * 提示警告信息
      */
     public static void makeTextWarn(int resourceID) {
-        try {
-            makeTextWarn(LibrariesCons.getContext().getString(resourceID), "");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextWarn(LibrariesCons.getContext().getString(resourceID));
     }
 
     /**
      * 提示警告信息
      */
     public static void makeTextWarn(int resourceID, String content) {
-        try {
-            makeTextWarn(LibrariesCons.getContext().getString(resourceID), content);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextWarn(LibrariesCons.getContext().getString(resourceID), content);
     }
 
     /**
      * 提示警告信息
      */
     public static void makeTextWarn(int resourceID, int duration) {
-        try {
-            makeTextWarn(LibrariesCons.getContext().getString(resourceID), "", duration);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeTextWarn(LibrariesCons.getContext().getString(resourceID), "", Toast.LENGTH_LONG);
     }
 
     /**
      * 提示警告信息
      */
     public static void makeTextWarn(String title, String content) {
-        makeTextWarn(title, content, Toast.LENGTH_SHORT);
+        makeTextWarn(title, content, Toast.LENGTH_LONG);
     }
 
     /**
      * 提示警告信息
      */
     public static void makeTextWarn(String title, String content, int duration) {
-        try {
-            myToast = CustomToast.getMyToast(title, content);
-            ivStat.setBackgroundResource(R.drawable.toast_warn_icon);
-
-//            myToast.setDuration(duration);
-
-            if (TextUtils.isEmpty(title)) {
-                UtilitySecurity.resetVisibility(tvTitle, View.GONE);
-            } else {
-                UtilitySecurity.resetVisibility(tvTitle, View.VISIBLE);
-            }
-
-            show(duration);
-//            myToast.show();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    // 防止重复反射
-    private static boolean isReflectedHandler;
-
-    public static void show(int duration) {
-
-//        // android 7.1系统，反射Toast 的handler，加try catch防止badException
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.O && !isReflectedHandler) {
-//            reflectTNHandler(myToast);
-//            isReflectedHandler = true;
-//        }
-//
-//        myToast.show();
-
-        if (duration < defaultDuration)
-            duration = defaultDuration;
-
-        if (timer != null)
-            timer.cancel();
-
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-
-                if (myToast == null) {
-                    return;
-                }
-
-                try {
-                    // android 7.1系统，反射Toast 的handler，加try catch防止badException
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && Build.VERSION.SDK_INT < Build.VERSION_CODES.O && !isReflectedHandler) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                reflectTNHandler(myToast);
-                                isReflectedHandler = true;
-                                myToast.show();
-                            }
-                        });
-                    } else {
-                        myToast.show();
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }, 0, duration);
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-
-                try {
-                    if (myToast != null)
-                        myToast.cancel();
-
-                    if (timer != null)
-                        timer.cancel();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }, duration);
-    }
-
-    public static void hide() {
-        try {
-            if (myToast != null)
-                myToast.cancel();
-
-            if (timer != null)
-                timer.cancel();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private static void reflectTNHandler(final Toast toast) {
-
-        try {
-            Field tNField = toast.getClass().getDeclaredField("mTN");
-            if (tNField == null) {
-                return;
-            }
-            tNField.setAccessible(true);
-            Object TN = tNField.get(toast);
-            if (TN == null) {
-                return;
-            }
-            Field handlerField = TN.getClass().getDeclaredField("mHandler");
-            if (handlerField == null) {
-                return;
-            }
-
-            handlerField.setAccessible(true);
-            handlerField.set(TN, new ProxyTNHandler(TN));
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        show(TYPE_WARN, title, content, duration);
     }
 }
