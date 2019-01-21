@@ -65,10 +65,10 @@ android {
 }
 
 apply plugin: 'maven'
-uploadArchives{
-    repositories.mavenDeployer{
+uploadArchives {
+    repositories.mavenDeployer {
 //        repository(url:"file://C://Users/renrui/.m2/repository")
-        repository(url:getProp("repositoryPath"))
+        repository(url: getProp("repositoryPath"))
         pom.groupId = "com.renrui"
         pom.artifactId = "libraries"
         pom.version = "1.0.9"
