@@ -172,6 +172,6 @@ fi
 exec "$JAVACMD" "$@"
 
 
-yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+y | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
 
-yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"
+y | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"
