@@ -293,32 +293,39 @@ public class mHttpClient {
      * @param model
      * @param mIHttpRequestInterFace 回调
      */
-    public static void Request(final Context mContext, BaseHttpModel model, final IHttpRequestInterFace mIHttpRequestInterFace) {
+    public static RequestHandle Request(final Context mContext, BaseHttpModel model, final IHttpRequestInterFace mIHttpRequestInterFace) {
+        RequestHandle requestHandle;
         try {
-
             switch (model.getRequestType()) {
                 // get
                 case HttpRequestType.Get:
-                    HttpGet(mContext, model.getUrl(), LibUtility.getUrlParams(model), model.getTimeOut(), mIHttpRequestInterFace);
+                    requestHandle = HttpGet(mContext, model.getUrl(), LibUtility.getUrlParams(model), model.getTimeOut(), mIHttpRequestInterFace);
                     break;
 
                 // post
                 case HttpRequestType.Post:
                     // post text
                     if (!model.getIsPostJson()) {
-                        HttpPost(mContext, model.getUrl(), LibUtility.getUrlParams(model), model.getTimeOut(), mIHttpRequestInterFace);
+                        requestHandle = HttpPost(mContext, model.getUrl(), LibUtility.getUrlParams(model), model.getTimeOut(), mIHttpRequestInterFace);
                     }
                     // post Text
                     else if (model.getIsPostJson() && !TextUtils.isEmpty(model.getPostJsonText())) {
-                        HttpPost(mContext, model.getUrl(), model.getPostJsonText(), model.getTimeOut(), mIHttpRequestInterFace);
+                        requestHandle = HttpPost(mContext, model.getUrl(), model.getPostJsonText(), model.getTimeOut(), mIHttpRequestInterFace);
+                    } else {
+                        requestHandle = null;
                     }
                     break;
 
                 default:
+                    requestHandle = null;
+                    break;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+            requestHandle = null;
         }
+
+        return requestHandle;
     }
 
     /**
@@ -337,29 +344,28 @@ public class mHttpClient {
      * @param timeOut                超时时间
      * @param mIHttpRequestInterFace 回调
      */
-    public static void HttpGet(final Context mContext, String url, RequestParams para, int timeOut, final IHttpRequestInterFace mIHttpRequestInterFace) {
+    public static RequestHandle HttpGet(final Context mContext, String url, RequestParams para, int timeOut, final IHttpRequestInterFace mIHttpRequestInterFace) {
         try {
             if (null == mContext || TextUtils.isEmpty(url)) {
-                return;
+                return null;
             }
 
             // 超时时间
             getAsyncHttpClient().setTimeout(timeOut);
-
 
             if (!UtilityNetWork.isNetworkAvailable()) {
                 if (mIHttpRequestInterFace != null) {
                     mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_network));
                     mIHttpRequestInterFace.onFinish();
                 }
-                return;
+                return null;
             }
 
             if (mIHttpRequestInterFace != null) {
                 mIHttpRequestInterFace.onStart();
             }
 
-            getAsyncHttpClient().get(url, para, new AsyncHttpResponseHandler() {
+            return getAsyncHttpClient().get(url, para, new AsyncHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -407,6 +413,7 @@ public class mHttpClient {
             });
         } catch (Exception ex) {
             ex.printStackTrace();
+            return null;
         }
     }
 
@@ -415,10 +422,10 @@ public class mHttpClient {
      * @param retryCounts            重试次数
      * @param mIHttpRequestInterFace 回调
      */
-    public static void HttpGet(final Context mContext, String url, int retryCounts, final IHttpRequestInterFace mIHttpRequestInterFace) {
+    public static RequestHandle HttpGet(final Context mContext, String url, int retryCounts, final IHttpRequestInterFace mIHttpRequestInterFace) {
         try {
             if (null == mContext || TextUtils.isEmpty(url)) {
-                return;
+                return null;
             }
 
             // 超时时间
@@ -429,7 +436,7 @@ public class mHttpClient {
                     mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_network));
                     mIHttpRequestInterFace.onFinish();
                 }
-                return;
+                return null;
             }
 
             getAsyncHttpClient().setMaxRetriesAndTimeout(retryCounts, LibrariesCons.httpTimeout);
@@ -438,7 +445,7 @@ public class mHttpClient {
                 mIHttpRequestInterFace.onStart();
             }
 
-            getAsyncHttpClient().get(mContext, url, new AsyncHttpResponseHandler() {
+            return getAsyncHttpClient().get(mContext, url, new AsyncHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -486,6 +493,7 @@ public class mHttpClient {
             });
         } catch (Exception ex) {
             ex.printStackTrace();
+            return null;
         }
     }
 
@@ -605,9 +613,9 @@ public class mHttpClient {
         HttpPost(mContext, url, json, LibrariesCons.httpTimeout, mIHttpRequestInterFace);
     }
 
-    public static void HttpPost(Context mContext, String url, String json, int timeOut, final IHttpRequestInterFace mIHttpRequestInterFace) {
+    public static RequestHandle HttpPost(Context mContext, String url, String json, int timeOut, final IHttpRequestInterFace mIHttpRequestInterFace) {
         if (null == mContext || TextUtils.isEmpty(url)) {
-            return;
+            return null;
         }
 
         // 超时时间
@@ -618,7 +626,7 @@ public class mHttpClient {
                 mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_network));
                 mIHttpRequestInterFace.onFinish();
             }
-            return;
+            return null;
         }
 
         if (mIHttpRequestInterFace != null) {
@@ -637,10 +645,10 @@ public class mHttpClient {
                 mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getString(R.string.info_json_request_error));
                 mIHttpRequestInterFace.onFinish();
             }
-            return;
+            return null;
         }
 
-        getAsyncHttpClient().post(mContext, url, postArrEntity, HttpContentType, new AsyncHttpResponseHandler() {
+        return getAsyncHttpClient().post(mContext, url, postArrEntity, HttpContentType, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
