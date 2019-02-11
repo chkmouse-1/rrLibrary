@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.renrui.libraries.R;
@@ -493,6 +494,17 @@ public class UtilitySecurity {
         setText(tv, text + "");
     }
 
+    public static void setTextByResource(TextView tv, int resourceID) {
+        if (tv == null)
+            return;
+
+        try {
+            setText(tv, LibrariesCons.getContext().getString(resourceID));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setText(TextView tv, CharSequence text) {
         if (tv == null)
             return;
@@ -812,6 +824,17 @@ public class UtilitySecurity {
 
         try {
             view.setLayoutParams(params);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setProgress(ProgressBar progressBar, int value) {
+        if (progressBar == null)
+            return;
+
+        try {
+            progressBar.setProgress(value);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
