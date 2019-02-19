@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -952,5 +953,19 @@ public class UtilitySecurity {
         }
 
         return value;
+    }
+
+    /**
+     * 添加下划线
+     */
+    public void addUnderline(TextView textView) {
+        if (textView == null) {
+            return;
+        }
+        try {
+            textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
