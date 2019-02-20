@@ -56,6 +56,14 @@ public class UtilitySecurity {
     public static boolean isEmpty(Object[] obj) {
         return obj == null || obj.length == 0;
     }
+    
+    public static boolean isEmpty(TextView tv) {
+        return isEmpty(getText(tv));
+    }
+
+    public static boolean isEmpty(EditText et) {
+        return isEmpty(getText(et));
+    }
 
     public static boolean equals(String a, String b) {
         return TextUtils.equals(a, b);
