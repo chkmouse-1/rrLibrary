@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.loopj.android.http.RequestParams;
 import com.renrui.libraries.model.baseObject.BaseHttpModel;
@@ -770,5 +771,27 @@ public class LibUtility {
         }
 
         return lis;
+    }
+
+    /**
+     * 给 RelativeLayout.LayoutParams 设置 Margin
+     *
+     * @param target       目标 View
+     * @param leftMargin   leftMargin
+     * @param topMargin    topMargin
+     * @param rightMargin  rightMargin
+     * @param bottomMargin bottomMargin
+     */
+    public static void setMarginForRelativeLayout(View target, int leftMargin, int topMargin, int rightMargin, int bottomMargin) {
+        try {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) target.getLayoutParams();
+            params.leftMargin = leftMargin;
+            params.topMargin = topMargin;
+            params.rightMargin = rightMargin;
+            params.bottomMargin = bottomMargin;
+            target.setLayoutParams(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
