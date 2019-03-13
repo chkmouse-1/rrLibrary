@@ -1,6 +1,11 @@
 package com.renrui.libraries.util;
 
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import com.renrui.libraries.enumDef.ClassType;
+import com.renrui.libraries.enumDef.ControlType;
 
 import java.io.Serializable;
 import java.util.ArrayList;

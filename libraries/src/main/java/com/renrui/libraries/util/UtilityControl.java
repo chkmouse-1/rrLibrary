@@ -6,8 +6,12 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.renrui.libraries.enumDef.ClassType;
+import com.renrui.libraries.enumDef.ControlType;
 import com.renrui.libraries.interfaces.ITextviewClickable;
 
 import java.util.List;
@@ -79,5 +83,30 @@ public class UtilityControl {
      */
     public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID) {
         setHotWordsText(tv, text, arrHotWords, colorResourceID, null);
+    }
+
+    public static int getControlType(Object obj) {
+        int classType;
+
+        try {
+            // TextView
+            if (obj instanceof TextView) {
+                classType = ControlType.TEXTVIEW;
+            }
+            // EditText
+            else if (obj instanceof EditText) {
+                classType = ControlType.EDITTEXT;
+            }
+            // Button
+            else if (obj instanceof Button) {
+                classType = ControlType.BUTTON;
+            } else {
+                classType = ClassType.Other;
+            }
+        } catch (Exception ex) {
+            classType = ClassType.Other;
+        }
+
+        return classType;
     }
 }

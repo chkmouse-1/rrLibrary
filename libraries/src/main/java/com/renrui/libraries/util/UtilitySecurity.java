@@ -56,7 +56,7 @@ public class UtilitySecurity {
     public static boolean isEmpty(Object[] obj) {
         return obj == null || obj.length == 0;
     }
-    
+
     public static boolean isEmpty(TextView tv) {
         return isEmpty(getText(tv));
     }

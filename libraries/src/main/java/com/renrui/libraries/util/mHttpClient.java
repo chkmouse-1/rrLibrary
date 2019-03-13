@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
 
@@ -54,6 +55,11 @@ public class mHttpClient {
 
     public static final String xguid = "xguid";
     public static final String xgtok = "xgtok";
+
+    /**
+     * 每次网络请求都设置一次cookie
+     */
+    public static HashMap<String, String> hpCookies;
 
     private static Gson gson = null;
     private static ByteArrayEntity postArrEntity = null;
@@ -204,23 +210,28 @@ public class mHttpClient {
         }
     }
 
+    public static void setHttpCookie(HashMap<String, String> hpCookies) {
+        mHttpClient.hpCookies = hpCookies;
+    }
+
     /**
      * 设置cookie
      */
-    public static void setHttpCookie(String domain, HashMap<String, String> hpCookies) {
+    private static void setHttpCookie(String url) {
 
-        if (hpCookies == null || hpCookies.isEmpty()) {
+        if (TextUtils.isEmpty(url) || UtilitySecurity.isEmpty(hpCookies)) {
             return;
         }
 
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(LibrariesCons.getContext());
-
         try {
+            PersistentCookieStore myCookieStore = new PersistentCookieStore(LibrariesCons.getContext());
             BasicClientCookie cookie;
+
+            Uri uri = Uri.parse(url);
 
             for (Map.Entry<String, String> entry : hpCookies.entrySet()) {
                 cookie = new BasicClientCookie(entry.getKey(), entry.getValue());
-                cookie.setDomain(domain);
+                cookie.setDomain(uri.getHost());
                 myCookieStore.addCookie(cookie);
             }
 
@@ -231,6 +242,33 @@ public class mHttpClient {
             ex.printStackTrace();
         }
     }
+//    /**
+//     * 设置cookie
+//     */
+//    private static void setHttpCookie(String domain, HashMap<String, String> hpCookies) {
+//
+//        if (hpCookies == null || hpCookies.isEmpty()) {
+//            return;
+//        }
+//
+//        PersistentCookieStore myCookieStore = new PersistentCookieStore(LibrariesCons.getContext());
+//
+//        try {
+//            BasicClientCookie cookie;
+//
+//            for (Map.Entry<String, String> entry : hpCookies.entrySet()) {
+//                cookie = new BasicClientCookie(entry.getKey(), entry.getValue());
+//                cookie.setDomain(domain);
+//                myCookieStore.addCookie(cookie);
+//            }
+//
+//            if (!myCookieStore.getCookies().isEmpty()) {
+//                getAsyncHttpClient().setCookieStore(myCookieStore);
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     public static void setProxy(String hostName, int port) {
         if (TextUtils.isEmpty(hostName) || port < 1)
@@ -266,8 +304,6 @@ public class mHttpClient {
     public static void clearCookie() {
         try {
             getAsyncHttpClient().setCookieStore(null);
-//            PersistentCookieStore myCookieStore = new PersistentCookieStore(LibrariesCons.getContext());
-//            getAsyncHttpClient().setCookieStore(myCookieStore);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -352,6 +388,7 @@ public class mHttpClient {
 
             // 超时时间
             getAsyncHttpClient().setTimeout(timeOut);
+            setHttpCookie(url);
 
             if (!UtilityNetWork.isNetworkAvailable()) {
                 if (mIHttpRequestInterFace != null) {
@@ -430,6 +467,7 @@ public class mHttpClient {
 
             // 超时时间
             getAsyncHttpClient().setTimeout(LibrariesCons.httpTimeout);
+            setHttpCookie(url);
 
             if (!UtilityNetWork.isNetworkAvailable()) {
                 if (mIHttpRequestInterFace != null) {
@@ -516,6 +554,7 @@ public class mHttpClient {
 
             // 超时时间
             getAsyncHttpClient().setTimeout(LibrariesCons.httpTimeout);
+            setHttpCookie(url);
 
             if (!UtilityNetWork.isNetworkAvailable()) {
                 if (mIHttpRequestInterFace != null) {
@@ -620,6 +659,7 @@ public class mHttpClient {
 
         // 超时时间
         getAsyncHttpClient().setTimeout(timeOut);
+        setHttpCookie(url);
 
         if (!UtilityNetWork.isNetworkAvailable()) {
             if (mIHttpRequestInterFace != null) {
@@ -705,6 +745,7 @@ public class mHttpClient {
 
         // 超时时间
         getAsyncHttpClient().setTimeout(timeOut);
+        setHttpCookie(url);
 
         if (!UtilityNetWork.isNetworkAvailable()) {
             if (mIHttpRequestInterFace != null) {
@@ -787,11 +828,13 @@ public class mHttpClient {
     /**
      * 下载
      */
-    public static void downloadImage(Context mContext, String uri, final IHttpDownloadInterFace mHttpRequestInterFace) {
+    public static void downloadImage(Context mContext, String url, final IHttpDownloadInterFace mHttpRequestInterFace) {
 
-        if (null == mContext || TextUtils.isEmpty(uri)) {
+        if (null == mContext || TextUtils.isEmpty(url)) {
             return;
         }
+
+        setHttpCookie(url);
 
         if (!UtilityNetWork.isNetworkAvailable()) {
             if (mHttpRequestInterFace != null) {
@@ -805,7 +848,7 @@ public class mHttpClient {
             mHttpRequestInterFace.onStart();
         }
 
-        getAsyncHttpClient().get(mContext, uri, null, HttpDownLoadContentType, new BinaryHttpResponseHandler() {
+        getAsyncHttpClient().get(mContext, url, null, HttpDownLoadContentType, new BinaryHttpResponseHandler() {
 
             // 上传进度
             int progress = 0;
