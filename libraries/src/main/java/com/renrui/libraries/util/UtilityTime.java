@@ -7,6 +7,7 @@ import com.renrui.libraries.R;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class UtilityTime {
 
@@ -571,6 +572,32 @@ public class UtilityTime {
     }
 
     /**
+     * 计算当前传递过来的时间和当前时间的差距
+     */
+    public static String calculTimeDiff(long time) {
+        long currentTime = System.currentTimeMillis();
+        long timeDiff = currentTime - time;
+        if (timeDiff <= UtilityTime.lMinuteTimes) {
+            return "刚刚";
+        } else if (timeDiff <= UtilityTime.lHourTimes) {
+            int min = (int) (timeDiff / UtilityTime.lMinuteTimes);
+            return min + "分钟前";
+        } else if (timeDiff <= 24 * UtilityTime.lHourTimes) {
+            int hour = (int) (timeDiff / UtilityTime.lHourTimes);
+            return hour + "小时前";
+        } else if (timeDiff <= 24 * 30 * UtilityTime.lHourTimes) {
+            int day = (int) (timeDiff / (UtilityTime.lHourTimes * 24));
+            return day + "天前";
+        } else if (timeDiff < 24 * 365 * UtilityTime.lHourTimes) {
+            int mouth = (int) (timeDiff / (UtilityTime.lHourTimes * 24 * 30));
+            return mouth + "月前";
+        } else {
+            SimpleDateFormat format = sdf_2;
+            return format.format(new Date(time));
+        }
+    }
+
+    /**
      * 获取和当前时间间隔差的展示text
      */
     public static String getActiveTimeText(long value) {
@@ -579,56 +606,39 @@ public class UtilityTime {
         try {
             long intervalTime = System.currentTimeMillis() - value;
 
-            if(intervalTime <= lMinuteTimes * 5)
-            {
+            if (intervalTime <= lMinuteTimes * 5) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_just);
-            }
-            else if (intervalTime <= (lMinuteTimes * 10)) {
+            } else if (intervalTime <= (lMinuteTimes * 10)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_10Minute);
-            }
-            else if (intervalTime <= (lMinuteTimes * 20)) {
+            } else if (intervalTime <= (lMinuteTimes * 20)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_20Minute);
-            }
-            else if (intervalTime <= (lMinuteTimes * 30)) {
+            } else if (intervalTime <= (lMinuteTimes * 30)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_30Minute);
-            }
-            else if (intervalTime <= (lHourTimes * 1)) {
+            } else if (intervalTime <= (lHourTimes * 1)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_1Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 2)) {
+            } else if (intervalTime <= (lHourTimes * 2)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_2Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 3)) {
+            } else if (intervalTime <= (lHourTimes * 3)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_3Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 4)) {
+            } else if (intervalTime <= (lHourTimes * 4)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_4Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 5)) {
+            } else if (intervalTime <= (lHourTimes * 5)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_5Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 6)) {
+            } else if (intervalTime <= (lHourTimes * 6)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_6Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 7)) {
+            } else if (intervalTime <= (lHourTimes * 7)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_7Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 8)) {
+            } else if (intervalTime <= (lHourTimes * 8)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_8Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 9)) {
+            } else if (intervalTime <= (lHourTimes * 9)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_9Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 10)) {
+            } else if (intervalTime <= (lHourTimes * 10)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_10Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 11)) {
+            } else if (intervalTime <= (lHourTimes * 11)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_11Hour);
-            }
-            else if (intervalTime <= (lHourTimes * 12)) {
+            } else if (intervalTime <= (lHourTimes * 12)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_12Hour);
-            }
-           else if (intervalTime <= lDayTimes) {
+            } else if (intervalTime <= lDayTimes) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_one_day);
             } else if (intervalTime <= (lDayTimes * 2)) {
                 text = LibrariesCons.getContext().getString(R.string.UtilityTime_two_day);
