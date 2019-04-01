@@ -26,6 +26,21 @@ public class UtilitySecurityListener {
         }
     }
 
+    public static void setOnClickListener(@Nullable View.OnClickListener listener, View... args) {
+
+        if (args == null || listener == null) {
+            return;
+        }
+
+        try {
+            for (int i = 0; i < args.length; i++) {
+                args[i].setOnClickListener(listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setOnFocusChangeListener(View view, @Nullable View.OnFocusChangeListener listener) {
 
         if (view == null || listener == null) {
