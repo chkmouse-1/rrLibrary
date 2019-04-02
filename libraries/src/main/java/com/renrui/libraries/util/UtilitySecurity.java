@@ -29,6 +29,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -47,6 +48,10 @@ public class UtilitySecurity {
 
     public static boolean isEmpty(List<?> list) {
         return list == null || list.isEmpty();
+    }
+
+    public static boolean isEmpty(Set<?> set) {
+        return set == null || set.isEmpty();
     }
 
     public static boolean isEmpty(HashMap<?, ?> list) {
