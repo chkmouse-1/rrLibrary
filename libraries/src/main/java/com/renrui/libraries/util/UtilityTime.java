@@ -575,6 +575,9 @@ public class UtilityTime {
      * 计算当前传递过来的时间和当前时间的差距
      */
     public static String calculTimeDiff(long time) {
+        if (time <= 0)
+            return "";
+
         long currentTime = System.currentTimeMillis();
         long timeDiff = currentTime - time;
         if (timeDiff <= UtilityTime.lMinuteTimes) {
