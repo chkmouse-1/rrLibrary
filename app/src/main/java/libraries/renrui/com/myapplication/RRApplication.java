@@ -32,7 +32,7 @@ public class RRApplication extends Application {
         mHttpClient.setUserAgentKey(" tfyetan-app-api");
         mHttpClient.setChannelName("test");
         mHttpClient.setUserAgent("tfyetan/1.0.0 (vivo X7Plus; Android 5.1.1; zh_CN; 00000000-46dd-33d4-9ccd-1a2a0033c587; cs:74d5751a; ch:renrui)");
-        mHttpClient.setHttpCookie(getHost(), getCookMap());
+//        mHttpClient.setHttpCookie(getHost(), getCookMap());
 
         mHttpClient.setProxy("192.168.100.188", 8888);
     }
