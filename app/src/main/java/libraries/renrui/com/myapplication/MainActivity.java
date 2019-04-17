@@ -1,16 +1,16 @@
 package libraries.renrui.com.myapplication;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import java.lang.reflect.Method;
+import com.renrui.libraries.interfaces.ITextviewClickable;
+import com.renrui.libraries.model.SpanModel;
+import com.renrui.libraries.util.CustomToast;
+import com.renrui.libraries.util.UtilityControl;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -22,23 +22,29 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        tvTest1 = findViewById(R.id.tvTest1);
-//
-//        String text = "asdfas123456dfasdfas4567dfasdf";
-//        String[] arrHotWord = new String[]{"12345", "4567"};
-//        UtilityControl.setHotWordsText(tvTest1, text, arrHotWord, R.color.red_3f42, new ITextviewClickable() {
-//            @Override
-//            public void onSpanClick(int position) {
-//                int sd = 90;
-//                sd++;
-//
-//                if (position == 0)
-//                    CustomToast.makeTextWarn("aaaa");
-//                else
-//                    CustomToast.makeTextWarn("bbbb");
-//
-////                LibUtility.getAppOnlySign(MainActivity.this);
-//            }
-//        });
+        tvTest1 = findViewById(R.id.tvTest1);
+
+        String text = "asdfas123456dfasdfas4567dfasdf";
+
+        SpanModel model1 = new SpanModel();
+        model1.text = "123456";
+        model1.color = getResources().getColor(R.color.red_3f42);
+        model1.isUnderline = true;
+
+        SpanModel model2 = new SpanModel();
+        model2.text = "4567";
+        model2.color = getResources().getColor(R.color.red_3f42);
+        model2.isUnderline = false;
+
+        List<SpanModel> list = new ArrayList<>();
+        list.add(model1);
+        list.add(model2);
+
+        UtilityControl.setSpanText(tvTest1, text, list, new ITextviewClickable() {
+            @Override
+            public void onSpanClick(int position) {
+                CustomToast.makeTextWarn("position=" + position);
+            }
+        });
     }
 }

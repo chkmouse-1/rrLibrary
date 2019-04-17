@@ -13,17 +13,56 @@ import android.widget.TextView;
 import com.renrui.libraries.enumDef.ClassType;
 import com.renrui.libraries.enumDef.ControlType;
 import com.renrui.libraries.interfaces.ITextviewClickable;
+import com.renrui.libraries.model.SpanModel;
 
 import java.util.List;
 
 public class UtilityControl {
 
     /**
+     * 可同时设置字体颜色、是否下划线和点击事件
+     *
+     * @param tv           TextView
+     * @param text         要显示的全部文本
+     * @param hotWordModel @see SpanModel
+     * @param listener     点击监听
+     */
+    public static void setSpanText(TextView tv, CharSequence text, List<SpanModel> hotWordModel, ITextviewClickable listener) {
+        if (tv == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(hotWordModel)) {
+            return;
+        }
+        try {
+            SpannableStringBuilder textBuilder = new SpannableStringBuilder(text);
+            ForegroundColorSpan hotWordsSpanColor;
+
+            List<Integer> lis;
+            for (int i = 0; i < hotWordModel.size(); i++) {
+                lis = LibUtility.getStrIndex(text + "", hotWordModel.get(i).text);
+                for (int j = 0; j < lis.size(); j++) {
+                    // 关键字颜色
+                    hotWordsSpanColor = new ForegroundColorSpan(hotWordModel.get(i).color);
+                    textBuilder.setSpan(hotWordsSpanColor, lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    // 点击事件
+                    if (listener != null)
+                        textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                }
+            }
+
+            tv.setMovementMethod(LinkMovementMethod.getInstance());
+            tv.setHighlightColor(Color.TRANSPARENT);
+            tv.setText(textBuilder);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
      * @param tv
-     * @param text                          Text
-     * @param arrHotWords           关键词
-     * @param colorResourceID     关键词颜色
-     * @param listener                    关键字点击回调
+     * @param text            Text
+     * @param arrHotWords     关键词
+     * @param colorResourceID 关键词颜色
+     * @param listener        关键字点击回调
      */
     public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID, ITextviewClickable listener) {
         if (tv == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(arrHotWords))
