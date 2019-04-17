@@ -39,13 +39,13 @@ public class UtilityControl {
             for (int i = 0; i < hotWordModel.size(); i++) {
                 lis = LibUtility.getStrIndex(text + "", hotWordModel.get(i).text);
                 for (int j = 0; j < lis.size(); j++) {
-                    // 关键字颜色
-                    hotWordsSpanColor = new ForegroundColorSpan(hotWordModel.get(i).color);
-                    textBuilder.setSpan(hotWordsSpanColor, lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     // 点击事件
                     if (listener != null)
                         textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+                    // 关键字颜色
+                    hotWordsSpanColor = new ForegroundColorSpan(hotWordModel.get(i).color);
+                    textBuilder.setSpan(hotWordsSpanColor, lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
 

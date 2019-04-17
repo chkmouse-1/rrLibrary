@@ -28,12 +28,12 @@ public class MainActivity extends Activity {
 
         SpanModel model1 = new SpanModel();
         model1.text = "123456";
-        model1.color = getResources().getColor(R.color.red_3f42);
+        model1.color = getResources().getColor(R.color.blue_a1ff);
         model1.isUnderline = true;
 
         SpanModel model2 = new SpanModel();
         model2.text = "4567";
-        model2.color = getResources().getColor(R.color.red_3f42);
+        model2.color = getResources().getColor(R.color.blue_478b);
         model2.isUnderline = false;
 
         List<SpanModel> list = new ArrayList<>();
