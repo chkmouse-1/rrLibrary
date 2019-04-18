@@ -694,6 +694,29 @@ public class UtilitySecurity {
      *
      * @param tv 内容
      */
+    public static void setTextEmptyIsInvisible(TextView tv, CharSequence text) {
+        if (tv == null)
+            return;
+
+        try {
+            tv.setText(TextUtils.isEmpty(text) ? "" : text);
+
+            if (TextUtils.isEmpty(text)) {
+                resetVisibility(tv, View.INVISIBLE);
+            } else {
+                resetVisibility(tv, View.VISIBLE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 内容为空时，隐藏TextView
+     *
+     * @param tv 内容
+     */
     public static void setTextEmptyIsGone(TextView tv, CharSequence text) {
         setText(tv, text, true);
     }
