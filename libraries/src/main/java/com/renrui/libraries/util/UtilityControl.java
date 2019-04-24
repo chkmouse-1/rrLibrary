@@ -40,8 +40,7 @@ public class UtilityControl {
                 lis = LibUtility.getStrIndex(text + "", hotWordModel.get(i).text);
                 for (int j = 0; j < lis.size(); j++) {
                     // 点击事件
-                    if (listener != null)
-                        textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                     // 关键字颜色
                     hotWordsSpanColor = new ForegroundColorSpan(hotWordModel.get(i).color);
