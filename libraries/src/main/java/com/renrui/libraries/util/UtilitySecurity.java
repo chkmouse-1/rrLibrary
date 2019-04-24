@@ -478,6 +478,24 @@ public class UtilitySecurity {
         }
     }
 
+    /**
+     * 传递多个view
+     * @param isShow
+     * @param views
+     */
+    public static void resetVisibility(boolean isShow, View... views) {
+        try {
+            for (View view : views) {
+                if (view == null) {
+                    continue;
+                }
+                resetVisibility(view, isShow);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setHint(TextView tv, CharSequence text) {
         if (tv == null) {
             return;
