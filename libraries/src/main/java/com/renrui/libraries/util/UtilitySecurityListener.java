@@ -134,4 +134,28 @@ public class UtilitySecurityListener {
             ex.printStackTrace();
         }
     }
+
+    public static void setOnTouchListener(View view, View.OnTouchListener listener) {
+        if (view == null || listener == null)
+            return;
+        try {
+            view.setOnTouchListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnTouchListener(View.OnTouchListener listener, View... views) {
+        if (listener == null)
+            return;
+        try {
+            for (View view : views) {
+                if (view == null)
+                    continue;
+                setOnTouchListener(view, listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
