@@ -478,11 +478,6 @@ public class UtilitySecurity {
         }
     }
 
-    /**
-     * 传递多个view
-     * @param isShow
-     * @param views
-     */
     public static void resetVisibility(boolean isShow, View... views) {
         try {
             for (View view : views) {

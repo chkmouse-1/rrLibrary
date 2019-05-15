@@ -1,12 +1,15 @@
 package com.renrui.libraries.util;
 
+import android.content.ComponentName;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 
 /**
  * 安全方法
@@ -101,6 +104,32 @@ public class UtilitySecurityListener {
 
         try {
             et.addTextChangedListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnCheckedChangeListener(CompoundButton cb, CompoundButton.OnCheckedChangeListener listener) {
+        if (cb == null || listener == null) {
+            return;
+        }
+        try {
+            cb.setOnCheckedChangeListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener, CompoundButton... cbs) {
+        if (listener == null)
+            return;
+        try {
+            for (CompoundButton cb : cbs) {
+                if (cb == null) {
+                    continue;
+                }
+                setOnCheckedChangeListener(cb, listener);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
