@@ -442,7 +442,7 @@ public class mHttpClient {
                         }
                         // 不需要OnCancel
                         else if (mIHttpRequestInterFace instanceof IHttpRequestInterFace) {
-                            mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
+//                            mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
                             mIHttpRequestInterFace.onFinish();
                         }
                     }
@@ -523,7 +523,7 @@ public class mHttpClient {
                         }
                         // 不需要OnCancel
                         else if (mIHttpRequestInterFace instanceof IHttpRequestInterFace) {
-                            mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
+//                            mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
                             mIHttpRequestInterFace.onFinish();
                         }
                     }
@@ -623,7 +623,7 @@ public class mHttpClient {
                                 }
                                 // 不需要OnCancel
                                 else if (mIHttpRequestInterFace instanceof IHttpRequestInterFace) {
-                                    mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
+//                                    mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
                                     mIHttpRequestInterFace.onFinish();
                                 }
                             }
@@ -719,7 +719,7 @@ public class mHttpClient {
                     }
                     // 不需要OnCancel
                     else if (mIHttpRequestInterFace instanceof IHttpRequestInterFace) {
-                        mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
+//                        mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
                         mIHttpRequestInterFace.onFinish();
                     }
                 }
@@ -811,7 +811,7 @@ public class mHttpClient {
                     }
                     // 不需要OnCancel
                     else if (mIHttpRequestInterFace instanceof IHttpRequestInterFace) {
-                        mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
+//                        mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
                         mIHttpRequestInterFace.onFinish();
                     }
                 }
@@ -910,7 +910,7 @@ public class mHttpClient {
                     }
                     // 不需要OnCancel
                     else if (mHttpRequestInterFace instanceof IHttpRequestInterFace) {
-                        mHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
+//                        mHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getResources().getString(R.string.info_error_cancelRequest));
                         mHttpRequestInterFace.onFinish();
                     }
                 }
