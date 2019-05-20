@@ -491,6 +491,17 @@ public class UtilitySecurity {
         }
     }
 
+    public static boolean isVisiable(View view) {
+        if (view == null)
+            return false;
+        try {
+            return view.getVisibility() == View.VISIBLE;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     public static void setHint(TextView tv, CharSequence text) {
         if (tv == null) {
             return;
