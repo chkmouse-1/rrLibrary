@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
+import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.TypedValue;
@@ -790,6 +791,21 @@ public class LibUtility {
             params.rightMargin = rightMargin;
             params.bottomMargin = bottomMargin;
             target.setLayoutParams(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 复制到剪切板
+     */
+    public static void copyText(Context context, String content) {
+        try {
+            ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            if (cmb != null) {
+                cmb.setText(content);
+                CustomToast.makeTextSucess("已复制到剪贴板!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
