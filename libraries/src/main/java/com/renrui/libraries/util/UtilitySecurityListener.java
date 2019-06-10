@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -180,6 +181,27 @@ public class UtilitySecurityListener {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public static void addOnGlobalLayoutListener(View view, ViewTreeObserver.OnGlobalLayoutListener listener) {
+        if (view == null || listener == null) return;
+        try {
+            view.getViewTreeObserver().addOnGlobalLayoutListener(listener);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addOnGlobalLayoutListener(ViewTreeObserver.OnGlobalLayoutListener listener, View... views) {
+        if (views == null || listener == null) return;
+        try {
+            for (View view : views) {
+                if (view == null) continue;
+                addOnGlobalLayoutListener(view, listener);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
