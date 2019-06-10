@@ -44,6 +44,30 @@ public class UtilitySecurityListener {
         }
     }
 
+    public static void setOnLongClickListener(View view, @Nullable View.OnLongClickListener listener) {
+        if (view == null || listener == null)
+            return;
+        try {
+            view.setOnLongClickListener(listener);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setOnLongClickListener(@Nullable View.OnLongClickListener listener, View... views) {
+        if (views == null || listener == null) {
+            return;
+        }
+        try {
+            for (View view : views) {
+                if (view == null) continue;
+                view.setOnLongClickListener(listener);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void setOnFocusChangeListener(View view, @Nullable View.OnFocusChangeListener listener) {
 
         if (view == null || listener == null) {
