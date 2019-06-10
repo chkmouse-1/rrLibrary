@@ -509,6 +509,7 @@ public class UtilitySecurity {
     }
 
     public static void resetVisibility(boolean isShow, View... views) {
+        if (views == null) return;
         try {
             for (View view : views) {
                 if (view == null) {
@@ -518,6 +519,20 @@ public class UtilitySecurity {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public static void resetVisibility(int visibility, View... views) {
+        if (visibility < 0 || views == null) {
+            return;
+        }
+        try {
+            for (View view : views) {
+                if (view == null) continue;
+                resetVisibility(view, visibility);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
