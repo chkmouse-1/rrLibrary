@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -559,12 +560,10 @@ public class UtilitySecurity {
         }
     }
 
-    public static void setChecked(CheckBox chk, boolean value) {
-        if (chk == null)
-            return;
-
+    public static void setChecked(CompoundButton compoundButton, boolean value) {
+        if (compoundButton == null) return;
         try {
-            chk.setChecked(value);
+            compoundButton.setChecked(value);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
