@@ -746,12 +746,13 @@ public class UtilityTime {
             return imText;
 
         try {
-            // 大于当前时间
-            if (time > System.currentTimeMillis()) {
-                imText = sdf_16.format(time);
-            }
+//            // 大于当前时间
+//            if (time > System.currentTimeMillis()) {
+//                imText = sdf_16.format(time);
+//            }
+
             // 今天 HH:mm
-            else if (DateUtils.isToday(time)) {
+            if (DateUtils.isToday(time)) {
                 imText = LibrariesCons.getContext().getString(R.string.UtilityTime_Today) + " " + sdf_4.format(time);
             }
             // 昨天 HH:mm
