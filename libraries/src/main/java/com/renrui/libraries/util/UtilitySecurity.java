@@ -560,6 +560,17 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setChecked(CheckBox chk, boolean value) {
+        if (chk == null)
+            return;
+
+        try {
+            chk.setChecked(value);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setChecked(CompoundButton compoundButton, boolean value) {
         if (compoundButton == null) return;
         try {
