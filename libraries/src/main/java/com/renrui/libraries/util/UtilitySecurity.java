@@ -821,6 +821,17 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setTextSize(TextView tv,int size){
+        if (tv ==null || size <= 0 ){
+            return;
+        }
+        try {
+            tv.setTextSize(size);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public static void setBackgroundResource(View tv, int resoueceID) {
         if (tv == null)
             return;
