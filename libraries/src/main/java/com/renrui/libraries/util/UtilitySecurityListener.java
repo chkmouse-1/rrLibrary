@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 /**
  * 安全方法
@@ -202,6 +203,27 @@ public class UtilitySecurityListener {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void setOnEditorActionListener(EditText et, TextView.OnEditorActionListener listener) {
+        if (et == null || listener == null) return;
+        try {
+            et.setOnEditorActionListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnEditorActionListener(TextView.OnEditorActionListener listener, EditText... ets) {
+        if (ets == null || listener == null) return;
+        try {
+            for (EditText et : ets) {
+                if (et == null) continue;
+                setOnEditorActionListener(et, listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
