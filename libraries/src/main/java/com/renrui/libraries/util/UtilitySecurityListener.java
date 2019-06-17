@@ -2,6 +2,7 @@ package com.renrui.libraries.util;
 
 import android.content.ComponentName;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextWatcher;
 import android.view.View;
@@ -225,5 +226,15 @@ public class UtilitySecurityListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void addOnPageChangeListener(ViewPager viewPager, ViewPager.OnPageChangeListener listener) {
+        if (viewPager == null || listener == null) return;
+        try {
+            viewPager.addOnPageChangeListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 }
