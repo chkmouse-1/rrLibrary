@@ -660,6 +660,23 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setFocusable(EditText et, boolean isFocusable) {
+        if (et == null) return;
+        try {
+            et.setFocusable(isFocusable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setFocusable(boolean isFocusable, EditText... ets) {
+        if (ets == null) return;
+        for (EditText et : ets) {
+            if (et == null) continue;
+            setFocusable(et, isFocusable);
+        }
+    }
+
     public static String getText(TextView tv) {
         if (tv == null)
             return "";
@@ -669,6 +686,15 @@ public class UtilitySecurity {
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
+        }
+    }
+
+    public static void clearText(EditText et) {
+        if (et == null) return;
+        try {
+            et.getText().clear();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
