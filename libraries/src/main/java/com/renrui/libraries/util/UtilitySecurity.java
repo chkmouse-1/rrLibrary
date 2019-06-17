@@ -689,6 +689,26 @@ public class UtilitySecurity {
         }
     }
 
+    public static int getLength(String value) {
+        if (isEmpty(value)) return 0;
+        try {
+            return value.length();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    public static int getLength(TextView tv) {
+        if (tv == null) return 0;
+        try {
+            return getText(tv).length();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
     public static void clearText(EditText et) {
         if (et == null) return;
         try {
