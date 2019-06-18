@@ -76,7 +76,7 @@ public class UtilitySecurity {
     }
 
     public static boolean contains(String sourc, String tag) {
-        if (isEmpty(sourc) || isEmpty(tag)) return false;
+        if (isEmpty(sourc) || isEmpty(tag) || sourc.length() < tag.length()) return false;
         return sourc.contains(tag);
     }
 
@@ -821,13 +821,13 @@ public class UtilitySecurity {
         }
     }
 
-    public static void setTextSize(TextView tv,int size){
-        if (tv ==null || size <= 0 ){
+    public static void setTextSize(TextView tv, int size) {
+        if (tv == null || size <= 0) {
             return;
         }
         try {
             tv.setTextSize(size);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -838,6 +838,15 @@ public class UtilitySecurity {
 
         try {
             tv.setBackgroundResource(resoueceID);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackgroundColor(View view, int color) {
+        if (view == null || color <= 0) return;
+        try {
+            view.setBackgroundColor(color);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
