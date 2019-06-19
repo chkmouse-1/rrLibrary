@@ -652,6 +652,15 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setGravity(TextView tv,int gravity){
+        if (null == tv || gravity <= 0) return;
+        try {
+            tv.setGravity(gravity);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public static void setText(TextView tv, int text) {
         if (tv == null)
             return;
