@@ -631,6 +631,27 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setSelected(TextView tv, boolean checked) {
+        if (null == tv) return;
+        try {
+            tv.setSelected(checked);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setSelected(boolean checked, TextView... textViews) {
+        if (null == textViews) return;
+        try {
+            for (TextView tv : textViews) {
+                if (null == tv) continue;
+                setSelected(tv, checked);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setText(TextView tv, int text) {
         if (tv == null)
             return;
