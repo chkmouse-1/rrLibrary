@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -118,6 +119,18 @@ public class UtilitySecurityListener {
 
         try {
             lv.setOnItemClickListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public static void setOnItemClickListener(GridView gridView, @Nullable AbsListView.OnItemClickListener listener) {
+
+        if (gridView == null || listener == null) {
+            return;
+        }
+
+        try {
+            gridView.setOnItemClickListener(listener);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
