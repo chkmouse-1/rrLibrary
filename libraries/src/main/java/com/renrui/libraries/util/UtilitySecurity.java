@@ -631,6 +631,16 @@ public class UtilitySecurity {
         }
     }
 
+    public static boolean isChecked(CompoundButton compoundButton) {
+        if (null == compoundButton) return false;
+        try {
+            return compoundButton.isChecked();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     public static void setSelected(TextView tv, boolean checked) {
         if (null == tv) return;
         try {
@@ -652,11 +662,11 @@ public class UtilitySecurity {
         }
     }
 
-    public static void setGravity(TextView tv,int gravity){
+    public static void setGravity(TextView tv, int gravity) {
         if (null == tv || gravity <= 0) return;
         try {
             tv.setGravity(gravity);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
