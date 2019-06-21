@@ -28,8 +28,10 @@ import com.renrui.libraries.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -129,6 +131,28 @@ public class UtilitySecurity {
             e.printStackTrace();
         }
         return contains(keys, tag);
+    }
+
+    // 获取集合的长度
+    public static int size(Collection<?> data){
+        if (data == null || data.isEmpty()) return 0;
+        try {
+            return data.size();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    // 获取hashMap的长度
+    public static int size(HashMap<?,?> map){
+        if (isEmpty(map)) return 0;
+        try {
+            return map.size();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return 0;
     }
 
     public static void remove(List<Integer> list, int tag) {
