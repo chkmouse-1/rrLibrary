@@ -1,6 +1,5 @@
 package com.renrui.libraries.util;
 
-import android.content.ComponentName;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 /**
@@ -123,6 +121,20 @@ public class UtilitySecurityListener {
             ex.printStackTrace();
         }
     }
+
+    public static void setOnItemLongClickListener(ListView lv, @Nullable AbsListView.OnItemLongClickListener listener) {
+
+        if (lv == null || listener == null) {
+            return;
+        }
+
+        try {
+            lv.setOnItemLongClickListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setOnItemClickListener(GridView gridView, @Nullable AbsListView.OnItemClickListener listener) {
 
         if (gridView == null || listener == null) {
