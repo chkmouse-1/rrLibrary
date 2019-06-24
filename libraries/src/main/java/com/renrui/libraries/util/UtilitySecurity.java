@@ -724,7 +724,7 @@ public class UtilitySecurity {
         }
     }
 
-    public static void setFocusable(EditText et, boolean isFocusable) {
+    public static void setFocusable(TextView et, boolean isFocusable) {
         if (et == null) return;
         try {
             et.setFocusable(isFocusable);
@@ -733,9 +733,9 @@ public class UtilitySecurity {
         }
     }
 
-    public static void setFocusable(boolean isFocusable, EditText... ets) {
+    public static void setFocusable(boolean isFocusable, TextView... ets) {
         if (ets == null) return;
-        for (EditText et : ets) {
+        for (TextView et : ets) {
             if (et == null) continue;
             setFocusable(et, isFocusable);
         }
