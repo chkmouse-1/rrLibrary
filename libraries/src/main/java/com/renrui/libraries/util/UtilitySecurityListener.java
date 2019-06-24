@@ -98,7 +98,7 @@ public class UtilitySecurityListener {
         }
     }
 
-    public static void setOnScrollListener(ListView lv, @Nullable AbsListView.OnScrollListener listener) {
+    public static void setOnScrollListener(AbsListView lv, @Nullable AbsListView.OnScrollListener listener) {
 
         if (lv == null || listener == null) {
             return;
@@ -111,20 +111,7 @@ public class UtilitySecurityListener {
         }
     }
 
-    public static void setOnItemClickListener(ListView lv, @Nullable AbsListView.OnItemClickListener listener) {
-
-        if (lv == null || listener == null) {
-            return;
-        }
-
-        try {
-            lv.setOnItemClickListener(listener);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static void setOnItemLongClickListener(ListView lv, @Nullable AbsListView.OnItemLongClickListener listener) {
+    public static void setOnItemLongClickListener(AbsListView lv, @Nullable AbsListView.OnItemLongClickListener listener) {
 
         if (lv == null || listener == null) {
             return;
@@ -137,7 +124,7 @@ public class UtilitySecurityListener {
         }
     }
 
-    public static void setOnItemClickListener(GridView gridView, @Nullable AbsListView.OnItemClickListener listener) {
+    public static void setOnItemClickListener(AbsListView gridView, @Nullable AbsListView.OnItemClickListener listener) {
 
         if (gridView == null || listener == null) {
             return;
