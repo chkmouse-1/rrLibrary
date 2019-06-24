@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -145,6 +146,15 @@ public class UtilitySecurityListener {
         try {
             et.addTextChangedListener(listener);
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnCheckedChangeListener(RadioGroup radioGroup, RadioGroup.OnCheckedChangeListener listener){
+        if (radioGroup == null || listener == null) return;
+        try {
+            radioGroup.setOnCheckedChangeListener(listener);
+        }catch (Exception ex){
             ex.printStackTrace();
         }
     }
