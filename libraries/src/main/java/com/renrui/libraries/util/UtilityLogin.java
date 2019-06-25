@@ -106,6 +106,7 @@ public class UtilityLogin {
 
         return loginInfoMode;
     }
+
     /**
      * 解密服务器加密的字符串
      *
@@ -119,6 +120,33 @@ public class UtilityLogin {
 
         try {
             Cipher secretKeyCipher = Cipher.getInstance("AES");     // 使用AES算法
+
+            secretKeyCipher.init(Cipher.DECRYPT_MODE, secretKey);   // 解密模式
+            decryptedtext = secretKeyCipher.doFinal(Base64.decode(ciphertext.getBytes(), Base64.NO_WRAP));
+            loginResponse = new String(decryptedtext);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            loginResponse = "";
+        }
+
+        return loginResponse;
+    }
+
+    /**
+     * 解密服务器加密的字符串
+     *
+     * @param ciphertext ciphertext
+     * @param secretKey  secretKey
+     */
+    public static String serverDecryptionNew(String ciphertext, SecretKey secretKey) {
+        // 解密用户信息
+        byte[] decryptedtext;
+        String loginResponse;
+
+        try {
+//            Cipher secretKeyCipher = Cipher.getInstance("AES");     // 使用AES算法
+            Cipher secretKeyCipher = Cipher.getInstance("AES/ECB/ZeroBytePadding");
+
             secretKeyCipher.init(Cipher.DECRYPT_MODE, secretKey);   // 解密模式
             decryptedtext = secretKeyCipher.doFinal(Base64.decode(ciphertext.getBytes(), Base64.NO_WRAP));
             loginResponse = new String(decryptedtext);
