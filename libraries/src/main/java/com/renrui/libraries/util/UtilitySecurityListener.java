@@ -150,11 +150,32 @@ public class UtilitySecurityListener {
         }
     }
 
-    public static void setOnCheckedChangeListener(RadioGroup radioGroup, RadioGroup.OnCheckedChangeListener listener){
+    public static void setOnKeyListener(View view, View.OnKeyListener listener) {
+        if (null == view || null == listener) return;
+        try {
+            view.setOnKeyListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnKeyListener(View.OnKeyListener listener, View... views) {
+        if (null == views || null == listener) return;
+        try {
+            for (View view : views) {
+                if (null == view) continue;
+                setOnKeyListener(view, listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setOnCheckedChangeListener(RadioGroup radioGroup, RadioGroup.OnCheckedChangeListener listener) {
         if (radioGroup == null || listener == null) return;
         try {
             radioGroup.setOnCheckedChangeListener(listener);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
