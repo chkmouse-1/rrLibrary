@@ -134,22 +134,22 @@ public class UtilitySecurity {
     }
 
     // 获取集合的长度
-    public static int size(Collection<?> data){
+    public static int size(Collection<?> data) {
         if (data == null || data.isEmpty()) return 0;
         try {
             return data.size();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return 0;
     }
 
     // 获取hashMap的长度
-    public static int size(HashMap<?,?> map){
+    public static int size(HashMap<?, ?> map) {
         if (isEmpty(map)) return 0;
         try {
             return map.size();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return 0;
@@ -896,12 +896,30 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setBackground(View view, Drawable drawable) {
+        if (null == view || null == drawable) return;
+        try {
+            view.setBackground(drawable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setBackgroundResource(View tv, int resoueceID) {
         if (tv == null)
             return;
 
         try {
             tv.setBackgroundResource(resoueceID);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackgroundDrawable(View view, Drawable drawable) {
+        if (null == view || null == drawable) return;
+        try {
+            view.setBackgroundDrawable(drawable);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
