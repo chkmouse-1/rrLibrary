@@ -896,6 +896,27 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setTextIsSelectable(TextView tv, boolean isSelectable) {
+        if (null == tv) return;
+        try {
+            tv.setTextIsSelectable(isSelectable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setTextIsSelectable(boolean isSelectable, TextView... textViews) {
+        if (null == textViews) return;
+        try {
+            for (TextView tv : textViews) {
+                if (null == tv) continue;
+                setTextIsSelectable(tv, isSelectable);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setBackground(View view, Drawable drawable) {
         if (null == view || null == drawable) return;
         try {
