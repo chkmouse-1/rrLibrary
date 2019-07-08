@@ -45,11 +45,13 @@ public class MainActivity extends Activity {
         model4.text = "mafei";
         model4.color = getResources().getColor(R.color.blue_a1ff);
         model4.isUnderline = false;
+        model4.isBold = true;
 
         SpanModel model5 = new SpanModel();
         model5.text = "ceshi";
         model5.color = getResources().getColor(R.color.blue_a1ff);
         model5.isUnderline = false;
+        model5.isBold = true;
 
         List<SpanModel> list = new ArrayList<>();
         list.add(model1);

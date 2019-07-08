@@ -38,7 +38,7 @@ public class UtilityControl {
             for (int i = 0; i < hotWordModel.size(); i++) {
                 lis = LibUtility.getStrIndex(text + "", hotWordModel.get(i).text);
                 for (int j = 0; j < lis.size(); j++) {
-                    textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline, hotWordModel.get(i).color), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline, hotWordModel.get(i).color,hotWordModel.get(i).isBold), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
             tv.setMovementMethod(LinkMovementMethod.getInstance());

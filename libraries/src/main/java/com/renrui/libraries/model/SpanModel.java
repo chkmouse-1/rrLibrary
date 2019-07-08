@@ -13,4 +13,8 @@ public class SpanModel {
      * text 是否下划线
      */
     public boolean isUnderline;
+    /**
+     * text是否加粗
+     */
+    public boolean isBold;
 }
