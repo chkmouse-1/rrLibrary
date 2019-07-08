@@ -743,6 +743,28 @@ public class UtilitySecurity {
         }
     }
 
+    public static boolean isFocusable(TextView textView) {
+        if (null == textView) return false;
+        try {
+            return textView.isFocusable();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void setSelectAllOnFocus(boolean isSelectAll, TextView... textViews) {
+        if (null == textViews) return;
+        try {
+            for (TextView tv : textViews) {
+                if (null == tv) continue;
+                tv.setSelectAllOnFocus(isSelectAll);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static String getText(TextView tv) {
         if (tv == null)
             return "";
@@ -781,6 +803,17 @@ public class UtilitySecurity {
             for (EditText et : ets) {
                 if (null == et) continue;
                 et.getText().clear();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void clearText(TextView... tvs) {
+        if (tvs == null) return;
+        try {
+            for (TextView tv : tvs) {
+                setText(tv, "");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
