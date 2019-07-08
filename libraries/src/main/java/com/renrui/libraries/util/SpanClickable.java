@@ -15,20 +15,15 @@ public class SpanClickable extends ClickableSpan implements View.OnClickListener
     private boolean isUnderline;
     private int color;
     private boolean isBold = false;
+    private float textSize;
 
-    public SpanClickable(ITextviewClickable clickListener, int position, boolean isUnderline, int color) {
-        this.clickListener = clickListener;
-        this.position = position;
-        this.isUnderline = isUnderline;
-        this.color = color;
-    }
-
-    public SpanClickable(ITextviewClickable clickListener, int position, boolean isUnderline, int color, boolean isBold) {
+    public SpanClickable(ITextviewClickable clickListener, int position, boolean isUnderline, int color, boolean isBold, float textSize) {
         this.clickListener = clickListener;
         this.position = position;
         this.isUnderline = isUnderline;
         this.color = color;
         this.isBold = isBold;
+        this.textSize = textSize;
     }
 
     @Override
@@ -44,6 +39,9 @@ public class SpanClickable extends ClickableSpan implements View.OnClickListener
         ds.setColor(color);
         if (this.isBold) {
             ds.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+        if (textSize > 0) {
+            ds.setTextSize(textSize);
         }
     }
 }

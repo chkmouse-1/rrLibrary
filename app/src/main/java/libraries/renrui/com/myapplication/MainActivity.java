@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
         model1.text = "《用户协议》";
         model1.color = getResources().getColor(R.color.blue_a1ff);
         model1.isUnderline = true;
+        model1.textSize = 50;
 
         SpanModel model2 = new SpanModel();
         model2.text = "《企业注册协议》";

@@ -17,4 +17,8 @@ public class SpanModel {
      * text是否加粗
      */
     public boolean isBold;
+    /**
+     * 字体大小，大于 0 有效
+     */
+    public float textSize;
 }
