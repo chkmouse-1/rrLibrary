@@ -28,7 +28,9 @@ import com.renrui.libraries.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1301,6 +1303,18 @@ public class UtilitySecurity {
             textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加设置日历时间
+     */
+    public static void setTime(Calendar calendar, Date date){
+        if (null == calendar || date == null) return;
+        try {
+            calendar.setTime(date);
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }
