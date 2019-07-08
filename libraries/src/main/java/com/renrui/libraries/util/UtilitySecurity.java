@@ -775,10 +775,13 @@ public class UtilitySecurity {
         return 0;
     }
 
-    public static void clearText(EditText et) {
-        if (et == null) return;
+    public static void clearText(EditText... ets) {
+        if (null == ets) return;
         try {
-            et.getText().clear();
+            for (EditText et : ets) {
+                if (null == et) continue;
+                et.getText().clear();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -1309,11 +1312,11 @@ public class UtilitySecurity {
     /**
      * 添加设置日历时间
      */
-    public static void setTime(Calendar calendar, Date date){
+    public static void setTime(Calendar calendar, Date date) {
         if (null == calendar || date == null) return;
         try {
             calendar.setTime(date);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
