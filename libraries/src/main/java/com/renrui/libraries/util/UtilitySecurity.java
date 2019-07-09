@@ -778,6 +778,16 @@ public class UtilitySecurity {
         }
     }
 
+    public static String getHint(TextView tv) {
+        if (null == tv) return null;
+        try {
+            return tv.getHint().toString().trim();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public static int getLength(String value) {
         if (isEmpty(value)) return 0;
         try {
