@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -1349,6 +1350,15 @@ public class UtilitySecurity {
         if (null == calendar || date == null) return;
         try {
             calendar.setTime(date);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setItemChecked(AbsListView absListView, int position, boolean isChecked) {
+        if (null == absListView || position < 0) return;
+        try {
+            absListView.setItemChecked(position, isChecked);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
