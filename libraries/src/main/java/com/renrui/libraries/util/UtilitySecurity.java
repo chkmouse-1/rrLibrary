@@ -627,6 +627,16 @@ public class UtilitySecurity {
         return false;
     }
 
+    public static int getFirstVisiblePosition(AbsListView absListView) {
+        if (null == absListView) return -1;
+        try {
+            return absListView.getFirstVisiblePosition();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+
     public static void setHint(TextView tv, CharSequence text) {
         if (tv == null) {
             return;
