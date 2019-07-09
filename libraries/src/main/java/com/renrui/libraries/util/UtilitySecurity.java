@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.InputType;
@@ -776,6 +777,16 @@ public class UtilitySecurity {
             ex.printStackTrace();
             return "";
         }
+    }
+
+    public static String getText(TabLayout.Tab tab) {
+        if (null == tab) return null;
+        try {
+            return tab.getText().toString().trim();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public static String getHint(TextView tv) {
