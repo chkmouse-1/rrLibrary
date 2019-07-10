@@ -897,6 +897,15 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setFocusableInTouchMode(EditText et, boolean isMode) {
+        if (null == et) return;
+        try {
+            et.setFocusableInTouchMode(isMode);
+        } catch (Exception ex) {
+            et.cancelLongPress();
+        }
+    }
+
     public static void clearFocus(EditText et) {
         if (et == null)
             return;
