@@ -942,6 +942,17 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setMaxLines(TextView tv,int maxLine){
+        if (null == tv || maxLine <= 0){
+            return;
+        }
+        try {
+            tv.setMaxLines(maxLine);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public static void setClickable(View tv, boolean enable) {
         if (tv == null)
             return;
