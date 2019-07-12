@@ -1078,6 +1078,15 @@ public class UtilitySecurity {
         }
     }
 
+    public static void selectAll(EditText et){
+        if (null == et) return;
+        try {
+            et.selectAll();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * 内容为空时，隐藏TextView
      *
