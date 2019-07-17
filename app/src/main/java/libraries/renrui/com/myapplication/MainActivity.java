@@ -8,9 +8,12 @@ import com.renrui.libraries.interfaces.ITextviewClickable;
 import com.renrui.libraries.model.SpanModel;
 import com.renrui.libraries.util.CustomToast;
 import com.renrui.libraries.util.UtilityControl;
+import com.renrui.libraries.util.UtilitySecurity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends Activity {
@@ -76,5 +79,11 @@ public class MainActivity extends Activity {
 //                CustomToast.makeTextWarn("position=" + position);
 //            }
 //        });
+
+        // 测试Map判空方法
+//        Map<String,String> map = new HashMap<>();
+//        UtilitySecurity.isEmpty(map);
+//        HashMap<String,Object> maps = new HashMap<>();
+//        UtilitySecurity.isEmpty(maps);
     }
 }

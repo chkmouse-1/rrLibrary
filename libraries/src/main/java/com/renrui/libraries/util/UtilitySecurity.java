@@ -62,8 +62,8 @@ public class UtilitySecurity {
         return set == null || set.isEmpty();
     }
 
-    public static boolean isEmpty(HashMap<?, ?> list) {
-        return list == null || list.isEmpty();
+    public static boolean isEmpty(Map<?, ?> map) {
+        return map == null || map.isEmpty() || map.size() <= 0;
     }
 
     public static boolean isEmpty(Object[] obj) {
