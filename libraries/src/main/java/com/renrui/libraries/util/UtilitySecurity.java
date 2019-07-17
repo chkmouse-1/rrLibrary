@@ -13,6 +13,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -649,6 +650,21 @@ public class UtilitySecurity {
         }
     }
 
+    /**
+     * 设置文本框中字符串转换成密文的替代字符，比如将密码用小圆点替换
+     *
+     * @param tv
+     * @param method
+     */
+    public static void setTransformationMethod(TextView tv, TransformationMethod method) {
+        if (null == tv || null == method) return;
+        try {
+            tv.setTransformationMethod(method);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setChecked(CheckBox chk, boolean value) {
         if (chk == null)
             return;
@@ -942,13 +958,13 @@ public class UtilitySecurity {
         }
     }
 
-    public static void setMaxLines(TextView tv,int maxLine){
-        if (null == tv || maxLine <= 0){
+    public static void setMaxLines(TextView tv, int maxLine) {
+        if (null == tv || maxLine <= 0) {
             return;
         }
         try {
             tv.setMaxLines(maxLine);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -1078,11 +1094,11 @@ public class UtilitySecurity {
         }
     }
 
-    public static void selectAll(EditText et){
+    public static void selectAll(EditText et) {
         if (null == et) return;
         try {
             et.selectAll();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
