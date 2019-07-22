@@ -202,6 +202,46 @@ public class UtilitySecurity {
         }
     }
 
+    public static void putExtras(Bundle bundle, String keyName, Object keyValue) {
+        if (bundle == null || TextUtils.isEmpty(keyName) || keyValue == null) {
+            return;
+        }
+        try {
+            if (keyValue instanceof String) {
+                String value = keyValue.toString();
+                if (!TextUtils.isEmpty(value) && !TextUtils.isEmpty(value.trim())) {
+                    bundle.putString(keyName, value);
+                }
+            }
+            // int
+            else if (keyValue instanceof Integer){
+                bundle.putInt(keyName,((Integer)keyValue).intValue());
+            }
+            // float
+            else if (keyValue instanceof Float){
+                bundle.putFloat(keyName,Float.parseFloat(keyValue.toString()));
+            }
+            // double
+            else if (keyValue instanceof Double){
+                bundle.putDouble(keyName,Double.parseDouble(keyValue.toString()));
+            }
+            // serializable
+            else if (keyValue instanceof Serializable) {
+                bundle.putSerializable(keyName, (Serializable) keyValue);
+            }
+            // arraryList<Integer>
+            else if (UtilityClassInfo.isArraryInteger(keyValue)) {
+                bundle.putIntegerArrayList(keyName, (ArrayList<Integer>) keyValue);
+            }
+            // arraryList<string>
+            else if (UtilityClassInfo.isArraryString(keyValue)) {
+                bundle.putStringArrayList(keyName, (ArrayList<String>) keyValue);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void putExtras(Intent intent, String keyName, Object keyValue) {
         if (intent == null || TextUtils.isEmpty(keyName) || keyValue == null)
             return;
