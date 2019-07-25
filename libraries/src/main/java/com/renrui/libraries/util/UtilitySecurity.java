@@ -138,6 +138,22 @@ public class UtilitySecurity {
         return contains(keys, tag);
     }
 
+    // 判断String是否以字符串开头
+    public static boolean startWith(String source, String tag) {
+        boolean isStar = false;
+        if (isEmpty(source) || isEmpty(tag) || getLength(source) < getLength(tag)) return isStar;
+        isStar = source.startsWith(tag);
+        return isStar;
+    }
+
+    // 判断String是否以字符串结尾
+    public static boolean endWith(String source, String tag) {
+        boolean isEnd = false;
+        if (isEmpty(source) || isEmpty(tag) || getLength(source) < getLength(tag)) return isEnd;
+        isEnd = source.endsWith(tag);
+        return isEnd;
+    }
+
     // 获取集合的长度
     public static int size(Collection<?> data) {
         if (data == null || data.isEmpty()) return 0;
@@ -214,16 +230,16 @@ public class UtilitySecurity {
                 }
             }
             // int
-            else if (keyValue instanceof Integer){
-                bundle.putInt(keyName,((Integer)keyValue).intValue());
+            else if (keyValue instanceof Integer) {
+                bundle.putInt(keyName, ((Integer) keyValue).intValue());
             }
             // float
-            else if (keyValue instanceof Float){
-                bundle.putFloat(keyName,Float.parseFloat(keyValue.toString()));
+            else if (keyValue instanceof Float) {
+                bundle.putFloat(keyName, Float.parseFloat(keyValue.toString()));
             }
             // double
-            else if (keyValue instanceof Double){
-                bundle.putDouble(keyName,Double.parseDouble(keyValue.toString()));
+            else if (keyValue instanceof Double) {
+                bundle.putDouble(keyName, Double.parseDouble(keyValue.toString()));
             }
             // serializable
             else if (keyValue instanceof Serializable) {
