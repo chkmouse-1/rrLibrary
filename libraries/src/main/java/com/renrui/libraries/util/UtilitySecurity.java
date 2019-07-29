@@ -694,6 +694,24 @@ public class UtilitySecurity {
         return -1;
     }
 
+    public static void setTranslationX(View view, float translationX) {
+        if (null == view) return;
+        try {
+            view.setTranslationX(translationX);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setTranslationY(View view, float translationY) {
+        if (null == view) return;
+        try {
+            view.setTranslationY(translationY);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setHint(TextView tv, CharSequence text) {
         if (tv == null) {
             return;
