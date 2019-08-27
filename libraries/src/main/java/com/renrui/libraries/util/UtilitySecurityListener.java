@@ -137,7 +137,7 @@ public class UtilitySecurityListener {
         }
     }
 
-    public static void addTextChangedListener(EditText et, @Nullable TextWatcher listener) {
+    public static void addTextChangedListener(TextView et, @Nullable TextWatcher listener) {
 
         if (et == null || listener == null) {
             return;

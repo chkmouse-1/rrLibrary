@@ -8,13 +8,16 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -28,7 +31,9 @@ import com.renrui.libraries.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,8 +62,8 @@ public class UtilitySecurity {
         return set == null || set.isEmpty();
     }
 
-    public static boolean isEmpty(HashMap<?, ?> list) {
-        return list == null || list.isEmpty();
+    public static boolean isEmpty(Map<?, ?> map) {
+        return map == null || map.isEmpty() || map.size() <= 0;
     }
 
     public static boolean isEmpty(Object[] obj) {
@@ -133,23 +138,39 @@ public class UtilitySecurity {
         return contains(keys, tag);
     }
 
+    // 判断String是否以字符串开头
+    public static boolean startWith(String source, String tag) {
+        boolean isStar = false;
+        if (isEmpty(source) || isEmpty(tag) || getLength(source) < getLength(tag)) return isStar;
+        isStar = source.startsWith(tag);
+        return isStar;
+    }
+
+    // 判断String是否以字符串结尾
+    public static boolean endWith(String source, String tag) {
+        boolean isEnd = false;
+        if (isEmpty(source) || isEmpty(tag) || getLength(source) < getLength(tag)) return isEnd;
+        isEnd = source.endsWith(tag);
+        return isEnd;
+    }
+
     // 获取集合的长度
-    public static int size(Collection<?> data){
+    public static int size(Collection<?> data) {
         if (data == null || data.isEmpty()) return 0;
         try {
             return data.size();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return 0;
     }
 
     // 获取hashMap的长度
-    public static int size(HashMap<?,?> map){
+    public static int size(HashMap<?, ?> map) {
         if (isEmpty(map)) return 0;
         try {
             return map.size();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return 0;
@@ -194,6 +215,46 @@ public class UtilitySecurity {
             return TextUtils.equals(a.toLowerCase(), b.toLowerCase());
         } catch (Exception ex) {
             return false;
+        }
+    }
+
+    public static void putExtras(Bundle bundle, String keyName, Object keyValue) {
+        if (bundle == null || TextUtils.isEmpty(keyName) || keyValue == null) {
+            return;
+        }
+        try {
+            if (keyValue instanceof String) {
+                String value = keyValue.toString();
+                if (!TextUtils.isEmpty(value) && !TextUtils.isEmpty(value.trim())) {
+                    bundle.putString(keyName, value);
+                }
+            }
+            // int
+            else if (keyValue instanceof Integer) {
+                bundle.putInt(keyName, ((Integer) keyValue).intValue());
+            }
+            // float
+            else if (keyValue instanceof Float) {
+                bundle.putFloat(keyName, Float.parseFloat(keyValue.toString()));
+            }
+            // double
+            else if (keyValue instanceof Double) {
+                bundle.putDouble(keyName, Double.parseDouble(keyValue.toString()));
+            }
+            // serializable
+            else if (keyValue instanceof Serializable) {
+                bundle.putSerializable(keyName, (Serializable) keyValue);
+            }
+            // arraryList<Integer>
+            else if (UtilityClassInfo.isArraryInteger(keyValue)) {
+                bundle.putIntegerArrayList(keyName, (ArrayList<Integer>) keyValue);
+            }
+            // arraryList<string>
+            else if (UtilityClassInfo.isArraryString(keyValue)) {
+                bundle.putStringArrayList(keyName, (ArrayList<String>) keyValue);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -623,6 +684,34 @@ public class UtilitySecurity {
         return false;
     }
 
+    public static int getFirstVisiblePosition(AbsListView absListView) {
+        if (null == absListView) return -1;
+        try {
+            return absListView.getFirstVisiblePosition();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+
+    public static void setTranslationX(View view, float translationX) {
+        if (null == view) return;
+        try {
+            view.setTranslationX(translationX);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setTranslationY(View view, float translationY) {
+        if (null == view) return;
+        try {
+            view.setTranslationY(translationY);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setHint(TextView tv, CharSequence text) {
         if (tv == null) {
             return;
@@ -630,6 +719,21 @@ public class UtilitySecurity {
 
         try {
             tv.setHint(TextUtils.isEmpty(text) ? "" : text);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置文本框中字符串转换成密文的替代字符，比如将密码用小圆点替换
+     *
+     * @param tv
+     * @param method
+     */
+    public static void setTransformationMethod(TextView tv, TransformationMethod method) {
+        if (null == tv || null == method) return;
+        try {
+            tv.setTransformationMethod(method);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -741,6 +845,28 @@ public class UtilitySecurity {
         }
     }
 
+    public static boolean isFocusable(TextView textView) {
+        if (null == textView) return false;
+        try {
+            return textView.isFocusable();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void setSelectAllOnFocus(boolean isSelectAll, TextView... textViews) {
+        if (null == textViews) return;
+        try {
+            for (TextView tv : textViews) {
+                if (null == tv) continue;
+                tv.setSelectAllOnFocus(isSelectAll);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static String getText(TextView tv) {
         if (tv == null)
             return "";
@@ -751,6 +877,26 @@ public class UtilitySecurity {
             ex.printStackTrace();
             return "";
         }
+    }
+
+    public static String getText(TabLayout.Tab tab) {
+        if (null == tab) return null;
+        try {
+            return tab.getText().toString().trim();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getHint(TextView tv) {
+        if (null == tv) return null;
+        try {
+            return tv.getHint().toString().trim();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public static int getLength(String value) {
@@ -773,10 +919,24 @@ public class UtilitySecurity {
         return 0;
     }
 
-    public static void clearText(EditText et) {
-        if (et == null) return;
+    public static void clearText(EditText... ets) {
+        if (null == ets) return;
         try {
-            et.getText().clear();
+            for (EditText et : ets) {
+                if (null == et) continue;
+                et.getText().clear();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void clearText(TextView... tvs) {
+        if (tvs == null) return;
+        try {
+            for (TextView tv : tvs) {
+                setText(tv, "");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -827,6 +987,15 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setFocusableInTouchMode(EditText et, boolean isMode) {
+        if (null == et) return;
+        try {
+            et.setFocusableInTouchMode(isMode);
+        } catch (Exception ex) {
+            et.cancelLongPress();
+        }
+    }
+
     public static void clearFocus(EditText et) {
         if (et == null)
             return;
@@ -858,6 +1027,17 @@ public class UtilitySecurity {
 
         try {
             tv.setEnabled(enable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setMaxLines(TextView tv, int maxLine) {
+        if (null == tv || maxLine <= 0) {
+            return;
+        }
+        try {
+            tv.setMaxLines(maxLine);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -896,12 +1076,51 @@ public class UtilitySecurity {
         }
     }
 
+    public static void setTextIsSelectable(TextView tv, boolean isSelectable) {
+        if (null == tv) return;
+        try {
+            tv.setTextIsSelectable(isSelectable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setTextIsSelectable(boolean isSelectable, TextView... textViews) {
+        if (null == textViews) return;
+        try {
+            for (TextView tv : textViews) {
+                if (null == tv) continue;
+                setTextIsSelectable(tv, isSelectable);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackground(View view, Drawable drawable) {
+        if (null == view || null == drawable) return;
+        try {
+            view.setBackground(drawable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setBackgroundResource(View tv, int resoueceID) {
         if (tv == null)
             return;
 
         try {
             tv.setBackgroundResource(resoueceID);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackgroundDrawable(View view, Drawable drawable) {
+        if (null == view || null == drawable) return;
+        try {
+            view.setBackgroundDrawable(drawable);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -944,6 +1163,15 @@ public class UtilitySecurity {
 
         try {
             tv.setText(TextUtils.isEmpty(text) ? "" : Html.fromHtml(text.toString()));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void selectAll(EditText et) {
+        if (null == et) return;
+        try {
+            et.selectAll();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -1262,6 +1490,27 @@ public class UtilitySecurity {
             textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加设置日历时间
+     */
+    public static void setTime(Calendar calendar, Date date) {
+        if (null == calendar || date == null) return;
+        try {
+            calendar.setTime(date);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setItemChecked(AbsListView absListView, int position, boolean isChecked) {
+        if (null == absListView || position < 0) return;
+        try {
+            absListView.setItemChecked(position, isChecked);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 public class UtilityControl {
 
     /**
-     * 可同时设置字体颜色、是否下划线和点击事件
+     * 可同时设置字体颜色、是否下划线、是否加粗、文字大小和点击事件
      *
      * @param tv           TextView
      * @param text         要显示的全部文本
@@ -38,7 +38,10 @@ public class UtilityControl {
             for (int i = 0; i < hotWordModel.size(); i++) {
                 lis = LibUtility.getStrIndex(text + "", hotWordModel.get(i).text);
                 for (int j = 0; j < lis.size(); j++) {
-                    textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline, hotWordModel.get(i).color), lis.get(j), lis.get(j) + hotWordModel.get(i).text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    textBuilder.setSpan(new SpanClickable(listener, i, hotWordModel.get(i).isUnderline, hotWordModel.get(i).color, hotWordModel.get(i).isBold, hotWordModel.get(i).textSize),
+                            lis.get(j),
+                            lis.get(j) + hotWordModel.get(i).text.length(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
             tv.setMovementMethod(LinkMovementMethod.getInstance());
@@ -54,9 +57,11 @@ public class UtilityControl {
      * @param text            Text
      * @param arrHotWords     关键词
      * @param colorResourceID 关键词颜色
+     * @param isBold          关键词是否加粗
+     * @param textSize        关键字文字大小
      * @param listener        关键字点击回调
      */
-    public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID, ITextviewClickable listener) {
+    public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID, boolean isBold, float textSize, ITextviewClickable listener) {
         if (tv == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(arrHotWords)) {
             return;
         }
@@ -68,12 +73,37 @@ public class UtilityControl {
                 spanModel.text = arrHotWord;
                 spanModel.isUnderline = false;
                 spanModel.color = ContextCompat.getColor(LibrariesCons.getContext(), colorResourceID);
+                spanModel.isBold = isBold;
+                spanModel.textSize = textSize;
                 hotWordModels.add(spanModel);
             }
             setSpanText(tv, text, hotWordModels, listener);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * @param tv
+     * @param text            Text
+     * @param arrHotWords     关键词
+     * @param colorResourceID 关键词颜色
+     * @param isBold          关键词是否加粗
+     * @param listener        关键字点击回调
+     */
+    public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID, boolean isBold, ITextviewClickable listener) {
+        setHotWordsText(tv, text, arrHotWords, colorResourceID, isBold, -1, listener);
+    }
+
+    /**
+     * @param tv
+     * @param text            Text
+     * @param arrHotWords     关键词
+     * @param colorResourceID 关键词颜色
+     * @param listener        关键字点击回调
+     */
+    public static void setHotWordsText(TextView tv, CharSequence text, String[] arrHotWords, int colorResourceID, ITextviewClickable listener) {
+        setHotWordsText(tv, text, arrHotWords, colorResourceID, false, listener);
     }
 
     /**

@@ -8,9 +8,12 @@ import com.renrui.libraries.interfaces.ITextviewClickable;
 import com.renrui.libraries.model.SpanModel;
 import com.renrui.libraries.util.CustomToast;
 import com.renrui.libraries.util.UtilityControl;
+import com.renrui.libraries.util.UtilitySecurity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends Activity {
@@ -30,6 +33,7 @@ public class MainActivity extends Activity {
         model1.text = "《用户协议》";
         model1.color = getResources().getColor(R.color.blue_a1ff);
         model1.isUnderline = true;
+        model1.textSize = 50;
 
         SpanModel model2 = new SpanModel();
         model2.text = "《企业注册协议》";
@@ -45,11 +49,13 @@ public class MainActivity extends Activity {
         model4.text = "mafei";
         model4.color = getResources().getColor(R.color.blue_a1ff);
         model4.isUnderline = false;
+        model4.isBold = true;
 
         SpanModel model5 = new SpanModel();
         model5.text = "ceshi";
         model5.color = getResources().getColor(R.color.blue_a1ff);
         model5.isUnderline = false;
+        model5.isBold = true;
 
         List<SpanModel> list = new ArrayList<>();
         list.add(model1);
@@ -73,5 +79,11 @@ public class MainActivity extends Activity {
 //                CustomToast.makeTextWarn("position=" + position);
 //            }
 //        });
+
+        // 测试Map判空方法
+//        Map<String,String> map = new HashMap<>();
+//        UtilitySecurity.isEmpty(map);
+//        HashMap<String,Object> maps = new HashMap<>();
+//        UtilitySecurity.isEmpty(maps);
     }
 }
