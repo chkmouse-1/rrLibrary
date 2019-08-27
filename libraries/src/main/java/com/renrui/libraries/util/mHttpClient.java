@@ -187,7 +187,7 @@ public class mHttpClient {
             PackageInfo packageInfo = info.getPackageInfo(LibrariesCons.getContext().getPackageName(), 0);
 
             String simpleVersionName;
-            String[] arrVersionName = packageInfo.versionName.split(".");
+            String[] arrVersionName = packageInfo.versionName.split("\\.");
             if (arrVersionName.length > 3)
                 simpleVersionName = arrVersionName[0] + "." + arrVersionName[1] + "." + arrVersionName[2];
             else
