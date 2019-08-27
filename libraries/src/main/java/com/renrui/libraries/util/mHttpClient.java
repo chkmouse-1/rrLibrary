@@ -48,7 +48,7 @@ public class mHttpClient {
 
     public static String UserAgent_Key = " tfZAEEECgYEA/oXQfRXIocuFTdjY6ZFwhCIg8KNTUPsuhQpZrbTDWfkVJH8VJIUS";
     public static final String User_Agent_Format_befor = "%1$s %2$s %3$s %4$s %5$s";
-    public static final String User_Agent_Format = "/%1$s (%2$s; %3$s; %4$s; %5$s; cs:%6$s; ch:%7$s)";
+    public static final String User_Agent_Format = "/%1$s (%2$s; %3$s; %4$s; %5$s; cs:%6$s; ch:%7$s; v:%8$s;)";
 
     private static final String HttpContentType = "application/json;charset=UTF-8";
     private static final String HttpDownLoadContentType = "application/x-www-form-urlencoded";
@@ -186,14 +186,21 @@ public class mHttpClient {
             PackageManager info = LibrariesCons.getContext().getPackageManager();
             PackageInfo packageInfo = info.getPackageInfo(LibrariesCons.getContext().getPackageName(), 0);
 
+            String simpleVersionName;
+            String[] arrVersionName = packageInfo.versionName.split(".");
+            if (arrVersionName.length > 3)
+                simpleVersionName = arrVersionName[0] + "." + arrVersionName[1] + "." + arrVersionName[2];
+            else
+                simpleVersionName = packageInfo.versionName;
+
             final String uuid = LibUtility.getUUID();
-            final String phoneInfo = String.format(User_Agent_Format_befor, packageInfo.versionName, android.os.Build.MODEL, "Android " + android.os.Build.VERSION.RELEASE, Locale.getDefault().toString(), uuid);
+            final String phoneInfo = String.format(User_Agent_Format_befor, simpleVersionName, android.os.Build.MODEL, "Android " + android.os.Build.VERSION.RELEASE, Locale.getDefault().toString(), uuid);
             FNV1a32 fnv1a32 = new FNV1a32();
             fnv1a32.init(phoneInfo + UserAgent_Key);
             final long hash = fnv1a32.getHash();
             final String cs = Long.toHexString(hash);
 
-            userAgent = uaStart + String.format(User_Agent_Format, packageInfo.versionName, android.os.Build.MODEL, "Android " + android.os.Build.VERSION.RELEASE, Locale.getDefault().toString(), uuid, cs, channelName);
+            userAgent = uaStart + String.format(User_Agent_Format, simpleVersionName, android.os.Build.MODEL, "Android " + android.os.Build.VERSION.RELEASE, Locale.getDefault().toString(), uuid, cs, channelName, packageInfo.versionName);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
