@@ -1513,4 +1513,15 @@ public class UtilitySecurity {
             ex.printStackTrace();
         }
     }
+
+    public static void smoothScrollToPositionFromTop(AbsListView absListView, int position, int offset) {
+        if (absListView == null || position < 0 && offset < 0) {
+            return;
+        }
+        try {
+            absListView.smoothScrollToPositionFromTop(position, offset);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
