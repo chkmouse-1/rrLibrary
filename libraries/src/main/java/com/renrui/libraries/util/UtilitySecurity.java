@@ -31,6 +31,7 @@ import com.renrui.libraries.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -136,6 +137,29 @@ public class UtilitySecurity {
             e.printStackTrace();
         }
         return contains(keys, tag);
+    }
+
+    /**
+     * 数组合并
+     * 需要使用对象类型
+     *
+     * @param first
+     * @param rest
+     * @param <T>
+     * @return
+     */
+    public static <T> T[] concatAll(T[] first, T[]... rest) {
+        int totalLength = first.length;
+        for (T[] array : rest) {
+            totalLength += array.length;
+        }
+        T[] result = Arrays.copyOf(first, totalLength);
+        int offset = first.length;
+        for (T[] array : rest) {
+            System.arraycopy(array, 0, result, offset, array.length);
+            offset += array.length;
+        }
+        return result;
     }
 
     // 判断String是否以字符串开头
@@ -1524,4 +1548,5 @@ public class UtilitySecurity {
             ex.printStackTrace();
         }
     }
+
 }
