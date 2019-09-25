@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.TransformationMethod;
@@ -1117,6 +1118,22 @@ public class UtilitySecurity {
                 setTextIsSelectable(tv, isSelectable);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加过滤
+     * @param tv
+     * @param inputFilters
+     */
+    public static void setFilters(TextView tv, InputFilter[] inputFilters){
+        if (null == tv || isEmpty(inputFilters)){
+            return;
+        }
+        try {
+            tv.setFilters(inputFilters);
+        }catch (Exception ex){
             ex.printStackTrace();
         }
     }
