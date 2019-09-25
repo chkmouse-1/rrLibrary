@@ -1138,6 +1138,23 @@ public class UtilitySecurity {
         }
     }
 
+    /**
+     * 判断是否获取到焦点
+     * @param et
+     * @return
+     */
+    public static boolean hasFocus(EditText et){
+        if (null == et){
+            return false;
+        }
+        try {
+            return et.hasFocus();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     public static void setBackground(View view, Drawable drawable) {
         if (null == view || null == drawable) return;
         try {
