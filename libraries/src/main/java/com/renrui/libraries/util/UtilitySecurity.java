@@ -1001,6 +1001,23 @@ public class UtilitySecurity {
         }
     }
 
+    /**
+     * @param tv
+     * @param resourceID
+     */
+    public static void setDrawableTop(TextView tv, int resourceID) {
+        if (tv == null)
+            return;
+
+        try {
+            Drawable topDrawable = LibrariesCons.getContext().getResources().getDrawable(resourceID);
+            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+            tv.setCompoundDrawables(null, topDrawable, null, null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void requestFocus(EditText et) {
         if (et == null)
             return;
