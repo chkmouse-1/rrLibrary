@@ -101,7 +101,7 @@
     <string name="UtilityTime_one_week">一周内</string>
     <string name="UtilityTime_two_week">两周内</string>
     <string name="UtilityTime_one_month">一月内</string>
-    <string name="UtilityTime_one_month_more">一个月+</string>
+    <string name="UtilityTime_one_month_more">一个月前</string>
 
     <string name="UtilityTime_good_morning">早上好</string>
     <string name="UtilityTime_good_noon">中午好</string>
