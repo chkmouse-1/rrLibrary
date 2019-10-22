@@ -77,7 +77,9 @@ public class UtilityControl {
                 spanModel.textSize = textSize;
                 hotWordModels.add(spanModel);
             }
-            setSpanText(tv, text, hotWordModels, listener);
+            if (listener != null) {
+                setSpanText(tv, text, hotWordModels, listener);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
