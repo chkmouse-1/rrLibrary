@@ -28,7 +28,7 @@ public class UtilityControl {
      * @param listener     点击监听
      */
     public static void setSpanText(TextView tv, CharSequence text, List<SpanModel> hotWordModel, ITextviewClickable listener) {
-        if (tv == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(hotWordModel)) {
+        if (tv == null || listener == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(hotWordModel)) {
             return;
         }
         try {
@@ -77,9 +77,7 @@ public class UtilityControl {
                 spanModel.textSize = textSize;
                 hotWordModels.add(spanModel);
             }
-            if (listener != null) {
-                setSpanText(tv, text, hotWordModels, listener);
-            }
+            setSpanText(tv, text, hotWordModels, listener);
         } catch (Exception e) {
             e.printStackTrace();
         }
