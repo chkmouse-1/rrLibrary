@@ -28,7 +28,7 @@ public class UtilityControl {
      * @param listener     点击监听
      */
     public static void setSpanText(TextView tv, CharSequence text, List<SpanModel> hotWordModel, ITextviewClickable listener) {
-        if (tv == null || listener == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(hotWordModel)) {
+        if (tv == null || UtilitySecurity.isEmpty(text) || UtilitySecurity.isEmpty(hotWordModel)) {
             return;
         }
         try {
