@@ -56,16 +56,12 @@ public class UtilitySecurity {
         return TextUtils.isEmpty(str) || TextUtils.isEmpty(str.toString().trim());
     }
 
-    public static boolean isEmpty(List<?> list) {
-        return list == null || list.isEmpty();
-    }
-
-    public static boolean isEmpty(Set<?> set) {
-        return set == null || set.isEmpty();
-    }
-
     public static boolean isEmpty(Map<?, ?> map) {
         return map == null || map.isEmpty() || map.size() <= 0;
+    }
+
+    public static boolean isEmpty(Collection<?> collection){
+        return collection == null || collection.isEmpty();
     }
 
     public static boolean isEmpty(Object[] obj) {
@@ -140,6 +136,18 @@ public class UtilitySecurity {
         return contains(keys, tag);
     }
 
+
+    public static <T> boolean contains(Collection<T> collection,T obj){
+        if (collection == null || collection.size() == 0){
+            return false;
+        }
+        try {
+            return collection.contains(obj);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
     /**
      * 数组合并
      * 需要使用对象类型
