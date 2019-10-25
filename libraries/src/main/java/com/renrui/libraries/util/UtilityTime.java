@@ -325,7 +325,7 @@ public class UtilityTime {
         }
 
         try {
-            final String time = UtilityTime.sdf_5.format(Long.parseLong(lTime));
+            final String time = UtilityTime.sdf_16.format(Long.parseLong(lTime));
 
             final String[] split = time.split(" ");
             final String date_last = split[1];
@@ -353,17 +353,13 @@ public class UtilityTime {
      * @return 返回显示文字
      */
     public static String getOfficeInterviewDateString(String lTime, String ivDateEnd) {
-        return getOfficeInterviewDateString(lTime, ivDateEnd, "-");
-    }
-
-    public static String getOfficeInterviewDateString(String lTime, String ivDateEnd, String dayString) {
 
         if (TextUtils.isEmpty(lTime)) {
             return "";
         }
 
         try {
-            final String time = UtilityTime.sdf_5.format(Long.parseLong(lTime));
+            final String time = UtilityTime.sdf_16.format(Long.parseLong(lTime));
 
             final String[] split = time.split(" ");
             final String date_last = split[1];
@@ -378,7 +374,7 @@ public class UtilityTime {
                 if (endTime.equals(date_last)) {
                     resultDate = split[0] + "  (" + date_pre + ")  " + date_last;
                 } else {
-                    resultDate = split[0] + "  (" + date_pre + ")  " + date_last + dayString + endTime;
+                    resultDate = split[0] + "  (" + date_pre + ")  " + date_last + "-" + endTime;
                 }
             }
             return resultDate;
