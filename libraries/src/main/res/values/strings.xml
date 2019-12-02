@@ -57,6 +57,7 @@
     <string name="UtilityTime_sdf25">MM.dd</string>
     <string name="UtilityTime_sdf26">yyyy-MM-dd HH:mm</string>
     <string name="UtilityTime_sdf27">yyyy.MM.dd HH:mm</string>
+    <string name="UtilityTime_sdf28">yyyy年MM月dd日 HH:mm:ss</string>
 
     <string name="UtilityTime_Yesterday">昨天</string>
     <string name="UtilityTime_Today">今天</string>
