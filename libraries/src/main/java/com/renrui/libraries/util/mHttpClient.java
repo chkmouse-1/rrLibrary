@@ -865,7 +865,7 @@ public class mHttpClient {
                 try {
                     if (statusCode == 200 && binaryData != null && binaryData.length > 0) {
                         if (mHttpRequestInterFace != null) {
-                            mHttpRequestInterFace.onResponse(binaryData);
+                            mHttpRequestInterFace.onResponse(headers, binaryData);
                             mHttpRequestInterFace.onFinish();
                         }
                     } else {
