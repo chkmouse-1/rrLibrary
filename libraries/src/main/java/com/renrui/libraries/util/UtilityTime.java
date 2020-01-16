@@ -150,6 +150,10 @@ public class UtilityTime {
      * yyyy.MM.dd HH:mm
      */
     public final static SimpleDateFormat sdf_28 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf28));
+    /**
+     * MM.dd HH:mm:ss
+     */
+    public final static SimpleDateFormat sdf_29 = new SimpleDateFormat(LibrariesCons.getContext().getString(R.string.UtilityTime_sdf29));
 
 
     private final static String Yesterday = LibrariesCons.getContext().getString(R.string.UtilityTime_Yesterday);
@@ -781,5 +785,38 @@ public class UtilityTime {
         }
 
         return imText;
+    }
+
+    /**
+     * 格式化时间格式为   MM:dd HH:mm:ss
+     */
+    public static String getTimeForBottom(Long time) {
+        if (time < 0L) {
+            return null;
+        }
+        try {
+            Date tempDate = new Date(time);
+            Date thisDate = new Date();
+            // 跨年格式 yyyy-MM-dd HH:mm:ss
+            if (tempDate.getYear() != thisDate.getYear()) {
+                return UtilityTime.sdf_19.format(tempDate);
+            }
+            // 当天：今天 MM-dd-ss
+            if (tempDate.getYear() == thisDate.getYear() && tempDate.getMonth() == thisDate.getMonth() && tempDate.getDate() == thisDate.getDate()) {
+                return Today + UtilityTime.sdf_23.format(tempDate);
+            }
+            Calendar calendar = java.util.Calendar.getInstance();
+            calendar.setTime(tempDate);
+            calendar.roll(Calendar.DAY_OF_YEAR, 1);
+            // 当天： 昨天 MM-dd
+            if (calendar.getTime().getYear() == thisDate.getYear() && calendar.getTime().getMonth() == thisDate.getMonth() && calendar.getTime().getDate() == thisDate.getDate()) {
+                return Yesterday + UtilityTime.sdf_23.format(tempDate);
+            }
+
+            return sdf_29.format(tempDate);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
