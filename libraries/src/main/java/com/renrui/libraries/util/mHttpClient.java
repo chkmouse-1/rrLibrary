@@ -434,6 +434,8 @@ public class mHttpClient {
                     if (mIHttpRequestInterFace != null) {
                         if (error != null && !TextUtils.isEmpty(error.getMessage())) {
                             mIHttpRequestInterFace.onErrorResponse(error.getMessage());
+                        } else if (responseBody != null && responseBody.length > 0) {
+                            mIHttpRequestInterFace.onErrorResponse(new String(responseBody));
                         }
                         mIHttpRequestInterFace.onFinish();
                     }
