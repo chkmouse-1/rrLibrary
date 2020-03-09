@@ -21,6 +21,8 @@
     <string name="info_error_network">网络不给力！</string>
     <string name="info_error_cancelRequest">您已取消！</string>
     <string name="info_error_download_failure">下载失败！</string>
+    <string name="info_error_request404">错误码: 404  地址不存在</string>
+    <string name="info_error_request_unKnow">未知错误</string>
 
     <string name="info_exit_unSave">内容还没保存，确定要放弃编辑吗？</string>
     <string name="info_exit_cancel">放弃</string>

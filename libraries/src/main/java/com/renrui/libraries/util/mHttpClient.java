@@ -436,7 +436,12 @@ public class mHttpClient {
                             mIHttpRequestInterFace.onErrorResponse(error.getMessage());
                         } else if (responseBody != null && responseBody.length > 0) {
                             mIHttpRequestInterFace.onErrorResponse(new String(responseBody));
+                        } else if (statusCode == 404) {
+                            mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getString(R.string.info_error_request404));
+                        } else {
+                            mIHttpRequestInterFace.onErrorResponse(LibrariesCons.getContext().getString(R.string.info_error_request_unKnow));
                         }
+
                         mIHttpRequestInterFace.onFinish();
                     }
                 }
