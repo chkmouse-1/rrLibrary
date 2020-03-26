@@ -28,7 +28,7 @@ public class UtilityPermission {
     public interface IRequestPermission {
         void onSuccess(int requestCode);
 
-        void onFaild(int requestCode);
+        void onFail(int requestCode);
     }
 
     /**
