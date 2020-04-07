@@ -60,7 +60,7 @@ public class UtilitySecurity {
         return map == null || map.isEmpty() || map.size() <= 0;
     }
 
-    public static boolean isEmpty(Collection<?> collection){
+    public static boolean isEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
     }
 
@@ -137,17 +137,18 @@ public class UtilitySecurity {
     }
 
 
-    public static <T> boolean contains(Collection<T> collection,T obj){
-        if (collection == null || collection.size() == 0){
+    public static <T> boolean contains(Collection<T> collection, T obj) {
+        if (collection == null || collection.size() == 0) {
             return false;
         }
         try {
             return collection.contains(obj);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return false;
     }
+
     /**
      * 数组合并
      * 需要使用对象类型
@@ -855,7 +856,8 @@ public class UtilitySecurity {
             return;
 
         try {
-            tv.setText(TextUtils.isEmpty(text) ? "" : text);
+            if (!TextUtils.equals(tv.getText(), text))
+                tv.setText(TextUtils.isEmpty(text) ? "" : text);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -1149,32 +1151,34 @@ public class UtilitySecurity {
 
     /**
      * 添加过滤
+     *
      * @param tv
      * @param inputFilters
      */
-    public static void setFilters(TextView tv, InputFilter[] inputFilters){
-        if (null == tv || isEmpty(inputFilters)){
+    public static void setFilters(TextView tv, InputFilter[] inputFilters) {
+        if (null == tv || isEmpty(inputFilters)) {
             return;
         }
         try {
             tv.setFilters(inputFilters);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     /**
      * 判断是否获取到焦点
+     *
      * @param et
      * @return
      */
-    public static boolean hasFocus(EditText et){
-        if (null == et){
+    public static boolean hasFocus(EditText et) {
+        if (null == et) {
             return false;
         }
         try {
             return et.hasFocus();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return false;
