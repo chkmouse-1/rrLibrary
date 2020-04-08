@@ -270,7 +270,7 @@ public class AdPub {
             dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if (cancel && keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (!cancel && keyCode == KeyEvent.KEYCODE_BACK) {
                         return true;
                     } else {
                         return false;
