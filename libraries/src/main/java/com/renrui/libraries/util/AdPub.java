@@ -259,7 +259,7 @@ public class AdPub {
      * @param gravity         内容gravity
      * @param listener
      */
-    public static void show(Context context, final boolean cancel, String title, CharSequence content, String leftButtonText, String rightButtonText, int gravity, boolean showClose, final ITwoButtonAddCloseListener listener) {
+    public static void show(Context context, final boolean cancel, String title, final CharSequence content, String leftButtonText, String rightButtonText, int gravity, boolean showClose, final ITwoButtonAddCloseListener listener) {
         try {
             if (context instanceof Activity && ((Activity) context).isFinishing()) {
                 return;
