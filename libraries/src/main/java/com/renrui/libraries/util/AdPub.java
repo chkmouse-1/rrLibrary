@@ -3,11 +3,13 @@ package com.renrui.libraries.util;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -191,7 +193,7 @@ public class AdPub {
      * @param rightButtonText 右侧按钮
      * @param listener
      */
-    private static void show(Context context, boolean cancel, String title, CharSequence content, String leftButtonText, String rightButtonText, final ITwoButtonListener listener) {
+    public static void show(Context context, boolean cancel, String title, CharSequence content, String leftButtonText, String rightButtonText, final ITwoButtonListener listener) {
         show(context, cancel, title, content, leftButtonText, rightButtonText, Gravity.CENTER, false, new ITwoButtonAddCloseListener() {
             @Override
             public void onLeftButtonOnclick() {
@@ -257,7 +259,7 @@ public class AdPub {
      * @param gravity         内容gravity
      * @param listener
      */
-    private static void show(Context context, boolean cancel, String title, CharSequence content, String leftButtonText, String rightButtonText, int gravity, boolean showClose, final ITwoButtonAddCloseListener listener) {
+    public static void show(Context context, final boolean cancel, String title, CharSequence content, String leftButtonText, String rightButtonText, int gravity, boolean showClose, final ITwoButtonAddCloseListener listener) {
         try {
             if (context instanceof Activity && ((Activity) context).isFinishing()) {
                 return;
@@ -265,6 +267,17 @@ public class AdPub {
 
             final Dialog dialog = new Dialog(context, android.R.style.Theme_Holo_Dialog_NoActionBar);
             dialog.setCanceledOnTouchOutside(cancel);
+            dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    if (cancel && keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
             if (dialog.getWindow() != null) {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
