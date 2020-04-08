@@ -856,8 +856,8 @@ public class UtilitySecurity {
             return;
 
         try {
-            if (!TextUtils.equals(tv.getText(), text))
-                tv.setText(TextUtils.isEmpty(text) ? "" : text);
+//            if (!TextUtils.equals(tv.getText(), text))
+            tv.setText(TextUtils.isEmpty(text) ? "" : text);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
