@@ -96,7 +96,17 @@ public class CustomToast {
         showCenter(0, title, "", Toast.LENGTH_LONG);
     }
 
+    public static void showCenter(int titleId) {
+        String title = LibrariesCons.getContext().getString(titleId);
+        showCenter(0, title, "", Toast.LENGTH_LONG);
+    }
+
     public static void showCenter(int drawableId, String title) {
+        showCenter(drawableId, title, "", Toast.LENGTH_LONG);
+    }
+
+    public static void showCenter(int drawableId, int titleId) {
+        String title = LibrariesCons.getContext().getString(titleId);
         showCenter(drawableId, title, "", Toast.LENGTH_LONG);
     }
 
@@ -104,11 +114,26 @@ public class CustomToast {
         showCenter(R.drawable.toast_sucess_icon, title, "", Toast.LENGTH_LONG);
     }
 
+    public static void showCenterSuccess(int titleId) {
+        String title = LibrariesCons.getContext().getString(titleId);
+        showCenter(R.drawable.toast_sucess_icon, title, "", Toast.LENGTH_LONG);
+    }
+
     public static void showCenterError(String title) {
         showCenter(R.drawable.toast_error_icon, title, "", Toast.LENGTH_LONG);
     }
 
+    public static void showCenterError(int titleId) {
+        String title = LibrariesCons.getContext().getString(titleId);
+        showCenter(R.drawable.toast_error_icon, title, "", Toast.LENGTH_LONG);
+    }
+
     public static void showCenterWarn(String title) {
+        showCenter(R.drawable.toast_warn_icon, title, "", Toast.LENGTH_LONG);
+    }
+
+    public static void showCenterWarn(int titleId) {
+        String title = LibrariesCons.getContext().getString(titleId);
         showCenter(R.drawable.toast_warn_icon, title, "", Toast.LENGTH_LONG);
     }
 
