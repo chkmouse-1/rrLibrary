@@ -20,7 +20,7 @@
             android:id="@+id/ivStat"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:background="@drawable/toast_sucess_icon" />
+            android:src="@drawable/toast_sucess_icon" />
 
         <TextView
             android:id="@+id/tvTitle"

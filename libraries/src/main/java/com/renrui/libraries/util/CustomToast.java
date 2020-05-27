@@ -55,7 +55,7 @@ public class CustomToast {
                 break;
         }
 
-        UtilitySecurity.setBackgroundResource(ivStat, drawableId);
+        UtilitySecurity.setImageResource(ivStat, drawableId);
         UtilitySecurity.setText(tvTitle, title);
         UtilitySecurity.resetVisibility(tvContent, !TextUtils.isEmpty(content));
         UtilitySecurity.setText(tvContent, content);
@@ -85,7 +85,7 @@ public class CustomToast {
             UtilitySecurity.resetVisibility(ivStat, false);
         } else {
             UtilitySecurity.resetVisibility(ivStat, true);
-            UtilitySecurity.setBackgroundResource(ivStat, drawableId);
+            UtilitySecurity.setImageResource(ivStat, drawableId);
         }
         UtilitySecurity.setText(tvTitle, title);
         UtilitySecurity.resetVisibility(tvContent, !TextUtils.isEmpty(content));
