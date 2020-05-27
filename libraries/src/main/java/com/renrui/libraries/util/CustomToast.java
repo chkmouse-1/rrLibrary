@@ -1,6 +1,7 @@
 package com.renrui.libraries.util;
 
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class CustomToast {
         } else {
             toastView = ToastUtils.showCustomLong(R.layout.view_mytoast);
         }
+        ToastUtils.setGravity(-1, -1, -1);
 
         ImageView ivStat = toastView.findViewById(R.id.ivStat);
         TextView tvTitle = toastView.findViewById(R.id.tvTitle);
@@ -57,6 +59,57 @@ public class CustomToast {
         UtilitySecurity.setText(tvTitle, title);
         UtilitySecurity.resetVisibility(tvContent, !TextUtils.isEmpty(content));
         UtilitySecurity.setText(tvContent, content);
+    }
+
+    /**
+     * 显示吐司
+     *
+     * @param title    标题
+     * @param content  内容
+     * @param duration Toast.LENGTH_SHORT or Toast.LENGTH_LONG
+     */
+    private static void showCenter(int drawableId, String title, String content, int duration) {
+        View toastView;
+        if (duration == Toast.LENGTH_SHORT) {
+            toastView = ToastUtils.showCustomShort(R.layout.view_mytoast);
+        } else {
+            toastView = ToastUtils.showCustomLong(R.layout.view_mytoast);
+        }
+        ToastUtils.setGravity(Gravity.CENTER, 0, 0);
+
+        ImageView ivStat = toastView.findViewById(R.id.ivStat);
+        TextView tvTitle = toastView.findViewById(R.id.tvTitle);
+        TextView tvContent = toastView.findViewById(R.id.tvContent);
+
+        if (drawableId == 0) {
+            UtilitySecurity.resetVisibility(ivStat, false);
+        } else {
+            UtilitySecurity.resetVisibility(ivStat, true);
+            UtilitySecurity.setBackgroundResource(ivStat, drawableId);
+        }
+        UtilitySecurity.setText(tvTitle, title);
+        UtilitySecurity.resetVisibility(tvContent, !TextUtils.isEmpty(content));
+        UtilitySecurity.setText(tvContent, content);
+    }
+
+    public static void showCenter(String title) {
+        showCenter(0, title, "", Toast.LENGTH_LONG);
+    }
+
+    public static void showCenter(int drawableId, String title) {
+        showCenter(drawableId, title, "", Toast.LENGTH_LONG);
+    }
+
+    public static void showCenterSuccess(String title) {
+        showCenter(R.drawable.toast_sucess_icon, title, "", Toast.LENGTH_LONG);
+    }
+
+    public static void showCenterError(String title) {
+        showCenter(R.drawable.toast_error_icon, title, "", Toast.LENGTH_LONG);
+    }
+
+    public static void showCenterWarn(String title) {
+        showCenter(R.drawable.toast_warn_icon, title, "", Toast.LENGTH_LONG);
     }
 
     /**

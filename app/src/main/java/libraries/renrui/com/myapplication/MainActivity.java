@@ -8,12 +8,9 @@ import com.renrui.libraries.interfaces.ITextviewClickable;
 import com.renrui.libraries.model.SpanModel;
 import com.renrui.libraries.util.CustomToast;
 import com.renrui.libraries.util.UtilityControl;
-import com.renrui.libraries.util.UtilitySecurity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends Activity {
@@ -67,7 +64,11 @@ public class MainActivity extends Activity {
         UtilityControl.setSpanText(tvTest1, text, list, new ITextviewClickable() {
             @Override
             public void onSpanClick(int position) {
-                CustomToast.makeTextWarn("position=" + position);
+                if (position == 0) {
+                    CustomToast.makeTextWarn("position=" + position);
+                } else {
+                    CustomToast.showCenter(com.renrui.libraries.R.drawable.toast_sucess_icon, "您已经被 HR 禁言");
+                }
             }
         });
 
