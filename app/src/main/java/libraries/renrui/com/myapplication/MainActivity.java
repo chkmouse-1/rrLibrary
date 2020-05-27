@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
                 if (position == 0) {
                     CustomToast.makeTextWarn("position=" + position);
                 } else {
-                    CustomToast.showCenter(com.renrui.libraries.R.drawable.toast_sucess_icon, "您已经被 HR 禁言");
+                    CustomToast.showCenter(com.renrui.libraries.R.drawable.ic_video_speak_no_white, "您已经被 HR 禁言");
                 }
             }
         });
